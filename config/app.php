@@ -54,7 +54,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    // http://localhost
+
+    'url' => env('APP_URL', 'https://ariecakestore.herokuapp.com/'),
 
     'asset_url' => env('ASSET_URL'),
 
