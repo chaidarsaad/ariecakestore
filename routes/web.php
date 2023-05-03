@@ -55,6 +55,7 @@ Route::post('delete-wishlist-item', [WishlistController::class, 'deleteitem']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartController::class, 'viewcart']);
+    
     Route::get('checkout', [CheckoutController::class, 'index']);
     Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
@@ -71,6 +72,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wishlist', [WishlistController::class, 'index']);
 
     Route::post('proceed-to-pay', [CheckoutController::class, 'razorpaycheck']);
+
+    Route::post('midtranspayment', [CheckoutController::class, 'midtrans']);
+    Route::post('midtranspayment/callback', [CheckoutController::class, 'callback']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

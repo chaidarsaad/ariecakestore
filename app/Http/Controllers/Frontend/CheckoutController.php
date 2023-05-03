@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\OrderItems;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
+use Exception;
+
+use Midtrans\Snap;
+use Midtrans\Config;
 
 class CheckoutController extends Controller
 {
@@ -88,37 +92,94 @@ class CheckoutController extends Controller
         return redirect('/')->with('status', "Pesnanan Berhasil Dibuat");
     }
 
-    // public function razorpaycheck(Request $request){
-    //     $cartitems = Cart::where('user_id', Auth::id())->get();
-    //     $total_price = 0;
-    //     foreach($cartitems as $item)
-    //     {
-    //         $total_price += $item->products->selling_price * $item->prod_qty;
-    //     }
+    public function midtrans(Request $request){
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->fname = $request->input('fname');
+        $order->phone = $request->input('phone');
+        $order->districts_id = $request->input('districts_id');
+        $order->address1 = $request->input('address1');
 
-    //     $firstname = $request->input('firstname');
-    //     $lastname = $request->input('lastname');
-    //     // $email = $request->input('email');
-    //     $phone = $request->input('phone');
-    //     $address1 = $request->input('address1');
-    //     $address2 = $request->input('address2');
-    //     $city = $request->input('city');
-    //     $state = $request->input('state');
-    //     $country = $request->input('country');
-    //     $pincode = $request->input('pincode');
+        // To Calculate the total price
+        $total = 0;
+        $cartitems_total = Cart::where('user_id', Auth::id())->get();
+        foreach($cartitems_total as $prod)
+        {
+            $total += $prod->products->price * $prod->prod_qty;
+        }
 
-    //     return response()->json([
-    //         'firstname'=> $firstname,
-    //         'lastname'=> $lastname,
-    //         // 'email'=> $email,
-    //         'phone'=> $phone,
-    //         'address1'=> $address1,
-    //         'address2'=> $address2,
-    //         'city'=> $city,
-    //         'state'=> $state,
-    //         'country'=> $country,
-    //         'pincode'=> $pincode,
-    //         'total_price' => $total_price
-    //     ]);
-    // }
+        $order->total_price = $total;
+
+        $order->tracking_no = 'ariecakestore-' . mt_rand(00000,99999);
+        $order->save();
+
+        $cartitems = Cart::where('user_id', Auth::id())->get();
+        foreach($cartitems as $item){
+            OrderItem::create([
+                'order_id'=> $order->id,
+                'prod_id' => $item->prod_id,
+                'qty'=> $item->prod_qty,
+                'price' => $item->products->price,
+            ]);
+
+            $prod = Product::where('id', $item->prod_id)->first();
+            $prod->qty = $prod->qty - $item->prod_qty;
+            $prod->update();
+        }
+
+        if(Auth::user()->address1 == NULL)
+        {
+            $user = User::where('id', Auth::id())->first();
+            $user->phone = $request->input('phone');
+            $user->districts_id = $request->input('districts_id');
+            $user->address1 = $request->input('address1');
+            $user->update();
+        }
+
+        $cartitems = Cart::where('user_id', Auth::id())->get();
+        Cart::destroy($cartitems);
+
+        //konfig midtrans
+        // Set your Merchant Server Key
+        Config::$serverKey = config('services.midtrans.serverKey');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        Config::$isProduction = config('services.midtrans.isProduction');
+        // Set sanitization on (default)
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        // Set 3DS transaction for credit card to true
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        //buat array untuk dikirim ke midtrans
+        $midtrans = [
+            'transaction_details' => [
+                'order_id' => $order->tracking_no,
+                'gross_amount' => (int) $total,
+            ],
+            'customer_details' => [
+                'first_name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+            ],
+            'enabled_payments' => [
+                'gopay', 'permata_va', 'bank_transfer'
+            ],
+            'vtweb' => []
+        ];
+
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+            
+            // Redirect to Snap Payment Page
+            return redirect($paymentUrl);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        return dd($midtrans);
+        // return redirect('/')->with('status', "Pesnanan Berhasil Dibuat");
+    }
+
+    public function callback(Request $request){
+        
+    }
 }
