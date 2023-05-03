@@ -29,8 +29,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body bg-info">
-                                {{-- <h4 class="font-weight-bold text-white">Total Orders : {{ $total_orders }} </h4> --}}
-                                <h4 class="font-weight-bold text-white">Total Orders : </h4>
+                                <h4 class="font-weight-bold text-white">Total Orders : {{ $total_orders }} </h4>
                             </div>
                         </div>
                     </div>
