@@ -35,7 +35,7 @@
                         <input type="number" value="{{ $products->qty }}"  class="form-control" name="qty">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Status</label>
+                        <label for="">Tampilkan Produk?</label>
                         <input type="checkbox" {{ $products->status == "1" ? 'checked' : '' }} name="status" >
                     </div>
                     <div class="col-md-6 mb-3">

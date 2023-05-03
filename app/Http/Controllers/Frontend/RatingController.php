@@ -16,7 +16,7 @@ class RatingController extends Controller
         $stars_rated = $request->input('product_rating');
         $product_id = $request->input('product_id');
 
-        $product_check = Product::where('id', $product_id)->where('status','0')->first();
+        $product_check = Product::where('id', $product_id)->where('status','1')->first();
         if($product_check)
         {
             $verified_purchase = Order::where('orders.user_id', Auth::id())
@@ -48,7 +48,7 @@ class RatingController extends Controller
         }
         else
         {
-            return redirect()->back()->with('status', "The link you followed was broken");
+            return redirect()->back()->with('status', "Produk saat ini tidak di aktif, coba lagi nanti");
         }
     }
 }

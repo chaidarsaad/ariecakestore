@@ -13,7 +13,7 @@ class ReviewController extends Controller
 {
     public function add($product_slug)
     {
-        $product = Product::where('slug', $product_slug)->where('status', '0')->first();
+        $product = Product::where('slug', $product_slug)->where('status', '1')->first();
 
         if($product)
         {
@@ -33,14 +33,14 @@ class ReviewController extends Controller
         }
         else
         {
-            return redirect()->back()->with('status',"The link you followed was broken");
+            return redirect()->back()->with('status',"Produk saat ini tidak di aktif, coba lagi nanti");
         }
     }
 
     public function create(Request $request)
     {
         $product_id = $request->input('product_id');
-        $product = Product::where('id', $product_id)->where('status', '0')->first();
+        $product = Product::where('id', $product_id)->where('status', '1')->first();
         if($product)
         {
             $user_review = $request->input('user_review');
@@ -53,12 +53,12 @@ class ReviewController extends Controller
             $prod_slug = $product->slug;
             if($new_review)
             {
-                return redirect('category/'.$category_slug.'/'.$prod_slug)->with('status', "Thank you for writing a review");
+                return redirect('category/'.$category_slug.'/'.$prod_slug)->with('status', "Terimakasih telah memberi review produk ini");
             }
         }
         else
         {
-            return redirect()->back()->with('status',"The link you followed was broken");
+            return redirect()->back()->with('status',"Produk saat ini tidak di aktif, coba lagi nanti");
         }
 
 
@@ -66,7 +66,7 @@ class ReviewController extends Controller
 
     public function edit($product_slug)
     {
-        $product = Product::where('slug', $product_slug)->where('status', '0')->first();
+        $product = Product::where('slug', $product_slug)->where('status', '1')->first();
         if($product)
         {
             $product_id = $product->id;
@@ -77,12 +77,12 @@ class ReviewController extends Controller
             }
             else
             {
-                return redirect()->back()->with('status',"The link you followed was broken");
+                return redirect()->back()->with('status',"Produk saat ini tidak di aktif, coba lagi nanti");
             }
         }
         else
         {
-            return redirect()->back()->with('status',"The link you followed was broken");
+            return redirect()->back()->with('status',"Produk saat ini tidak di aktif, coba lagi nanti");
         }
     }
 
@@ -97,16 +97,16 @@ class ReviewController extends Controller
             {
                 $review->user_review = $request->input('user_review');
                 $review->update();
-                return redirect('category/'.$review->product->category->slug.'/'.$review->product->slug)->with('status', "Review Updated successfully");
+                return redirect('category/'.$review->product->category->slug.'/'.$review->product->slug)->with('status', "Review Berhasil di Update");
             }
             else
             {
-                return redirect()->back()->with('status',"The link you followed was broken");
+                return redirect()->back()->with('status',"Produk saat ini tidak di aktif, coba lagi nanti");
             }
         }
         else
         {
-            return redirect()->back()->with('status',"You cannot submit an empty review");
+            return redirect()->back()->with('status',"Anda tidak bisa mengisi review kosong");
         }
     }
 }
