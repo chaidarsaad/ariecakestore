@@ -108,6 +108,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('order-history', [OrderController::class, 'orderhistory']);
 
     Route::get('users', [DashboardController::class, 'users']);
-    Route::get('view-user/{id}', [DashboardController::class, 'viewuser']);
+    Route::get('edit-user/{id}', [DashboardController::class, 'edit']);
+    Route::put('update-user/{id}', [DashboardController::class, 'update']);
+    Route::get('delete-user/{id}', [DashboardController::class, 'destroy']);
+
 
 });

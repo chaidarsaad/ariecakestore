@@ -47,6 +47,14 @@
                         <input type="file" class="form-control" name="image" placeholder="Photo" />
                       </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="">Tampil di semua kategori?</label>
+                      <input type="checkbox" {{ $category->status == "1" ? 'checked':'' }} name="status" >
+                  </div>
+                  <div class="col-md-6 mb-3">
+                      <label for="">Tampil di Trending?</label>
+                      <input type="checkbox" {{ $category->popular == "1" ? 'checked':'' }} name="popular">
+                  </div>
                   </div>
                   <div class="row">
                     <div class="col text-right">

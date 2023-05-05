@@ -14,7 +14,7 @@ data-aos="fade-up"
   <div class="dashboard-heading">
       <h2 class="dashboard-title">Akun</h2>
       <p class="dashboard-subtitle">
-          Edit "" Akun
+          Edit "{{ $users->name }}" Akun
       </p>
   </div>
   <div class="dashboard-content">
@@ -29,42 +29,64 @@ data-aos="fade-up"
                 </ul>
             </div>
         @endif
-        <form action="" method="" enctype="multipart/form-data">
-          {{-- @method('PUT') --}}
+        <form action="{{ url('update-user/'.$users->id) }}" method="post" enctype="multipart/form-data">
+          @method('PUT')
           @csrf
           <div class="card">
             <div class="card-body">
+              <a href="{{  url('users') }}" class="btn btn-primary mb-3">
+                Kembali
+            </a>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label>Nama User</label>
-                    <input type="text" class="form-control" name="name" value="{{ $users->name }}" required />
+                    <label>Nama</label>
+                    <input type="text" class="form-control" required name="name" value="{{ $users->name }}"/>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" required name="email" value="{{ $users->email }}"/>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>No WhatsApp</label>
+                    <input type="text" placeholder="isi dengan awalan +62" class="form-control" name="phone" value="{{ $users->phone }}"/>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Kecamatan</label>
+                    <input type="number" class="form-control" name="districts_id" value="{{ $users->districts_id }}"/>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Email User</label>
-                    <input type="text" class="form-control" name="email" value="{{ $users->email }}" required />
+                    <label>Alamat Lengkap</label>
+                    <input type="text" class="form-control" name="address1" value="{{ $users->address1 }}"/>
                   </div>
                 </div>
-                {{-- <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Password User</label>
-                    <input type="text" class="form-control" name="password" />
-                    <small>Kosongkan jika tidak ingin mengganti password</small>
-                  </div>
-                </div> --}}
-                {{-- <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label>Roles</label>
-                    <select name="roles" required class="form-control">
-                        <option value="{{ $item->roles }}" selected>Tidak diganti</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="USER">User</option>
-                        <option value="KARYAWAN">Karyawan</option>
-                      </select>
+                    <select name="role_as" required class="form-control">
+                      <option value="{{ $users->role_as }}" selected>Tidak diganti</option>
+                      <option value="0">Costumer</option>
+                      <option value="1">Admin</option>
+                      <option value="2">Karyawan</option>
+                    </select>
                   </div>
-                </div> --}}
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" name="password"/>
+                    <small>Kosongkan jika tidak ingin mengganti password</small>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col text-right">

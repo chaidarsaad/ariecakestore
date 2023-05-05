@@ -21,32 +21,18 @@ data-aos="fade-up"
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="" class="btn btn-primary mb-3">
+                        {{-- <a href="" class="btn btn-primary mb-3">
                             + Tambah Akun Baru
-                        </a>
+                        </a> --}}
                         <div class="table-responsive">
                             <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach($users as $item)
-                                        <tr>
-                                            <td>{{ $item->name.' '.$item->lname }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td>
-                                                <a href="{{ url('view-user/'.$item->id) }}" class="btn btn-primary btn-sm">View</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -57,35 +43,31 @@ data-aos="fade-up"
 </div>
 </div>
 
-    <div class="card" style="display: none">
-        <div class="card-header">
-            <h4>Akun Terdaftar</h4>
-        </div>
-        <div class="card-body table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $item)
-                        <tr>
-                            <td>{{ $item->name.' '.$item->lname }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
-                            <td>
-                                <a href="{{ url('view-user/'.$item->id) }}" class="btn btn-primary btn-sm">View</a>
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
 @endsection
+
+@push('addon-script')
+    <script>
+        // AJAX DataTable
+        var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'name', name: 'name' },
+                { data: 'email', name: 'email' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '15%'
+                },
+            ]
+        });
+    </script>
+@endpush
 

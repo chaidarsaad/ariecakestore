@@ -8,12 +8,50 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
+use Yajra\DataTables\Facades\DataTables;
+
+
 class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
-        return view('admin.category.index', compact('category'));
+        // $category = Category::all();
+        if (request()->ajax()) {
+            $query = Category::query();
+
+            return Datatables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                    type="button" id="action' .  $item->id . '"
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Aksi
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
+                                    <a class="dropdown-item" href="' . url('edit-category', $item->id) . '">
+                                        Sunting
+                                    </a>
+                                    <form action="' . url('delete-category', $item->id) . '" method="get">
+                                        ' . method_field('delete') . csrf_field() . '
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>';
+                })
+                ->editColumn('image', function ($item) {
+                    return $item->image ? '<img src="' . asset('assets/uploads/category/'.$item->image) . '" style="max-height: 40px;"/>' : '';
+                })
+                ->rawColumns(['action', 'image'])
+                ->make();
+        }
+        return view('admin.category.index');
     }
 
     public function add()

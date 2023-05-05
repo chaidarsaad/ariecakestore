@@ -31,23 +31,10 @@ data-aos="fade-up"
                                         <tr>
                                             <th>Nama</th>
                                             <th>Foto</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach($category as $item)
-                                            <tr>
-                                                <td>{{ $item->name }}</td>
-                                                <td>
-                                                    <img src="{{ asset('assets/uploads/category/'.$item->image) }}" class="cate-image" alt="Image here">
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('edit-category/'.$item->id) }}" class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('delete-category/'.$item->id) }}" class="btn btn-danger">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -60,7 +47,7 @@ data-aos="fade-up"
 @endsection
 
 @push('addon-script')
-    {{-- <script>
+    <script>
         // AJAX DataTable
         var datatable = $('#crudTable').DataTable({
             processing: true,
@@ -69,20 +56,19 @@ data-aos="fade-up"
             ajax: {
                 url: '{!! url()->current() !!}',
             },
-            // columns: [
-            //     { data: 'id', name: 'id' },
-            //     { data: 'name', name: 'name' },
-            //     { data: 'photo', name: 'photo' },
-            //     { data: 'slug', name: 'slug' },
-            //     {
-            //         data: 'action',
-            //         name: 'action',
-            //         orderable: false,
-            //         searchable: false,
-            //         width: '15%'
-            //     },
-            // ]
+            columns: [
+                { data: 'name', name: 'name' },
+                { data: 'image', name: 'image' },
+                { data: 'slug', name: 'slug' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '15%'
+                },
+            ]
         });
-    </script> --}}
+    </script>
 @endpush
 

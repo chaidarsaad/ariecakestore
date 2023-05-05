@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <a href="" style="text-decoration: none">
+                        <a href="{{ url('products') }}" style="text-decoration: none">
                             <div class="card-body">
                                 <div class="dashboard-card-title">
                                     Total Produk
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <a href="" style="text-decoration: none">
+                        <a href="{{ url('categories') }}" style="text-decoration: none">
                             <div class="card-body">
                                 <div class="dashboard-card-title">
                                     Total Kategori
@@ -74,7 +74,7 @@
                                 Laba Kotor
                             </div>
                             <div class="dashboard-card-subtitle">
-                                Rp 1
+                                Rp {{ number_format($revenue) }}
                             </div>
                         </div>
                     </div>

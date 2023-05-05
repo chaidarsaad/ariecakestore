@@ -72,6 +72,14 @@ data-aos="fade-up"
                                         <input type="number" name="qty" class="form-control" required>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">Tampilkan Produk?</label>
+                                    <input type="checkbox" name="status" >
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">Trending</label>
+                                    <input type="checkbox" name="trending">
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Deskripsi Product</label>

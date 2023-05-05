@@ -26,30 +26,14 @@
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                     <tr>
+                                        <th>Nama</th>
                                         <th>Kategori</th>
-                                        <th class="">Nama</th>
-                                        <th class="">Harga</th>
-                                        <th class="">Foto</th>
-                                        <th class="">Action</th>
+                                        <th>Harga</th>
+                                        <th>qty</th>
+                                        <th>Foto</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach($products as $item)
-                                            <tr>
-                                                <td>{{ $item->category->name }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ number_format($item->price) }}</td>
-                                                <td>
-                                                    <img src="{{ asset('assets/uploads/products/'.$item->image) }}" class="cate-image" alt="Image here">
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('edit-product/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                    <a href="{{ url('delete-product/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                    
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -78,25 +62,35 @@
                         <th class="">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($products as $item)
-                        <tr>
-                            <td>{{ $item->category->name }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ number_format($item->price) }}</td>
-                            <td>
-                                <img src="{{ asset('assets/uploads/products/'.$item->image) }}" class="cate-image" alt="Image here">
-                            </td>
-                            <td>
-                                <a href="{{ url('edit-product/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{ url('delete-product/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
             </table>
         </div>
     </div>
 @endsection
 
+@push('addon-script')
+    <script>
+        // AJAX DataTable
+        var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'name', name: 'name' },
+                { data: 'category.name', name: 'category.name' },
+                { data: 'price', name: 'price' },
+                { data: 'qty', name: 'qty' },
+                { data: 'image', name: 'image' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '15%'
+                },
+            ]
+        });
+    </script>
+@endpush
