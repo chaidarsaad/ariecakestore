@@ -32,7 +32,7 @@ return new class extends Migration
             'phone' => '+6285156506238',
             'address1' => 'Paiton',
             'districts_id' => 1,
-            'roles' => '1',
+            'role_as' => '1',
         ]);
     }
 
