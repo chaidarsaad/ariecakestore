@@ -9,7 +9,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        {{-- <th>Id</th> --}}
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -19,7 +18,6 @@
                 <tbody>
                     @foreach($users as $item)
                         <tr>
-                            {{-- <td>{{ $item->id }}</td> --}}
                             <td>{{ $item->name.' '.$item->lname }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
