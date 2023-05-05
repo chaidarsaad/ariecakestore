@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 
+@section('title')
+    Ongkos Kirim
+@endsection
+
 @section('content')
-    <div class="card">
+    <div class="card" style="display: none">
         <div class="card-header">
             <h4>Edit Produk "{{ $districts->name }}"</h4>
         </div>
