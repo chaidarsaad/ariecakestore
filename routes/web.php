@@ -74,7 +74,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('proceed-to-pay', [CheckoutController::class, 'razorpaycheck']);
 
     Route::post('midtranspayment', [CheckoutController::class, 'midtrans']);
-    Route::post('midtranspayment/callback', [CheckoutController::class, 'callback']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

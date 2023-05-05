@@ -38,26 +38,28 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
+                                            <th>Foto</th>
                                             <th>Jumlah</th>
                                             <th>Harga</th>
-                                            <th>Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($orders->orderitems as $item)
                                             <tr>
                                                 <td>{{ $item->products->name }}</td>
-                                                <td>{{ $item->qty }}</td>
-                                                <td>Rp {{ number_format($item->price) }}</td>
                                                 <td>
                                                     <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" width="50px" alt="Product Image">
                                                 </td>
+                                                <td>{{ $item->qty }}</td>
+                                                <td>Rp {{ number_format($item->price) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                                 <h4 class="px-2">Total Harga: <span class="float-end">Rp {{ number_format($orders->total_price) }}</span></h4>
-                                <h6 class="px-2">Payment Mode: {{ $orders->payment_mode }}</h6>
+                                <h4 class="px-2">Status Pembayaran: <span class="float-end">{{ $orders->status }}</span></h4>
+                                <h4 class="px-2">Status Pesanan: <span class="float-end">{{ $orders->status_order }}</span></h4>
+
                             </div>
                         </div>
 

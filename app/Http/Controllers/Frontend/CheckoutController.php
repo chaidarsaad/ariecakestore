@@ -110,6 +110,9 @@ class CheckoutController extends Controller
 
         $order->total_price = $total;
 
+        $request->request->add(['status' => 'Unpaid']);
+        // $order->status = 'Unpaid';
+
         $order->tracking_no = 'ariecakestore-' . mt_rand(00000,99999);
         $order->save();
 
@@ -158,6 +161,7 @@ class CheckoutController extends Controller
             'customer_details' => [
                 'first_name' => Auth::user()->name,
                 'email' => Auth::user()->email,
+                'phone' => $order->phone,
             ],
             'enabled_payments' => [
                 'gopay', 'permata_va', 'bank_transfer'
@@ -174,12 +178,19 @@ class CheckoutController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-
-        return dd($midtrans);
-        // return redirect('/')->with('status', "Pesnanan Berhasil Dibuat");
+        return redirect('my-orders')->with('status', "Pesnanan Berhasil Dibuat");
+    
     }
 
     public function callback(Request $request){
+        $serverKey = config('services.midtrans.serverKey');
+        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
         
+        if($hashed == $request->signature_key){
+            if($request->transaction_status == 'capture'){
+                $order = Order::find($request->order_id);
+                $order->update(['status' => 'Paid']);
+            }
+        }
     }
 }

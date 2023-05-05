@@ -30,6 +30,7 @@
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="undefined" crossorigin="anonymous">
 
+
     <style>
         a{
             text-decoration: none !important;
@@ -48,6 +49,8 @@
             <img src="{{ asset('assets/images/whatsapp-icon.png') }}" alt="whatsapp-logo" height="40px" width="40px">
         </a>
     </div>
+
+    
 
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}" ></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}" ></script>
@@ -69,28 +72,6 @@
     </script>
     <!--End of Tawk.to Script-->
 
-
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script>
-
-        var availableTags = [];
-        $.ajax({
-            method: "GET",
-            url: "/product-list",
-            success: function (response) {
-                // console.log(response);
-                startAutoComplete(response);
-            }
-        });
-
-        function startAutoComplete(availableTags)
-        {
-            $( "#search_product" ).autocomplete({
-                source: availableTags
-            });
-        }
-
-    </script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if(session('status'))

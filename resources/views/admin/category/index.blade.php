@@ -12,7 +12,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nama</th>
                         <th>Foto</th>
                         <th>Action</th>
@@ -21,7 +20,6 @@
                 <tbody>
                     @foreach($category as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 <img src="{{ asset('assets/uploads/category/'.$item->image) }}" class="cate-image" alt="Image here">
