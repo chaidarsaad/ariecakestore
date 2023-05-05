@@ -28,7 +28,12 @@ class UserController extends Controller
         return view('frontend.profile.index', compact('user'));
     }
 
-    public function update(Request $request){
+    public function edit(){
+        $user = Auth::user();
+        return view('frontend.profile.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id){
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');

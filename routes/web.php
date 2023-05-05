@@ -63,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('view-order/{id}', [UserController::class, 'view']);
 
     Route::get('my-profile', [UserController::class, 'user']);
+    Route::get('edit-profile', [UserController::class, 'edit']);
+    Route::put('update-profile/{id}', [UserController::class, 'update']);
 
     Route::post('add-rating', [RatingController::class, 'add']);
 

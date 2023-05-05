@@ -15,26 +15,25 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('my-profile/editprofile') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('update-profile/'.$user->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-12 order-details">
                                     <h4>Detail Profil
-                                        <a href="{{ url('') }}" class="btn btn-primary float-end">Simpan</a>
+                                        <button type="submit" class="btn btn-primary float-end">Simpan</button>
                                     </h4>
                                     <hr>
                                     <label for="">Nama Lengkap</label>
-                                    <div class="border">{{ $user->name }}</div>
+                                    <input type="text" value="{{ $user->name }}" class="form-control" name="name">
                                     <label for="">Email</label>
-                                    <div class="border">{{ $user->email }}</div>
+                                    <input type="text" value="{{ $user->email }}" class="form-control" name="email">
                                     <label for="">No WhatsApp</label>
-                                    <div class="border">{{ $user->phone }}</div>
+                                    <input type="text" value="{{ $user->phone }}" class="form-control" name="phone">
                                     <label for="">Alamat Lengkap</label>
-                                    <div class="border">
-                                        {{ $user->address1 }}<br>
-                                        {{ $user->districts_id }}<br>
-                                    </div>
+                                    <input type="text" value="{{ $user->address1 }}" class="form-control" name="address1">
+                                    <label for="">Kecamatan</label>
+                                    <input type="number" value="{{ $user->districts_id }}" class="form-control" name="districts_id">
                                 </div>
                             </div>
                         </form>
