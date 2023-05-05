@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-orders', [UserController::class, 'index']);
     Route::get('view-order/{id}', [UserController::class, 'view']);
 
+    Route::get('my-profile', [UserController::class, 'user']);
+
     Route::post('add-rating', [RatingController::class, 'add']);
 
     Route::get('add-review/{product_slug}/userreview', [ReviewController::class, 'add']);
@@ -70,8 +72,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('update-review', [ReviewController::class, 'update']);
 
     Route::get('wishlist', [WishlistController::class, 'index']);
-
-    Route::post('proceed-to-pay', [CheckoutController::class, 'razorpaycheck']);
 
     Route::post('midtranspayment', [CheckoutController::class, 'midtrans']);
 });

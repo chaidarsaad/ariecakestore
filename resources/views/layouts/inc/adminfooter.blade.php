@@ -4,11 +4,6 @@
         <ul>
           <li>
             <a href="#">
-              E-shop
-            </a>
-          </li>
-          <li>
-            <a href="#">
               About Us
             </a>
           </li>

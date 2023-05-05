@@ -27,8 +27,6 @@
                                 <div class="border">
                                     {{ $orders->address1 }}<br>
                                     {{ $orders->districts_id }}<br>
-                                    {{ $orders->state }}
-                                    {{ $orders->country }}
                                 </div>
                             </div>
                             <div class="col-md-6 table-responsive">

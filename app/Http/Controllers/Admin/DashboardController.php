@@ -17,10 +17,9 @@ class DashboardController extends Controller
         $product = Product::count();
         $users = User::where('role_as', '0')->count();
         $total_orders = Order::count();
-        // $completed_orders = Order::where('status', '1')->count();
-        // $pending_orders = Order::where('status', '0')->count();
-        // return view('admin.index', compact('category','product','users','total_orders','completed_orders','pending_orders'));
-        return view('admin.index', compact('category', 'product', 'users', 'total_orders'));
+        $completed_orders = Order::where('status', '1')->count();
+        $pending_orders = Order::where('status', '0')->count();
+        return view('admin.index', compact('category','product','users','total_orders','completed_orders','pending_orders'));
     }
 
     public function users()
