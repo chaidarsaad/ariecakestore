@@ -66,6 +66,18 @@
               Akun
             </a>
             <a
+              href="{{ url('spendings') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('spendings')) ? 'active' : '' }}"
+            >
+              Pengeluaran
+            </a>
+            <a
+              href="{{ url('pointofsales') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('pointofsales')) ? 'active' : '' }}"
+            >
+              Point Of Sales
+            </a>
+            <a
                href="{{ route('logout') }}"
                onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"

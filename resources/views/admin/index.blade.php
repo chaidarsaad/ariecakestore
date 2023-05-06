@@ -27,18 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Total Transaction
-                            </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $total_orders }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-4">
                     <div class="card mb-2">
                         <a href="{{ url('products') }}" style="text-decoration: none">
@@ -86,7 +75,20 @@
                                 Pengeluaran
                             </div>
                             <div class="dashboard-card-subtitle">
-                                Rp 1
+                                Rp {{ number_format($spending) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <div class="dashboard-card-title">
+                                Laba Bersih
+                            </div>
+                            <div class="dashboard-card-subtitle">
+                                Rp {{ number_format($lababersih) }}
                             </div>
                         </div>
                     </div>
@@ -95,10 +97,10 @@
                     <div class="card mb-2">
                         <div class="card-body">
                             <div class="dashboard-card-title">
-                                Laba Bersih
+                                Total Transaction
                             </div>
                             <div class="dashboard-card-subtitle">
-                                Rp 1
+                                {{ $total_orders }}
                             </div>
                         </div>
                     </div>

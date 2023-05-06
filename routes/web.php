@@ -14,6 +14,8 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Admin\SpendingController;
+use App\Http\Controllers\Admin\PosController;
 
 
 
@@ -112,5 +114,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-user/{id}', [DashboardController::class, 'update']);
     Route::get('delete-user/{id}', [DashboardController::class, 'destroy']);
 
+    Route::get('spendings', [SpendingController::class, 'index']);
+    Route::get('add-spendings', [SpendingController::class, 'add']);
+    Route::post('insert-spending', [SpendingController::class, 'insert']);
+    Route::get('edit-spending/{id}', [SpendingController::class, 'edit']);
+    Route::put('update-spending/{id}', [SpendingController::class, 'update']);
+    Route::get('delete-spending/{id}', [SpendingController::class, 'destroy']);
 
+    Route::get('pointofsales', [PosController::class, 'index']);
+    Route::post('insert-pointofsale', [PosController::class, 'insert']);
+    Route::get('delete-pointofsale/{id}', [PosController::class, 'destroy']);
 });

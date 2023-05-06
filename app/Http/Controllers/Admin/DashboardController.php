@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Spending;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,14 +17,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $spending = Spending::sum('total_spending');
+        $lababersih = 1000;
         $category = Category::count();
         $product = Product::count();
         $users = User::where('role_as', '0')->count();
         $total_orders = Order::count();
-        $completed_orders = Order::where('status', '1')->count();
-        $pending_orders = Order::where('status', '0')->count();
+        $completed_orders = Order::where('status', 'Paid')->count();
+        $pending_orders = Order::where('status', 'Unpaid')->count();
         $revenue = Order::sum('total_price');
-        return view('admin.index', compact('category','product','users','total_orders','completed_orders','pending_orders', 'revenue'));
+        return view('admin.index', compact('category','product','users','total_orders','completed_orders','pending_orders', 'revenue', 'spending', 'lababersih'));
     }
 
     public function users()
