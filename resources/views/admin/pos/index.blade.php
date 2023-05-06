@@ -20,15 +20,38 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                <table id="myTable" class="table table-hover scroll-horizontal-vertical w-100">
                                     <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Harga</th>
-                                        <th>qty</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach($products as $item)
+                                            <tr>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->price }}</td>
+                                                {{-- <td>{{ $item->qty }}</td> --}}
+                                                <td>
+                                                    <div class="col-md-3">
+                                                        <input type="hidden" value="" class="prod_id">
+                                                        <label style="display: none" for="Quantity">Jumlah</label>
+                                                        <div class="input-group text-center mb-3" style="width:100px;">
+                                                            <button class="input-group-text decrement-btn">-</button>
+                                                            <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
+                                                            <button class="input-group-text increment-btn">+</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-sm addToPosBtn">Tambah</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -41,13 +64,23 @@
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100">
                                     <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Harga</th>
-                                        <th>qty</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($positems as $item)
+                                            <tr>
+                                                <td>{{ $item->products->name }}</td>
+                                                <td>{{ $item->products->price }}</td>
+                                                <td>{{ $item->prod_qty }}</td>
+                                                <td><a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -60,27 +93,9 @@
 @endsection
 
 @push('addon-script')
+   
+
     <script>
-        // AJAX DataTable
-        var datatable = $('#crudTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ordering: true,
-            ajax: {
-                url: '{!! url()->current() !!}',
-            },
-            columns: [
-                { data: 'name', name: 'name' },
-                { data: 'price', name: 'price' },
-                { data: 'qty', name: 'qty' },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false,
-                    width: '15%'
-                },
-            ]
-        });
+        let table = new DataTable('#myTable');
     </script>
 @endpush
