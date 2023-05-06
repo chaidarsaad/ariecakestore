@@ -70,7 +70,6 @@
     <div class="product_data">
         <div class="card shadow">
             <div class="card-body">
-
                 <div class="row">
                     <div class="col-md-4 border-right">
                         <img src="{{ asset('assets/uploads/products/'.$products->image) }}" class="w-100" alt="">

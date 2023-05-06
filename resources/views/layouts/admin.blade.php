@@ -173,6 +173,9 @@
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+    <script src="{{ asset('admin/js/custom.js') }}" ></script>
+
+
 
     <script src="{{ asset('admin/js/sweetalert.min.js') }}"></script>
     @if(session('status'))
