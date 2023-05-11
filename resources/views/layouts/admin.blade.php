@@ -77,6 +77,21 @@
             >
               Point Of Sales
             </a>
+
+            <a
+              href="{{ url('resep') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('resep')) ? 'active' : '' }}"
+            >
+              Resep
+            </a>
+
+            <a
+              href="{{ url('stokbahan') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('stokbahan')) ? 'active' : '' }}"
+            >
+              Stok Bahan
+            </a>
+
             <a
                href="{{ route('logout') }}"
                onclick="event.preventDefault();

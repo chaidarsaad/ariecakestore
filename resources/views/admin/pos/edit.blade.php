@@ -46,7 +46,7 @@
                             <label>Kategori Product</label>
                             <select name="cate_id" class="form-control">
                                 <option value="">{{ $products->category->name }}</option>
-                                {{-- @foreach ($cateogry as $item)
+                                {{-- @foreach ($category as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach --}}
                             </select>

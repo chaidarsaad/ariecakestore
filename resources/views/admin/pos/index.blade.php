@@ -19,41 +19,33 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="myTable" class="table table-hover scroll-horizontal-vertical w-100">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($products as $item)
+                            <form action="{{ url('insert-pos') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-hover scroll-horizontal-vertical">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->price }}</td>
-                                                {{-- <td>{{ $item->qty }}</td> --}}
-                                                <td>
-                                                    <div class="col-md-3">
-                                                        <input type="hidden" value="" class="prod_id">
-                                                        <label style="display: none" for="Quantity">Jumlah</label>
-                                                        <div class="input-group text-center mb-3" style="width:100px;">
-                                                            <button class="input-group-text decrement-btn">-</button>
-                                                            <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
-                                                            <button class="input-group-text increment-btn">+</button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-sm addToPosBtn">Tambah</button>
-                                                </td>
+                                                <th>Nama</th>
+                                                <th>Harga</th>
+                                                <th>Stok</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($products as $item)
+                                                <tr>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->price }}</td>
+                                                    <td>{{ $item->qty }}</td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary btn-sm">Tambah</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -62,7 +54,7 @@
                         <div class="card-body">
                             <label>Barang yang dibeli</label>
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100">
+                                <table id="myTable" class="table table-hover scroll-horizontal-vertical w-100">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -93,8 +85,6 @@
 @endsection
 
 @push('addon-script')
-   
-
     <script>
         let table = new DataTable('#myTable');
     </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Pos;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -20,14 +21,19 @@ class PosController extends Controller
     }
 
     //tambah product ke pos
-    public function addpos(Request $request){
-        $product_id = $request->input('product_id');
-        $product_qty = $request->input('product_qty');
+    public function insert(Request $request){
+
+        $pos = new Pos();
+        $pos->prod_id = 1;
+        $pos->prod_qty = 1;
+        $pos->save();
+        return redirect('pointofsales');
+        // $product_qty = $request->input('product_qty');
     }
 
     public function deletepos($id){
       $pos = Pos::find($id);
       $pos->delete();
-      return redirect('pointofsales')->with('status',"Product Berhasil Dihapusy");
+      return redirect('pointofsales');
     }
 }

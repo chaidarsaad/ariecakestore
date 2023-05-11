@@ -16,19 +16,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Admin\SpendingController;
 use App\Http\Controllers\Admin\PosController;
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\Admin\StokbahanController;
+use App\Http\Controllers\Admin\ResepController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -122,6 +111,20 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('delete-spending/{id}', [SpendingController::class, 'destroy']);
 
     Route::get('pointofsales', [PosController::class, 'index']);
-    Route::post('add-to-pos', [PosController::class, 'addpos']);
+    Route::post('insert-pos', [PosController::class, 'insert']);
     Route::get('delete-pointofsale/{id}', [PosController::class, 'deletepos']);
+
+    Route::get('resep', [ResepController::class, 'index']);
+    Route::get('add-resep', [ResepController::class, 'add']);
+    Route::post('insert-resep', [ResepController::class, 'insert']);
+    Route::get('edit-resep/{id}', [ResepController::class, 'edit']);
+    Route::put('update-resep/{id}', [ResepController::class, 'update']);
+    Route::get('delete-resep/{id}', [ResepController::class, 'destroy']);
+
+    Route::get('stokbahan', [StokbahanController::class, 'index']);
+    Route::get('add-stokbahan', [StokbahanController::class, 'add']);
+    Route::post('insert-stokbahan', [StokbahanController::class, 'insert']);
+    Route::get('edit-stokbahan/{id}', [StokbahanController::class, 'edit']);
+    Route::put('update-stokbahan/{id}', [StokbahanController::class, 'update']);
+    Route::get('delete-stokbahan/{id}', [StokbahanController::class, 'destroy']);
 });

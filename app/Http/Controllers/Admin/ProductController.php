@@ -58,8 +58,9 @@ class ProductController extends Controller
 
     public function add()
     {
-        $cateogry = Category::all();
-        return view('admin.product.add', compact('cateogry'));
+        $products = Product::all();
+        $category = Category::all();
+        return view('admin.product.add', compact('products', 'category'));
     }
 
     public function insert(Request $request)
@@ -88,8 +89,9 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $category = Category::all();
         $products = Product::find($id);
-        return view('admin.product.edit', compact('products'));
+        return view('admin.product.edit', compact('products', 'category'));
     }
 
     public function update(Request $request, $id)

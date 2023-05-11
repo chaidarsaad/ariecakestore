@@ -48,7 +48,7 @@ data-aos="fade-up"
                                         <label>Kategori Product</label>
                                         <select name="cate_id" class="form-control">
                                             <option value="">Pilih Category</option>
-                                            @foreach ($cateogry as $item)
+                                            @foreach ($category as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
@@ -117,7 +117,7 @@ data-aos="fade-up"
                         <label for="">Category</label>
                         <select class="form-select" name="cate_id" required>
                             <option value="">Pilih Category</option>
-                            @foreach ($cateogry as $item)
+                            @foreach ($category as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>

@@ -35,7 +35,7 @@ class FrontendController extends Controller
             return view('frontend.products.index', compact('category','products'));
         }
         else{
-            return redirect('/')->with('status',"Slug doesnot exists");
+            return redirect('/')->with('status',"Slug tidak tersedia");
         }
     }
 
