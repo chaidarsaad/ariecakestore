@@ -17,7 +17,10 @@ class PosController extends Controller
     public function index(){
         $products = Product::all();
         $positems = Pos::all();
-        return view('admin.pos.index', compact('products', 'positems'));
+        return view('admin.pos.index', [
+            'products' => $products,
+            'positems' => $positems
+        ]);
     }
 
     //tambah product ke pos

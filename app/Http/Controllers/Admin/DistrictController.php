@@ -52,8 +52,7 @@ class DistrictController extends Controller
 
     public function add()
     {
-        $districts = District::all();
-        return view('admin.district.add', compact('districts'));
+        return view('admin.district.add');
     }
 
     public function insert(Request $request)
@@ -69,7 +68,9 @@ class DistrictController extends Controller
     public function edit($id)
     {
         $districts = District::find($id);
-        return view('admin.district.edit', compact('districts'));
+        return view('admin.district.edit', [
+            'districts' => $districts
+        ]);
     }
 
     public function update(Request $request, $id)

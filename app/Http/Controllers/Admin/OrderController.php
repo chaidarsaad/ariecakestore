@@ -15,13 +15,17 @@ class OrderController extends Controller
         $orders = Order::all();
 
         // $orders = Order::where('status','0')->get();
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index', [
+            'orders' => $orders
+        ]);
     }
 
     public function view($id)
     {
         $orders = Order::where('id', $id)->first();
-        return view('admin.orders.view', compact('orders'));
+        return view('admin.orders.view', [
+            'orders' => $orders
+        ]);
     }
 
     public function updateorder(Request $request, $id)
@@ -35,6 +39,8 @@ class OrderController extends Controller
     public function orderhistory()
     {
         $orders = Order::where('status', '1')->get();
-        return view('admin.orders.history', compact('orders'));
+        return view('admin.orders.history', [
+            'orders' => $orders
+        ]);
     }
 }

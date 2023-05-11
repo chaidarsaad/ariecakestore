@@ -21,14 +21,19 @@ class ReviewController extends Controller
             $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
             if($review)
             {
-                return view('frontend.reviews.edit', compact('review'));
+                return view('frontend.reviews.edit', [
+                    'review' => $review
+                ]);
             }
             else
             {
                 $verified_purchase = Order::where('orders.user_id', Auth::id())
                     ->join('order_items', 'orders.id','order_items.order_id')
                     ->where('order_items.prod_id', $product_id)->get();
-                return view('frontend.reviews.index', compact('product','verified_purchase'));
+                return view('frontend.reviews.index', [
+                    'product' => $product,
+                    'verified_purchase' => $verified_purchase
+                ]);
             }
         }
         else
@@ -73,7 +78,9 @@ class ReviewController extends Controller
             $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
             if($review)
             {
-                return view('frontend.reviews.edit', compact('review'));
+                return view('frontend.reviews.edit', [
+                    'review' => $review
+                ]);
             }
             else
             {

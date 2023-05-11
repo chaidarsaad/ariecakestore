@@ -49,7 +49,9 @@ class ResepController extends Controller
 
     public function add(){
         $resep = Resep::all();
-        return view('admin.resep.add', compact('resep'));
+        return view('admin.resep.add', [
+            'resep' => $resep
+        ]);
     }
 
     public function insert(Request $request)

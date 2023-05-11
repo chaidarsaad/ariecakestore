@@ -26,8 +26,19 @@ class DashboardController extends Controller
         $completed_orders = Order::where('status', 'Paid')->count();
         $pending_orders = Order::where('status', 'Unpaid')->count();
         $revenue = Order::sum('total_price');
-        return view('admin.index', compact('category','product','users','total_orders','completed_orders','pending_orders', 'revenue', 'spending', 'lababersih'));
+        return view('admin.index', [
+            'category' => $category,
+            'product' => $product,
+            'users' => $users,
+            'total_orders' => $total_orders,
+            'completed_orders' => $completed_orders,
+            'pending_orders' => $pending_orders, 
+            'revenue' => $revenue, 
+            'spending' => $spending,
+            'lababersih' => $lababersih
+        ]);
     }
+
 
     public function users()
     {
@@ -70,7 +81,9 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
-        return view('admin.users.edit', compact('users'));
+        return view('admin.users.edit', [
+            'users' => $users
+        ]);
     }
 
     public function update(Request $request, $id){

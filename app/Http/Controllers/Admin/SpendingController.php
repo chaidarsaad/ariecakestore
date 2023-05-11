@@ -61,7 +61,9 @@ class SpendingController extends Controller
     public function edit($id)
     {
         $spendings = Spending::find($id);
-        return view('admin.spending.edit', compact('spendings'));
+        return view('admin.spending.edit', [
+            'spendings' => $spendings
+        ]);
     }
 
     public function update(Request $request, $id)

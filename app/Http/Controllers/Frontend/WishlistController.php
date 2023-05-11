@@ -14,7 +14,9 @@ class WishlistController extends Controller
     public function index()
     {
         $wishlist = Wishlist::where('user_id', Auth::id())->get();
-        return view('frontend.wishlist', compact('wishlist'));
+        return view('frontend.wishlist', [
+            'wishlist' => $wishlist
+        ]);
     }
 
     public function add(Request $request)

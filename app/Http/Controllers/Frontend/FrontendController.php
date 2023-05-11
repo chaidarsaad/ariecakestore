@@ -17,13 +17,18 @@ class FrontendController extends Controller
     {
         $featured_products = Product::where('trending','1')->take(8)->get();
         $trending_category = Category::where('popular','1')->take(6)->get();
-        return view('frontend.index', compact('featured_products', 'trending_category'));
+        return view('frontend.index', [
+            'featured_products' => $featured_products,
+            'trending_category' => $trending_category
+        ]);
     }
 
     public function category()
     {
         $category = Category::where('status','1')->get();
-        return view('frontend.category', compact('category'));
+        return view('frontend.category', [
+            'category' => $category
+        ]);
     }
 
     public function viewcategory($slug)
@@ -32,7 +37,10 @@ class FrontendController extends Controller
         {
             $category = Category::where('slug', $slug)->first();
             $products = Product::where('cate_id', $category->id)->where('status','1')->get();
-            return view('frontend.products.index', compact('category','products'));
+            return view('frontend.products.index', [
+                'category' => $category,
+                'products' => $products
+            ]);
         }
         else{
             return redirect('/')->with('status',"Slug tidak tersedia");
@@ -57,14 +65,20 @@ class FrontendController extends Controller
                 else{
                     $rating_value = 0;
                 }
-                return view('frontend.products.view', compact('products','ratings','reviews','rating_value','user_rating'));
+                return view('frontend.products.view', [
+                    'products' => $products,
+                    'ratings' => $ratings,
+                    'reviews' => $reviews,
+                    'rating_value' => $rating_value, 
+                    'user_rating' => $user_rating
+                ]);
             }
             else{
-                return redirect('/')->with('status',"The link was broken");
+                return redirect('/')->with('status',"Link telah rusak");
             }
         }
         else{
-            return redirect('/')->with('status',"No such category found");
+            return redirect('/')->with('status',"Tidak ada kategori yang ditemukan");
         }
     }
 
@@ -76,7 +90,6 @@ class FrontendController extends Controller
         foreach ($products as $item) {
             $data[] = $item['name'];
         }
-
         return $data;
     }
 

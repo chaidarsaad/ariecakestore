@@ -31,7 +31,9 @@ class CheckoutController extends Controller
         }
         $cartitems = Cart::where('user_id', Auth::id())->get();
 
-        return view('frontend.checkout', compact('cartitems'));
+        return view('frontend.checkout', [
+            'cartitems' => $cartitems
+        ]);
     }
 
     public function placeorder(Request $request)
@@ -85,10 +87,6 @@ class CheckoutController extends Controller
         $cartitems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartitems);
 
-        if($request->input('payment_mode') == "Paid by Razorpay" || $request->input('payment_mode') == "Paid by Paypal")
-        {
-            return response()->json(['status'=> "Order placed Successfully"]);
-        }
         return redirect('/')->with('status', "Pesnanan Berhasil Dibuat");
     }
 

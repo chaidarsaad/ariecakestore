@@ -14,23 +14,31 @@ class UserController extends Controller
     public function index()
     {
         $orders = Order::where('user_id', Auth::id())->get();
-        return view('frontend.orders.index', compact('orders'));
+        return view('frontend.orders.index', [
+            'orders' => $orders
+        ]);
     }
 
     public function view($id)
     {
         $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
-        return view('frontend.orders.view', compact('orders'));
+        return view('frontend.orders.view', [
+            'orders' => $orders
+        ]);
     }
 
     public function user(){
         $user = Auth::user();
-        return view('frontend.profile.index', compact('user'));
+        return view('frontend.profile.index', [
+            'user' => $user
+        ]);
     }
 
     public function edit(){
         $user = Auth::user();
-        return view('frontend.profile.edit', compact('user'));
+        return view('frontend.profile.edit', [
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request, $id){
