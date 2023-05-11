@@ -15,21 +15,58 @@ class PosController extends Controller
     
     // buat nampilin product
     public function index(){
-        $products = Product::all();
         $positems = Pos::all();
+        $countprice = Pos::sum('product.price');
+
+        if (request()->ajax()) {
+            $query = Product::query();
+
+            return Datatables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="btn-group">
+                           
+                                
+                                <div class="" aria-labelledby="action' .  $item->id . '">
+                                    <form action="' . url('insert-pos', $item->id) . '" method="post">
+                                        ' . method_field('post') . csrf_field() . '
+                                        <button type="submit" class="btn btn-primary">
+                                            Tambah
+                                        </button>
+                                    </form>
+                                </div>
+                    </div>';
+                })
+                ->rawColumns(['action'])
+                ->make();
+        }
         return view('admin.pos.index', [
-            'products' => $products,
-            'positems' => $positems
+            'positems' => $positems,
+            'countprice' => $countprice
         ]);
+
+        // $products = Product::all();
+        // $positems = Pos::all();
+        // return view('admin.pos.index', [
+        //     'products' => $products,
+        //     'positems' => $positems
+        // ]);
     }
 
     //tambah product ke pos
-    public function insert(Request $request){
+    public function insert(Request $request, $id){
 
-        $pos = new Pos();
-        $pos->prod_id = 1;
-        $pos->prod_qty = 1;
-        $pos->save();
+        $data = [
+            'prod_id' => $id,
+            'prod_qty' => 1,
+        ];
+
+        Pos::create($data);
+
+        // $pos = new Pos();
+        // $pos->prod_id = '$id',
+        // $pos->prod_qty = 1;
+        // $pos->save();
         return redirect('pointofsales');
         // $product_qty = $request->input('product_qty');
     }

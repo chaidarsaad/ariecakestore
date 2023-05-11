@@ -111,7 +111,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('delete-spending/{id}', [SpendingController::class, 'destroy']);
 
     Route::get('pointofsales', [PosController::class, 'index']);
-    Route::post('insert-pos', [PosController::class, 'insert']);
+    Route::post('insert-pos/{id}', [PosController::class, 'insert']);
     Route::get('delete-pointofsale/{id}', [PosController::class, 'deletepos']);
 
     Route::get('resep', [ResepController::class, 'index']);

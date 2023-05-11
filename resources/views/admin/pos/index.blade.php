@@ -19,33 +19,20 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('insert-pos') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-hover scroll-horizontal-vertical">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama</th>
-                                                <th>Harga</th>
-                                                <th>Stok</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($products as $item)
-                                                <tr>
-                                                    <td>{{ $item->name }}</td>
-                                                    <td>{{ $item->price }}</td>
-                                                    <td>{{ $item->qty }}</td>
-                                                    <td>
-                                                        <button type="submit" class="btn btn-primary btn-sm">Tambah</button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
+                            <div class="table-responsive">
+                                <table id="crudTable" class="table table-hover scroll-horizontal-vertical">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Harga</th>
+                                            <th>Stok</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,16 +51,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($positems as $item)
-                                            <tr>
-                                                <td>{{ $item->products->name }}</td>
-                                                <td>{{ $item->products->price }}</td>
-                                                <td>{{ $item->prod_qty }}</td>
-                                                <td><a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a></td>
-                                            </tr>
-                                        @endforeach
+                                        @foreach($positems as $item)
+                                        <tr>
+                                            <td>{{ $item->product->name }}</td>
+                                            <td>{{ $item->product->price }}</td>
+                                            <td>{{ $item->prod_qty }}</td>
+                                            <td>
+                                                <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
+                                <label>Total Harga : Rp {{ number_format($countprice) }}</label>
                             </div>
                         </div>
                     </div>
@@ -85,6 +75,30 @@
 @endsection
 
 @push('addon-script')
+    <script>
+        // AJAX DataTable
+        var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'name', name: 'name' },
+                { data: 'price', name: 'price' },
+                { data: 'qty', name: 'qty' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '15%'
+                },
+            ]
+        });
+    </script>
+
     <script>
         let table = new DataTable('#myTable');
     </script>

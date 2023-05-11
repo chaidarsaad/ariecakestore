@@ -13,7 +13,7 @@ class Pos extends Model
         'prod_qty',
     ];
 
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Product::class,'prod_id','id');
     }
