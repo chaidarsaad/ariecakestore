@@ -46,7 +46,7 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Harga</th>
-                                            <th>Jumlah</th>
+                                            <th style="width: 1px">Jumlah</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,15 +55,47 @@
                                         <tr>
                                             <td>{{ $item->product->name }}</td>
                                             <td>{{ $item->product->price }}</td>
-                                            <td>{{ $item->prod_qty }}</td>
+                                            {{-- <td>{{ $item->prod_qty }}</td> --}}
                                             <td>
-                                                <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                                            type="button" id="action' .  $item->id . '"
+                                                                data-toggle="dropdown" 
+                                                                aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                Aksi
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
+                                                            <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button type="submit" class="dropdown-item text-success">
+                                                                    Update
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ url('delete-pointofsale/'.$item->id) }}" method="get">
+                                                                <button type="submit" class="dropdown-item text-danger">
+                                                                    Hapus
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
+                                                {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <label>Total Harga : Rp {{ number_format($countprice) }}</label>
                             </div>
                         </div>
                     </div>

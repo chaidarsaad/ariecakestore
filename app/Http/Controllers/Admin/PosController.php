@@ -16,7 +16,6 @@ class PosController extends Controller
     // buat nampilin product
     public function index(){
         $positems = Pos::all();
-        $countprice = Pos::sum('product.price');
 
         if (request()->ajax()) {
             $query = Product::query();
@@ -24,25 +23,22 @@ class PosController extends Controller
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                        <div class="btn-group">
-                           
-                                
-                                <div class="" aria-labelledby="action' .  $item->id . '">
-                                    <form action="' . url('insert-pos', $item->id) . '" method="post">
-                                        ' . method_field('post') . csrf_field() . '
-                                        <button type="submit" class="btn btn-primary">
-                                            Tambah
-                                        </button>
-                                    </form>
-                                </div>
+                    <div class="btn-group">
+                        <div class="" aria-labelledby="action' .  $item->id . '">
+                            <form action="' . url('insert-pointofsale', $item->id) . '" method="post">
+                                ' . method_field('post') . csrf_field() . '
+                                <button type="submit" class="btn btn-primary">
+                                    Tambah
+                                </button>
+                            </form>
+                        </div>
                     </div>';
                 })
                 ->rawColumns(['action'])
                 ->make();
         }
         return view('admin.pos.index', [
-            'positems' => $positems,
-            'countprice' => $countprice
+            'positems' => $positems
         ]);
 
         // $products = Product::all();
@@ -69,6 +65,14 @@ class PosController extends Controller
         // $pos->save();
         return redirect('pointofsales');
         // $product_qty = $request->input('product_qty');
+    }
+
+    //update prod_qty
+    public function update(Request $request, $id){
+        $pos = Pos::find($id);
+        $pos->prod_qty = $request->input('prod_qty');
+        $pos->update();
+        return redirect('pointofsales');
     }
 
     public function deletepos($id){
