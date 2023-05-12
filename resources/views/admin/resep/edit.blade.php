@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Stok Bahan
+Resep
 @endsection
 
 @section('content')
@@ -12,9 +12,9 @@ data-aos="fade-up"
 >
 <div class="container-fluid">
   <div class="dashboard-heading">
-      <h2 class="dashboard-title">Stok Bahan</h2>
+      <h2 class="dashboard-title">Resep</h2>
       <p class="dashboard-subtitle">
-          Edit Stok Bahan "{{ $stok->name }}" 
+        Edit Resep "{{ $reseps->resep }}" 
       </p>
   </div>
   <div class="dashboard-content">
@@ -29,23 +29,34 @@ data-aos="fade-up"
                 </ul>
             </div>
         @endif
-        <form action="{{ url('update-stokbahan/'.$stok->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('update-resep/'.$reseps->id) }}" method="post" enctype="multipart/form-data">
           @method('PUT')
           @csrf
           <div class="card">
             <div class="card-body">
               <div class="col-md-12">
-                  <div class="form-group">
-                      <label>Nama Stok</label>
-                      <input type="text" name="name" class="form-control" value="{{ $stok->name }}">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label>Netto</label>
-                      <input type="number" name="netto" class="form-control" value="{{ $stok->netto }}">
-                  </div>
-              </div>
+                <div class="form-group">
+                    <label>Product</label>
+                    <select name="prod_id" class="form-control">
+                      <option value="{{ $reseps->prod_id }}" selected>{{ $reseps->product->name }}</option>
+                        @foreach ($product as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Bahan</label>
+                    <input required type="text" name="resep" class="form-control" value="{{ $reseps->resep }}">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Netto (Satuan Gram)</label>
+                    <input required type="number" name="netto" class="form-control" value="{{ $reseps->netto }}">
+                </div>
+            </div>
               <div class="row">
                 <div class="col text-right">
                   <button

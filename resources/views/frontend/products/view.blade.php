@@ -99,7 +99,7 @@
                                 @endif
                             </span>
                         </div>
-                    <p class="mt-3 ">
+                    <p class="mt-3" style="text-align: justify">
                         {!! $products->small_description !!}
                     </p>
                     <hr>

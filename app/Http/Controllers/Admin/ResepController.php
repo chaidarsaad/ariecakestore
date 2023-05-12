@@ -48,21 +48,46 @@ class ResepController extends Controller
     }
 
     public function add(){
-        $resep = Resep::all();
+        $product = Product::all();
         return view('admin.resep.add', [
-            'resep' => $resep
+            'product' => $product
         ]);
     }
 
     public function insert(Request $request)
     {
         $reseps = new Resep();
-
         $reseps->prod_id = $request->input('prod_id');
         $reseps->resep = $request->input('resep');
         $reseps->netto = $request->input('netto');
         $reseps->save();
         return redirect('resep')->with('status',"Resep Berhasil Ditambah");
+    }
 
+    public function edit($id){
+        $product = Product::all();
+        $reseps = Resep::with(['product'])->findOrFail($id);
+        return view('admin.resep.edit', [
+            'product' => $product,
+            'reseps' => $reseps
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $reseps = Resep::find($id);
+        
+        $reseps->resep = $request->input('resep');
+        $reseps->netto = $request->input('netto');
+        $reseps->prod_id = $request->input('prod_id');
+        $reseps->update();
+        return redirect('resep')->with('status',"Resep Berhasil Diupdate");
+    }
+
+    public function destroy($id)
+    {
+        $reseps = Resep::findorFail($id);
+        $reseps->delete();
+        return redirect('resep')->with('status',"Resep Berhasil Dihapus");
     }
 }

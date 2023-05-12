@@ -77,7 +77,7 @@ class SpendingController extends Controller
 
     public function destroy($id)
     {
-        $spendings = District::find($id);
+        $spendings = Spending::find($id);
         $spendings->delete();
         return redirect('spendings')->with('status',"Pengeluaran Berhasil Dihapus");
     }

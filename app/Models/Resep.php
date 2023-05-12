@@ -9,9 +9,9 @@ class Resep extends Model
 {
     protected $table = 'resep';
     protected $fillable = [
-        'prod_id',
         'resep',
         'netto',
+        'prod_id',
     ];
 
     public function product()
