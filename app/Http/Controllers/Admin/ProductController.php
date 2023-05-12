@@ -93,7 +93,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $category = Category::all();
-        $products = Product::find($id);
+        $products = Product::with(['category'])->findOrFail($id);
         return view('admin.product.edit', [
             'category' => $category,
             'products' => $products
@@ -116,6 +116,7 @@ class ProductController extends Controller
             $file->move('assets/uploads/products/',$filename);
             $products->image = $filename;
         }
+        $products->cate_id = $request->input('cate_id');
         $products->name = $request->input('name');
         $products->slug = Str::slug($request->input('name'));
         $products->small_description = $request->input('small_description');

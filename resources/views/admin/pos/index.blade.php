@@ -45,7 +45,7 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Harga</th>
-                                            <th style="width: 1px">Jumlah</th>
+                                            <th style="width: 15%">Jumlah</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -61,13 +61,17 @@
                                                     @method('PUT')
                                                     @csrf
                                                     <div class="row">
-                                                        <div class="form-group">
-                                                            <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
+                                                        <div class="input-group mb-1">
+                                                            <input type="number" class="form-control" placeholder="Jumlah" name="prod_qty" value="{{ $item->prod_qty }}">
+                                                            <button type="submit" class="btn btn-success" type="button">Update</button>
                                                         </div>
+                                                        {{-- <div class="form-group">
+                                                            <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
+                                                        </div> --}}
                                                     </div>
-                                                    <button type="submit" class="btn btn-success">
+                                                    {{-- <button type="submit" class="btn btn-success">
                                                         Update
-                                                    </button>
+                                                    </button> --}}
                                                 </form>
                                             </td>
                                             <td>
