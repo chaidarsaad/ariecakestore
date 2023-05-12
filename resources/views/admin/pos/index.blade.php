@@ -50,6 +50,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $totalPrice = 0 @endphp
                                         @foreach($positems as $item)
                                         <tr>
                                             <td>{{ $item->product->name }}</td>
@@ -99,9 +100,19 @@
                                                 <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
                                             </td>
                                         </tr>
+                                        @php $totalPrice += $item->product->price * $item->prod_qty @endphp
                                     @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="">Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
+                                <label class="">Uang Bayar : </label>
+                                <label class="">Kembalian : </label>
+                                <button class="btn btn-success">
+                                    Bayar
+                                </button>
                             </div>
                         </div>
                     </div>
