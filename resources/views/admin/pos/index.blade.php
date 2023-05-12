@@ -10,15 +10,14 @@
     <div class="container-fluid">
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Point Of Sales</h2>
-            <p class="dashboard-subtitle">
-                List Produk
-            </p>
+            <br>
         </div>
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
+                            <label>List Produk</label>
                             <div class="table-responsive">
                                 <table id="crudTable" class="table table-hover scroll-horizontal-vertical">
                                     <thead>
@@ -57,14 +56,21 @@
                                             <td>{{ $item->product->price }}</td>
                                             {{-- <td>{{ $item->prod_qty }}</td> --}}
                                             <td>
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
+                                                <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <button type="submit" class="btn btn-success">
+                                                        Update
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td>
-                                                <div class="btn-group">
+                                                {{-- <div class="btn-group">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
                                                             type="button" id="action' .  $item->id . '"
@@ -88,9 +94,9 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
-                                                {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
+                                                <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
