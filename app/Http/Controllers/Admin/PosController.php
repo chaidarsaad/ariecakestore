@@ -16,6 +16,7 @@ class PosController extends Controller
     // buat nampilin product
     public function index(){
         $positems = Pos::all();
+        $bayar = 20000;
 
         if (request()->ajax()) {
             $query = Product::query();
@@ -38,7 +39,8 @@ class PosController extends Controller
                 ->make();
         }
         return view('admin.pos.index', [
-            'positems' => $positems
+            'positems' => $positems,
+            'bayar' => $bayar
         ]);
 
         // $products = Product::all();
@@ -68,13 +70,7 @@ class PosController extends Controller
     }
 
     //hitung kembalian
-    public function hitung(Request $request){
-        $spendings = new Spending();
-        $spendings->description = $request->input('description');
-        $spendings->total_spending = $request->input('total_spending');
-        $spendings->save();
-        return redirect('spendings')->with('status',"Pengeluaran Berhasil Ditambah");
-    }
+   
 
     //update prod_qty
     public function update(Request $request, $id){

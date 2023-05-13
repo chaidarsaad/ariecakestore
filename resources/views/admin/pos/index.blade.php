@@ -55,7 +55,6 @@
                                         <tr>
                                             <td>{{ $item->product->name }}</td>
                                             <td>{{ $item->product->price }}</td>
-                                            {{-- <td>{{ $item->prod_qty }}</td> --}}
                                             <td>
                                                 <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
                                                     @method('PUT')
@@ -65,17 +64,10 @@
                                                             <input type="number" class="form-control" placeholder="Jumlah" name="prod_qty" value="{{ $item->prod_qty }}">
                                                             <button type="submit" class="btn btn-success" type="button">Update</button>
                                                         </div>
-                                                        {{-- <div class="form-group">
-                                                            <input type="number" name="prod_qty" class="form-control" value="{{ $item->prod_qty }}">
-                                                        </div> --}}
                                                     </div>
-                                                    {{-- <button type="submit" class="btn btn-success">
-                                                        Update
-                                                    </button> --}}
                                                 </form>
                                             </td>
                                             <td>
-                                                {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
                                                 <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
                                             </td>
                                         </tr>
@@ -87,18 +79,11 @@
                             <br>
                             <div class="row">
                                 <label class="">Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
-                                <div class="input-group mb-3">
-                                    <input name="uang_bayar" type="number" class="form-control" placeholder="Uang Bayar" aria-label="Uang Bayar" aria-describedby="button-addon2">
-                                    <button class="btn btn-primary" type="button">Hitung Kembalian</button>
+                                {{-- <div class="input-group mb-3">
+                                    <input name="bayar" type="number" class="form-control" placeholder="Uang Bayar" aria-label="Uang Bayar" aria-describedby="button-addon2">
+                                    <button class="btn btn-primary" type="submit">Hitung Kembalian</button>
                                 </div>
-                                {{-- <div class="row">
-                                    <label class="">Uang Bayar : 
-                                    <div class="col-md-6">
-                                        <input type="number" class="form-control">
-                                    </div>
-                                </label>
-                                </div> --}}
-                                <label class="">Kembalian : </label>
+                                <label class="">Kembalian : Rp {{ number_format($bayar - $totalPrice) }}</label> --}}
                                 <button class="btn btn-success">
                                     Bayar
                                 </button>
