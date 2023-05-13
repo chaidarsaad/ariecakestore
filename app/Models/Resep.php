@@ -11,11 +11,11 @@ class Resep extends Model
     protected $fillable = [
         'resep',
         'netto',
-        'prod_id',
+        'products',
     ];
 
     public function product()
     {
-        return $this->belongsTo(Product::class,'prod_id','id');
+        return $this->belongsTo(Product::class,'products','id');
     }
 }

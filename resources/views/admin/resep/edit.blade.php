@@ -37,8 +37,8 @@ data-aos="fade-up"
               <div class="col-md-12">
                 <div class="form-group">
                     <label>Product</label>
-                    <select name="prod_id" class="form-control">
-                      <option value="{{ $reseps->prod_id }}" selected>{{ $reseps->product->name }}</option>
+                    <select name="products" class="form-control">
+                      <option value="{{ $reseps->products }}" selected>{{ $reseps->product->name }}</option>
                         @foreach ($product as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
