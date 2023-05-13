@@ -41,8 +41,26 @@
                                     <span id="phone_error" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-12">
+                                    <label for="">Metode Pengambilan Kue</label>
+                                    <select name="status_pickup" class="form-control" required>
+                                        <option selected>Pilih metode</option>
+                                        <option value="ambil kue di toko">ambil kue di toko</option>
+                                        <option value="kue diantar ke alamat tujuan">kue diantar ke alamat tujuan</option>
+                                    </select>
+                                    {{-- <select required name="status_pickup" class="form-control">
+                                        <option value="asd">Pilih Metode Pengambilan Kue</option>
+                                        <option value="ambil kue di toko">ambil kue di toko</option>    
+                                        <option value="kue diantar ke alamat tujuan">kue diantar ke alamat tujuan</option>    
+                                    </select> --}}
+                                </div>
+                                <div class="col-md-12">
                                     <label for="">Kecamatan</label>
-                                    <input type="text" class="form-control" value="" name="districts_id" placeholder="Pilih kecamatan">
+                                    <select name="districts_id" class="form-control">
+                                        <option value="{{ $userd->districts_id }}">Pilih Kecamatan</option>
+                                          @foreach ($district as $item)
+                                              <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                          @endforeach
+                                      </select>
                                 </div>
                                 <div class="col-md-12">
                                     <label for="">Alamat Lengkap</label>

@@ -57,7 +57,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item" href="#">
-                                        My Profile
+                                        Profil Saya
                                     </a>
                                 </li>
                                 <li>

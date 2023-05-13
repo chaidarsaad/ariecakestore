@@ -67,6 +67,15 @@ class PosController extends Controller
         // $product_qty = $request->input('product_qty');
     }
 
+    //hitung kembalian
+    public function hitung(Request $request){
+        $spendings = new Spending();
+        $spendings->description = $request->input('description');
+        $spendings->total_spending = $request->input('total_spending');
+        $spendings->save();
+        return redirect('spendings')->with('status',"Pengeluaran Berhasil Ditambah");
+    }
+
     //update prod_qty
     public function update(Request $request, $id){
         $pos = Pos::find($id);

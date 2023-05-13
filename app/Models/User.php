@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function districts(){
+    public function district(){
         return $this->belongsTo( District::class, 'districts_id', 'id');
     }
 }

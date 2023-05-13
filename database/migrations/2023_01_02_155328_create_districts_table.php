@@ -18,9 +18,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // DB::table('districts')->insert([
-        //     'name' => '',
-        // ]);
+        DB::table('districts')->insert([
+            'name' => '',
+            'price' => 0,
+        ]);
     }
 
     /**

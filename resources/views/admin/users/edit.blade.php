@@ -60,7 +60,12 @@ data-aos="fade-up"
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Kecamatan</label>
-                    <input type="number" class="form-control" name="districts_id" value="{{ $users->districts_id }}"/>
+                    <select name="districts_id" class="form-control">
+                      <option value="{{ $users->districts_id }}" selected>{{ $users->district->name }}</option>
+                        @foreach ($district as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-12">

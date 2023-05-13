@@ -20,7 +20,7 @@
             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('category') }}">Category</a>
+            <a class="nav-link" href="{{ url('category') }}">Kategori</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('cart') }}">Cart
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('wishlist') }}">Wishlist
+            <a class="nav-link" href="{{ url('wishlist') }}">Favorit
                 <span class="badge badge-pill bg-success wishlist-count">0</span>
             </a>
           </li>
@@ -52,12 +52,12 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                     <a class="dropdown-item" href="{{ url('my-orders') }}">
-                        My Orders
+                        Pesanan Saya
                     </a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ url('my-profile') }}">
-                        My Profile
+                        Profil saya
                     </a>
                 </li>
                 <li>

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('message')->nullable();
             $table->enum('status', ['Unpaid', 'Paid']);
             $table->string('tracking_no');
-
+            $table->string('status_pickup');
 
             $table->timestamps();
         });

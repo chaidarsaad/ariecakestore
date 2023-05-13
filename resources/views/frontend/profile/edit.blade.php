@@ -30,10 +30,15 @@
                                     <input type="text" value="{{ $user->email }}" class="form-control" name="email">
                                     <label for="">No WhatsApp</label>
                                     <input type="text" value="{{ $user->phone }}" class="form-control" name="phone">
+                                    <label for="">Kecamatan</label>
+                                    <select name="districts_id" class="form-control">
+                                        <option value="{{ $user->districts_id }}" selected>{{ $user->district->name }}</option>
+                                          @foreach ($district as $item)
+                                              <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                          @endforeach
+                                      </select>
                                     <label for="">Alamat Lengkap</label>
                                     <input type="text" value="{{ $user->address1 }}" class="form-control" name="address1">
-                                    <label for="">Kecamatan</label>
-                                    <input type="number" value="{{ $user->districts_id }}" class="form-control" name="districts_id">
                                 </div>
                             </div>
                         </form>

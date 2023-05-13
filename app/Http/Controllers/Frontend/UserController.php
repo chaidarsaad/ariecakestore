@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
+use App\Models\District;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,22 +22,32 @@ class UserController extends Controller
 
     public function view($id)
     {
-        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
+        $district = District::all();
+        $userd = User::with(['district'])->find(Auth::id());
+        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first(); //pr relasiin ke table district gatau query nya
         return view('frontend.orders.view', [
-            'orders' => $orders
+            'orders' => $orders,
+            'district' => $district,
+            'userd' => $userd
         ]);
     }
 
     public function user(){
-        $user = Auth::user();
+        $district = District::all();
+        $user = User::with(['district'])->find(Auth::id());
+        // $user = Auth::user();
         return view('frontend.profile.index', [
+            'district' => $district,
             'user' => $user
         ]);
     }
 
     public function edit(){
-        $user = Auth::user();
+        $district = District::all();
+        $user = User::with(['district'])->find(Auth::id());
+        // $user = Auth::user();
         return view('frontend.profile.edit', [
+            'district' => $district,
             'user' => $user
         ]);
     }

@@ -27,11 +27,15 @@
                                     <div class="border">{{ $user->email }}</div>
                                 <label for="">No WhatsApp</label>
                                     <div class="border">{{ $user->phone }}</div>
+                                <label for="">Kecamatan</label>
+                                    <div class="border">{{ $user->district->name }}</div>
                                 <label for="">Alamat Lengkap</label>
-                                <div class="border">
+                                    <div class="border">{{ $user->address1 }}</div>
+
+                                {{-- <div class="border">
                                     {{ $user->address1 }}<br>
-                                    {{ $user->districts_id }}<br>
-                                </div>
+                                    Kecamatan {{ $user->district->name }}<br>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

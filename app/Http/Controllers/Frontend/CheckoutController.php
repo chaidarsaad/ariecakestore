@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Cart;
+use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -30,9 +31,15 @@ class CheckoutController extends Controller
             }
         }
         $cartitems = Cart::where('user_id', Auth::id())->get();
-
+        $userd = User::with(['district'])->find(Auth::id());
+        // $cartitems = User::with(['district'])->find(Auth::id());
+        $district = District::all();
+        $order = Order::all();
         return view('frontend.checkout', [
-            'cartitems' => $cartitems
+            'cartitems' => $cartitems,
+            'district' => $district,
+            'userd' => $userd,
+            'order' => $order
         ]);
     }
 
@@ -42,6 +49,7 @@ class CheckoutController extends Controller
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
         $order->phone = $request->input('phone');
+        $order->status_pickup = $request->input('status_pickup');
         $order->districts_id = $request->input('districts_id');
         $order->address1 = $request->input('address1');
 
@@ -97,6 +105,7 @@ class CheckoutController extends Controller
         $order->phone = $request->input('phone');
         $order->districts_id = $request->input('districts_id');
         $order->address1 = $request->input('address1');
+        $order->status_pickup = $request->input('status_pickup');
 
         // To Calculate the total price
         $total = 0;

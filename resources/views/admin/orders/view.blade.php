@@ -30,10 +30,13 @@
                                 <div class="border p-2 mt-0">{{ $orders->fname }}</div>
                                 <label for="">No WhatsApp</label>
                                 <div class="border"><a style="text-decoration: none" href="https://wa.me/{{ $orders->phone }}">{{ $orders->phone }}</a></div>
+                                <label for="">Kecamatan</label>
+                                <div class="border p-2 mt-0">
+                                    {{-- {{ App\Models\District::find($orders->orders->user->districts_id)->name }} --}}
+                                </div>
                                 <label for="">Alamat Lengkap</label>
                                 <div class="border p-2 mt-0">
-                                    {{ $orders->address1 }}<br>
-                                    {{ $orders->districts_id }}<br>
+                                    {{ $orders->address1 }}
                                 </div>
                             </div>
                             <div class="col-md-6 table-responsive">

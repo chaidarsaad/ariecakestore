@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Spending;
+use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -80,8 +81,10 @@ class DashboardController extends Controller
 
     public function edit($id)
     {
-        $users = User::find($id);
+        $district = District::all();
+        $users = User::with(['district'])->findOrFail($id);
         return view('admin.users.edit', [
+            'district' => $district,
             'users' => $users
         ]);
     }

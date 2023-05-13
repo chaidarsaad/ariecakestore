@@ -23,11 +23,15 @@
                                 <div class="border">{{ $orders->fname }}</div>
                                 <label for="">No WhatsApp</label>
                                 <div class="border">{{ $orders->phone }}</div>
+                                <label for="">Kecamatan</label>
+                                    <div class="border">{{ $userd->district->name }}</div>
                                 <label for="">Alamat Lengkap</label>
+                                    <div class="border">{{ $userd->address1 }}</div>
+                                {{-- <label for="">Alamat Lengkap</label>
                                 <div class="border">
                                     {{ $orders->address1 }}<br>
                                     {{ $orders->districts_id }}<br>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-md-6 table-responsive">
                                 <h4>Detail Harga</h4>

@@ -75,31 +75,6 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                {{-- <div class="btn-group">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-                                                            type="button" id="action' .  $item->id . '"
-                                                                data-toggle="dropdown" 
-                                                                aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                Aksi
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                                            <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
-                                                                @method('PUT')
-                                                                @csrf
-                                                                <button type="submit" class="dropdown-item text-success">
-                                                                    Update
-                                                                </button>
-                                                            </form>
-                                                            <form action="{{ url('delete-pointofsale/'.$item->id) }}" method="get">
-                                                                <button type="submit" class="dropdown-item text-danger">
-                                                                    Hapus
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
                                                 {{-- <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
                                                 <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
                                             </td>
@@ -112,7 +87,17 @@
                             <br>
                             <div class="row">
                                 <label class="">Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
-                                <label class="">Uang Bayar : </label>
+                                <div class="input-group mb-3">
+                                    <input name="uang_bayar" type="number" class="form-control" placeholder="Uang Bayar" aria-label="Uang Bayar" aria-describedby="button-addon2">
+                                    <button class="btn btn-primary" type="button">Hitung Kembalian</button>
+                                </div>
+                                {{-- <div class="row">
+                                    <label class="">Uang Bayar : 
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control">
+                                    </div>
+                                </label>
+                                </div> --}}
                                 <label class="">Kembalian : </label>
                                 <button class="btn btn-success">
                                     Bayar

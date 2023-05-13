@@ -23,6 +23,7 @@ class Order extends Model
         'message',
         'status',
         'tracking_no',
+        'status_pickup'
     ];
 
     public function orderitems()
@@ -30,7 +31,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function districts(){
+    public function district(){
         return $this->belongsTo( District::class, 'districts_id', 'id');
     }
 }
