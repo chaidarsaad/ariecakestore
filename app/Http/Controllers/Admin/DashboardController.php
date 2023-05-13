@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $spending = Spending::sum('total_spending');
-        $lababersih = 1000;
+        $lababersih =  Order::sum('total_price') - Spending::sum('total_spending');
         $category = Category::count();
         $product = Product::count();
         $users = User::where('role_as', '0')->count();
