@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\Resep;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 use Yajra\DataTables\Facades\DataTables;
-
 
 class ProductController extends Controller
 {
