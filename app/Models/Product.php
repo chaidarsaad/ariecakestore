@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'cate_id', 'id');
     }
+
+    public function resep()
+    {
+        return $this->hasMany(Resep::class);
+    }
 }

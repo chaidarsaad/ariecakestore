@@ -48,7 +48,12 @@ data-aos="fade-up"
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Bahan</label>
-                    <input required type="text" name="resep" class="form-control" value="{{ $reseps->resep }}">
+                    <select name="stokbahan_id" class="form-control">
+                      <option value="{{ $reseps->stokbahan_id }}" selected>{{ $reseps->stokbahan->name }}</option>
+                        @foreach ($stokbahan as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-md-12">

@@ -50,8 +50,13 @@ data-aos="fade-up"
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Resep</label>
-                                        <input required type="text" name="resep" class="form-control">
+                                        <label>Stok Bahan</label>
+                                        <select required name="stokbahan_id" class="form-control">
+                                            <option value="">Pilih Bahan</option>
+                                            @foreach ($stokbahan as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

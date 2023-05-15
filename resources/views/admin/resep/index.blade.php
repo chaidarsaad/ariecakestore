@@ -29,8 +29,8 @@ data-aos="fade-up"
                             <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                 <thead>
                                 <tr>
-                                    <th class="">Bahan</th>
                                     <th class="">Netto (gram)</th>
+                                    <th class="">Bahan</th>
                                     <th class="">Produk</th>
                                     <th class="">Action</th>
                                 </tr>
@@ -60,8 +60,8 @@ data-aos="fade-up"
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'resep', name: 'resep' },
                 { data: 'netto', name: 'netto' },
+                { data: 'stokbahan.name', name: 'stokbahan.name' },
                 { data: 'product.name', name: 'product.name' },
                 {
                     data: 'action',

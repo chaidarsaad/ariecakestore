@@ -9,7 +9,7 @@ class Resep extends Model
 {
     protected $table = 'resep';
     protected $fillable = [
-        'resep',
+        'stokbahan_id',
         'netto',
         'products',
     ];
@@ -17,5 +17,10 @@ class Resep extends Model
     public function product()
     {
         return $this->belongsTo(Product::class,'products','id');
+    }
+
+    public function stokbahan()
+    {
+        return $this->belongsTo(Stokbahan::class,'stokbahan_id','id');
     }
 }

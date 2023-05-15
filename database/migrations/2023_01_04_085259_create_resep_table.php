@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('resep', function (Blueprint $table) {
             $table->id();
 
-            $table->string('resep');
+            $table->string('stokbahan_id');
             $table->integer('netto');
             $table->integer('products');
 

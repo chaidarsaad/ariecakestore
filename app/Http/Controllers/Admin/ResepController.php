@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Resep;
+use App\Models\Stokbahan;
 use App\Models\Product;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,7 +13,7 @@ class ResepController extends Controller
 {
     Public function index(){
         if (request()->ajax()) {
-            $query = Resep::with(['product']);
+            $query = Resep::with(['product', 'stokbahan']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -40,7 +41,6 @@ class ResepController extends Controller
                             </div>
                     </div>';
                 })
-                
                 ->rawColumns(['action'])
                 ->make();
         }
@@ -48,9 +48,11 @@ class ResepController extends Controller
     }
 
     public function add(){
+        $stokbahan = Stokbahan::all();
         $product = Product::all();
         return view('admin.resep.add', [
-            'product' => $product
+            'product' => $product,
+            'stokbahan' => $stokbahan
         ]);
     }
 
@@ -58,27 +60,30 @@ class ResepController extends Controller
     {
         $reseps = new Resep();
         $reseps->products = $request->input('products');
-        $reseps->resep = $request->input('resep');
+        $reseps->stokbahan_id = $request->input('stokbahan_id');
         $reseps->netto = $request->input('netto');
         $reseps->save();
         return redirect('resep')->with('status',"Resep Berhasil Ditambah");
     }
 
     public function edit($id){
+        $stokbahan = Stokbahan::all();
         $product = Product::all();
-        $reseps = Resep::with(['product'])->findOrFail($id);
+        $reseps = Resep::with(['product', 'stokbahan'])->findOrFail($id);
         return view('admin.resep.edit', [
             'product' => $product,
-            'reseps' => $reseps
+            'reseps' => $reseps,
+            'stokbahan' => $stokbahan
         ]);
     }
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $reseps = Resep::find($id);
         
-        $reseps->resep = $request->input('resep');
         $reseps->netto = $request->input('netto');
+        $reseps->stokbahan_id = $request->input('stokbahan_id');
         $reseps->products = $request->input('products');
         $reseps->update();
         return redirect('resep')->with('status',"Resep Berhasil Diupdate");
