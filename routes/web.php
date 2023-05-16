@@ -115,6 +115,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-pointofsale/{id}', [PosController::class, 'update']);
     Route::post('hitung-pointofsale', [PosController::class, 'hitung']);
     Route::get('delete-pointofsale/{id}', [PosController::class, 'deletepos']);
+    Route::post('checkout-pos', [PosController::class, 'checkoutpos']);
 
     Route::get('resep', [ResepController::class, 'index']);
     Route::get('add-resep', [ResepController::class, 'add']);

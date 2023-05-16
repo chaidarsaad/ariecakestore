@@ -12,11 +12,9 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PosController extends Controller
 {
-    
     // buat nampilin product
     public function index(){
         $positems = Pos::all();
-        $bayar = 20000;
 
         if (request()->ajax()) {
             $query = Product::query();
@@ -39,8 +37,7 @@ class PosController extends Controller
                 ->make();
         }
         return view('admin.pos.index', [
-            'positems' => $positems,
-            'bayar' => $bayar
+            'positems' => $positems
         ]);
 
         // $products = Product::all();
