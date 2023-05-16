@@ -117,7 +117,7 @@ class CheckoutController extends Controller
 
         $order->total_price = $total;
 
-        $request->request->add(['status' => 'Unpaid']);
+        $request->request->add(['status_pembayaran' => 'Unpaid']);
         // $order->status = 'Unpaid';
 
         $order->tracking_no = 'ariecakestore-' . mt_rand(00000,99999);
@@ -196,8 +196,13 @@ class CheckoutController extends Controller
         if($hashed == $request->signature_key){
             if($request->transaction_status == 'capture'){
                 $order = Order::find($request->order_id);
-                $order->update(['status' => 'Paid']);
+                $order->update(['status_pembayaran' => 'Paid']);
             }
         }
+    }
+
+    public function pos(Request $request){
+        $orderpos = new Order();
+        $orderpos->save();
     }
 }

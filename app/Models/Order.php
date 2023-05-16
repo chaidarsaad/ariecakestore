@@ -21,7 +21,7 @@ class Order extends Model
         // 'payment_mode',
         // 'payment_id',
         'message',
-        'status',
+        'status_pembayaran',
         'tracking_no',
         'status_pickup'
     ];
