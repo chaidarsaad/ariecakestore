@@ -138,13 +138,14 @@ class CheckoutController extends Controller
             $prod->qty = $prod->qty - $item->prod_qty;
             $prod->update();
 
-            if($prod->resep){
+            
+            // if($prod->resep){
             $reseps = $prod->resep;
             foreach ($reseps as $resep) {
                 $stokBahan = $resep->stokbahan;
-                $stokBahan->netto -= $resep->netto;
+                $stokBahan->netto -= $resep->netto * $item->prod_qty;
                 $stokBahan->save();
-            }
+            // }
             }
         }
 
