@@ -77,6 +77,9 @@ class ProductController extends Controller
             $file->move('assets/uploads/products/',$filename);
             $products->image = $filename;
         }
+        
+
+
         $products->cate_id = $request->input('cate_id');
         $products->name = $request->input('name');
         $products->slug = Str::slug($request->input('name'));
@@ -85,9 +88,13 @@ class ProductController extends Controller
         $products->qty = $request->input('qty');
         $products->status = $request->input('status') == TRUE ? '1':'0';
         $products->trending = $request->input('trending') == TRUE ? '1':'0';
-        $products->save();
-        return redirect('products')->with('status',"Product Berhasil Ditambah");
 
+        
+
+        $products->save();
+
+
+        return redirect('products')->with('status',"Product Berhasil Ditambah");
     }
 
     public function edit($id)

@@ -59,7 +59,7 @@ class ResepController extends Controller
     public function insert(Request $request)
     {
         $reseps = new Resep();
-        $reseps->products = $request->input('products');
+        $reseps->product_id = $request->input('product_id');
         $reseps->stokbahan_id = $request->input('stokbahan_id');
         $reseps->netto = $request->input('netto');
         $reseps->save();
@@ -84,7 +84,7 @@ class ResepController extends Controller
         
         $reseps->netto = $request->input('netto');
         $reseps->stokbahan_id = $request->input('stokbahan_id');
-        $reseps->products = $request->input('products');
+        $reseps->product_id = $request->input('product_id');
         $reseps->update();
         return redirect('resep')->with('status',"Resep Berhasil Diupdate");
     }

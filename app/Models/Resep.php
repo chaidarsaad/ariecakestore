@@ -11,12 +11,12 @@ class Resep extends Model
     protected $fillable = [
         'stokbahan_id',
         'netto',
-        'products',
+        'product_id',
     ];
 
     public function product()
     {
-        return $this->belongsTo(Product::class,'products','id');
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 
     public function stokbahan()
