@@ -24,8 +24,8 @@ class DashboardController extends Controller
         $product = Product::count();
         $users = User::where('role_as', '0')->count();
         $total_orders = Order::count();
-        $completed_orders = Order::where('status', 'Paid')->count();
-        $pending_orders = Order::where('status', 'Unpaid')->count();
+        $completed_orders = Order::where('status_pembayaran', 'Paid')->count();
+        $pending_orders = Order::where('status_pembayaran', 'Unpaid')->count();
         $revenue = Order::sum('total_price');
         return view('admin.index', [
             'category' => $category,
