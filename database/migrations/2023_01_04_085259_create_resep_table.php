@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('stokbahan_id');
             $table->integer('netto');
-            $table->integer('products');
+            $table->integer('product_id');
 
             $table->timestamps();
         });
