@@ -36,60 +36,59 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <label>Barang yang dibeli</label>
-                            <div class="table-responsive">
-                                <table id="myTable" class="table table-hover scroll-horizontal-vertical w-100">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Harga</th>
-                                            <th style="width: 15%">Jumlah</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $totalPrice = 0 @endphp
-                                        @foreach($positems as $item)
-                                        <tr>
-                                            <td>{{ $item->product->name }}</td>
-                                            <td>{{ $item->product->price }}</td>
-                                            <td>
-                                                <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
-                                                    @method('PUT')
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="input-group mb-1">
-                                                            <input type="number" class="form-control" placeholder="Jumlah" name="prod_qty" value="{{ $item->prod_qty }}">
-                                                            <button type="submit" class="btn btn-success" type="button">Update</button>
+                        <div class="card">
+                            <div class="card-body">
+                                <label>Barang yang dibeli</label>
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-hover scroll-horizontal-vertical w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Harga</th>
+                                                <th style="width: 15%">Jumlah</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $totalPrice = 0 @endphp
+                                            @foreach($positems as $item)
+                                            <tr>
+                                                <td>{{ $item->product->name }}</td>
+                                                <td>{{ $item->product->price }}</td>
+                                                <td>
+                                                    <form action="{{ url('update-pointofsale/'.$item->id) }}" method="post">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="input-group mb-1">
+                                                                <input type="number" class="form-control" placeholder="Jumlah" name="prod_qty" value="{{ $item->prod_qty }}">
+                                                                <button type="submit" class="btn btn-success" type="button">Update</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
-                                            </td>
-                                        </tr>
-                                        @php $totalPrice += $item->product->price * $item->prod_qty @endphp
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <label class="">Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
-                                {{-- <div class="input-group mb-3">
-                                    <input name="bayar" type="number" class="form-control" placeholder="Uang Bayar" aria-label="Uang Bayar" aria-describedby="button-addon2">
-                                    <button class="btn btn-primary" type="submit">Hitung Kembalian</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ url('delete-pointofsale/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
+                                                </td>
+                                            </tr>
+                                            @php $totalPrice += $item->product->price * $item->prod_qty @endphp
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <label class="">Kembalian : Rp {{ number_format($bayar - $totalPrice) }}</label> --}}
-                                <button class="btn btn-success">
-                                    Bayar
-                                </button>
+                                <br>
+                                <form action="{{ url('checkout-pos') }}" method="POST" enctype="multipart/form-data">
+                                    @method('POST')
+                                    @csrf
+                                    <div class="row">
+                                        <label>Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
+                                        <button type="submit" class="btn btn-success">
+                                            Bayar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -47,11 +47,6 @@
                                         <option value="ambil kue di toko">ambil kue di toko</option>
                                         <option value="kue diantar ke alamat tujuan">kue diantar ke alamat tujuan</option>
                                     </select>
-                                    {{-- <select required name="status_pickup" class="form-control">
-                                        <option value="asd">Pilih Metode Pengambilan Kue</option>
-                                        <option value="ambil kue di toko">ambil kue di toko</option>    
-                                        <option value="kue diantar ke alamat tujuan">kue diantar ke alamat tujuan</option>    
-                                    </select> --}}
                                 </div>
                                 <div class="col-md-12">
                                     <label for="">Kecamatan</label>
@@ -102,8 +97,7 @@
                                 <h6 class="px-2">Total Harga<span class="float-end">Rp {{ number_format($total) }}</span></h6>
                                 <hr>
                                 <input type="hidden" name="payment_mode" value="COD">
-                                <button type="submit" class="btn btn-success w-100 mb-2" id="pay-button">Bayar Sekarang</button>
-                                {{-- <button type="button" class="btn btn-primary w-100 mb-2 razorpay_btn">Pay with Razorpay</button> --}}
+                                <button type="submit" class="btn btn-success w-100 mb-2">Bayar Sekarang</button>
                                 <div id="paypal-button-container"></div>
                             @else
                                 <h4 class="text-center">Tidak ada produk di keranjang</h4>
@@ -118,10 +112,5 @@
 
 @section('scripts')
 
-    {{-- <script src='https://www.paypal.com/sdk/js?client-id=AZs2Jlax_z6GXz7Xo8iCfBF2PwwbatjT0fG0M--HtqzLpL8UZfLx_zbIB8SupDvz_kH98zh5OwL6QV94'> </script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-    <script>
-    </script> --}}
 
 @endsection

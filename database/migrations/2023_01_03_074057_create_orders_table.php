@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
 
             $table->tinyInteger('user_id');
-            $table->string('fname');
-            $table->string('phone');
+            $table->string('fname')->nullable();
+            $table->string('phone')->nullable();
             $table->string('address1')->nullable();
             $table->tinyInteger('districts_id')->nullable();
             $table->bigInteger('total_price');
             $table->string('message')->nullable();
             $table->enum('status_pembayaran', ['Unpaid', 'Paid']);
             $table->string('tracking_no');
-            $table->string('status_pickup');
+            $table->string('status_pickup')->nullable();
 
             $table->timestamps();
         });

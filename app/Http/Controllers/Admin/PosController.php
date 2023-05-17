@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Pos;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -81,5 +83,18 @@ class PosController extends Controller
       $pos = Pos::find($id);
       $pos->delete();
       return redirect('pointofsales');
+    }
+
+    public function checkoutpos(Request $request){
+        $order = new Order();
+
+        $totalPrice = 0;
+        $totalPrice += $item->product->price * $item->prod_qty;
+        $order->total_price = $totalPrice;
+        
+        // dd($order);
+        $order->tracking_no = 'store-' . mt_rand(00000, 99999);
+        $order->save();
+        return redirect('pointofsales');
     }
 }
