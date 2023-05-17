@@ -158,10 +158,4 @@ class CheckoutController extends Controller
             }
         }
     }
-
-    public function pos(Request $request)
-    {
-        $orderpos = new Order();
-        $orderpos->save();
-    }
 }
