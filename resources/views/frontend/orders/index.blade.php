@@ -29,7 +29,7 @@
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>Rp {{ number_format($item->total_price) }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->status_pembayaran }}</td>
                                         {{-- <td>{{ $item->status == '0'?'PESANAN SIAP, SILAHKAN AMBIL DI TOKO' : 'DIANTARKAN KE ALAMAT TUJUAN'}}</td> --}}
                                         {{-- <td>{{ $item->status == '0'?'PROSES' : 'PESANAN SIAP, SILAHKAN AMBIL DI TOKO', 'DIANTARKAN KE ALAMAT TUJUAN'}}</td> --}}
                                         <td>

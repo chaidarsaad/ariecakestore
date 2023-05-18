@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->tinyInteger('user_id');
+            $table->tinyInteger('user_id')->nullable();
             $table->string('fname')->nullable();
             $table->string('phone')->nullable();
             $table->string('address1')->nullable();

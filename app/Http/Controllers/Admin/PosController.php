@@ -60,16 +60,8 @@ class PosController extends Controller
 
         Pos::create($data);
 
-        // $pos = new Pos();
-        // $pos->prod_id = '$id',
-        // $pos->prod_qty = 1;
-        // $pos->save();
         return redirect('pointofsales');
-        // $product_qty = $request->input('product_qty');
     }
-
-    //hitung kembalian
-   
 
     //update prod_qty
     public function update(Request $request, $id){
@@ -89,10 +81,9 @@ class PosController extends Controller
         $order = new Order();
 
         $totalPrice = 0;
-        $totalPrice += $item->product->price * $item->prod_qty;
-        $order->total_price = $totalPrice;
+        $order->total_price = $request->input('total_price');
+        $order->status_pembayaran = 'Paid';
         
-        // dd($order);
         $order->tracking_no = 'store-' . mt_rand(00000, 99999);
         $order->save();
         return redirect('pointofsales');

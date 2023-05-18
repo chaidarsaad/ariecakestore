@@ -26,7 +26,7 @@ data-aos="fade-up"
                             + Pengeluaran
                         </a>
                         <div class="table-responsive">
-                            <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                            <table class="table table-hover scroll-horizontal-vertical w-100" id="myTable">
                                 <thead>
                                 <tr>
                                     <th class="">Keterangan</th>
@@ -36,6 +36,17 @@ data-aos="fade-up"
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($spendings as $item)
+                                        <tr>
+                                            <td>{{ $item->description }}</td>
+                                            <td>Rp {{ number_format($item->total_spending) }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                                            <td>
+                                                <a href="{{ url('edit-spending/'.$item->id) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ url('delete-spending/'.$item->id) }}" class="btn btn-danger">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -51,27 +62,7 @@ data-aos="fade-up"
 
 @push('addon-script')
     <script>
-        // AJAX DataTable
-        var datatable = $('#crudTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ordering: true,
-            ajax: {
-                url: '{!! url()->current() !!}',
-            },
-            columns: [
-                { data: 'description', name: 'description' },
-                { data: 'total_spending', name: 'total_spending' },
-                { data: 'created_at', name: 'created_at' },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false,
-                    width: '15%'
-                },
-            ]
-        });
+        let table = new DataTable('#myTable');
     </script>
 @endpush
 

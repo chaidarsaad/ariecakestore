@@ -11,39 +11,10 @@ use Yajra\DataTables\Facades\DataTables;
 class SpendingController extends Controller
 {
     public function index(){
-        if (request()->ajax()) {
-            $query = Spending::query();
-
-            return Datatables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-                                    type="button" id="action' .  $item->id . '"
-                                        data-toggle="dropdown" 
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . url('edit-spending', $item->id) . '">
-                                        Sunting
-                                    </a>
-                                    <form action="' . url('delete-spending', $item->id) . '" method="get">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                    </div>';
-                })
-                ->rawColumns(['action'])
-                ->make();
-        }
-        return view('admin.spending.index');
+        $spendings = Spending::all();
+        return view('admin.spending.index', [
+            'spendings' => $spendings
+        ]);
     }
 
     public function add(){

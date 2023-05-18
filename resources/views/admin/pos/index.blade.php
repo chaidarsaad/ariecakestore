@@ -81,6 +81,7 @@
                                     @method('POST')
                                     @csrf
                                     <div class="row">
+                                        <input type="hidden" name="total_price" value="{{ $totalPrice }}">
                                         <label>Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
                                         <button type="submit" class="btn btn-success">
                                             Bayar

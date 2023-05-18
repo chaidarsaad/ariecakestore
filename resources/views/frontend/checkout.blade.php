@@ -49,6 +49,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-12">
+                                    <hr>
                                     <label for="">Kecamatan</label>
                                     <select name="districts_id" class="form-control">
                                         <option value="{{ $userd->districts_id }}">Pilih Kecamatan</option>

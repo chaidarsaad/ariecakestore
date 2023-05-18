@@ -23,8 +23,10 @@
                                 <div class="border">{{ $orders->fname }}</div>
                                 <label for="">No WhatsApp</label>
                                 <div class="border">{{ $orders->phone }}</div>
+                                <label for="">Metode Pengambilan Kue</label>
+                                <div class="border">{{ $orders->status_pickup }}</div>
                                 <label for="">Kecamatan</label>
-                                    <div class="border">{{ $userd->district->name }}</div>
+                                <div class="border">{{ $userd->district->name }}</div>
                                 <label for="">Alamat Lengkap</label>
                                     <div class="border">{{ $userd->address1 }}</div>
                                 {{-- <label for="">Alamat Lengkap</label>
@@ -59,7 +61,7 @@
                                     </tbody>
                                 </table>
                                 <h4 class="px-2">Total Harga: <span class="float-end">Rp {{ number_format($orders->total_price) }}</span></h4>
-                                <h4 class="px-2">Status Pembayaran: <span class="float-end">{{ $orders->status }}</span></h4>
+                                <h4 class="px-2">Status Pembayaran: <span class="float-end">{{ $orders->status_pembayaran }}</span></h4>
                                 <h4 class="px-2">Status Pesanan: <span class="float-end">{{ $orders->status_order }}</span></h4>
 
                             </div>

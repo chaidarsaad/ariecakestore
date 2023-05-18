@@ -69,7 +69,7 @@
                                     </tbody>
                                 </table>
                                 <h4>Total Harga : <span class="float-end">Rp {{ number_format($orders->total_price) }}</span></h4>
-                                <h6>Status Pembayaran : <span class="float-end">{{ ($orders->status) }}</span></h6>
+                                <h6>Status Pembayaran : <span class="float-end">{{ ($orders->status_pembayaran) }}</span></h6>
                                 {{-- @if($orders->payment_id)
                                     <label for="">Payment Id : {{ $orders->payment_id }}</label>
                                 @endif
