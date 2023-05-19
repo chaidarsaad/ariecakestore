@@ -64,7 +64,7 @@
                                     <input type="text" class="form-control address1" value="" name="address1" placeholder="Masukkan alamat lengkap">
                                     <span id="address1_error" class="text-danger"></span>
                                 </div>
-                                <h6 style="text-align: justify" class="my-2">NB : Ongkos kirim dibayar saat kurir tiba di lokasi. Klik <a style="text-decoration: none" href="{{ url('cek-ongkir') }}">cek ongkir</a> untuk melihat ongkos kirim.</h6>
+                                <h6 style="text-align: justify" class="my-2">NB : Ongkos kirim dibayar saat kurir tiba di lokasi. Klik <a style="text-decoration: none" href="{{ url('cek-ongkir') }}">disini</a> untuk melihat ongkos kirim.</h6>
                             </div>
                         </div>
                     </div>
