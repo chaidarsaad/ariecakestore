@@ -11,6 +11,13 @@
         @yield('title')
     </title>
 
+    @stack('prepend-style')
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <link href="{{ asset('admin/css/main.css') }}" rel="stylesheet">
+    @stack('addon-style')
+
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
@@ -37,6 +44,7 @@
             color: #000 !important;
         }
     </style>
+
 </head>
 <body>
     @include('layouts.inc.frontnavbar')
@@ -49,14 +57,18 @@
             <img src="{{ asset('assets/images/whatsapp-icon.png') }}" alt="whatsapp-logo" height="40px" width="40px">
         </a>
     </div>
+    @stack('prepend-script')
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+    @stack('addon-script')
 
-    
 
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}" ></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}" ></script>
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}" ></script>
     <script src="{{ asset('frontend/js/custom.js') }}" ></script>
-    <script src="{{ asset('frontend/js/checkout.js') }}" ></script>
+    {{-- <script src="{{ asset('frontend/js/checkout.js') }}" ></script> --}}
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">

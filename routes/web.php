@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\CekongkirController;
 use App\Http\Controllers\Admin\SpendingController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\StokbahanController;
@@ -57,6 +58,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit-profile', [UserController::class, 'edit']);
     Route::put('update-profile/{id}', [UserController::class, 'update']);
 
+    Route::get('cek-ongkir', [UserController::class, 'ongkir']);
+
     Route::post('add-rating', [RatingController::class, 'add']);
 
     Route::get('add-review/{product_slug}/userreview', [ReviewController::class, 'add']);
@@ -92,6 +95,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-district/{id}', [DistrictController::class, 'edit']);
     Route::put('update-district/{id}', [DistrictController::class, 'update']);
     Route::get('delete-district/{id}', [DistrictController::class, 'destroy']);
+
 
     Route::get('orders', [OrderController::class, 'index']);
     Route::get('admin/view-order/{id}', [OrderController::class, 'view']);

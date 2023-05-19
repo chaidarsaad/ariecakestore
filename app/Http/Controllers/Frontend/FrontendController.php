@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Rating;
 use App\Models\Review;
 use App\Models\Product;
+use App\Models\District;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -64,6 +64,7 @@
                                     <input type="text" class="form-control address1" value="" name="address1" placeholder="Masukkan alamat lengkap">
                                     <span id="address1_error" class="text-danger"></span>
                                 </div>
+                                <h6 style="text-align: justify" class="my-2">NB : Ongkos kirim dibayar saat kurir tiba di lokasi. Klik <a style="text-decoration: none" href="{{ url('cek-ongkir') }}">cek ongkir</a> untuk melihat ongkos kirim.</h6>
                             </div>
                         </div>
                     </div>
@@ -81,7 +82,7 @@
                                         <tr>
                                             <th class="w-75">Nama Produk</th>
                                             <th>Jumlah</th>
-                                            <th>Price</th>
+                                            <th>Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,7 +101,6 @@
                                 <hr>
                                 <input type="hidden" name="payment_mode" value="COD">
                                 <button type="submit" class="btn btn-success w-100 mb-2">Bayar Sekarang</button>
-                                <div id="paypal-button-container"></div>
                             @else
                                 <h4 class="text-center">Tidak ada produk di keranjang</h4>
                             @endif

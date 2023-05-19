@@ -38,38 +38,28 @@ data-aos="fade-up"
                                 </tbody>
                             </table>
                         </div>
-                        <hr>
-                        {{-- <p class="dashboard-subtitle">
+                        {{-- <hr>
+                        <p class="dashboard-subtitle">
                             Hitung Ongkir Disini
-                        </p> --}}
-                        {{-- <form action="{{ route('kalkulator.index') }}" method="POST" enctype="multipart/form-data">
+                        </p>
+                        <form action="{{ url('insertcalc') }}" method="POST" enctype="multipart/form-data">
+                    
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Jarak Dari Kecamatan Paiton ke Kecamatan Tujuan</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id=""
-                                            name="bil1"
-                                            value=""
-                                        />
+                                        <input type="number" class="form-control" id="" name="jarak" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="">Hasil</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id=""
-                                            name=""
-                                            value=""
-                                        />
+                                        <label for="">Harga</label>
+                                        <input type="text" class="form-control" id="" name="" value="" />
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" name="hitung" value="Hitung" class="btn btn-primary mb-3">	
+                            <button type="submit" class="btn btn-primary mb-3">Hitung</button>
                         </form> --}}
                     </div>
                 </div>

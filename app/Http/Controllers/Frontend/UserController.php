@@ -62,4 +62,11 @@ class UserController extends Controller
         $user->update();
         return redirect('my-profile')->with('status',"Profile Berhasil Diupdate");
     }
+
+    public function ongkir(){
+        $district = District::all();
+        return view('frontend.ongkir', [
+            'district' => $district
+        ]);
+    }
 }
