@@ -67,6 +67,7 @@ class CheckoutController extends Controller
         $order->total_price = $total;
 
         $request->request->add(['status_pembayaran' => 'Unpaid']);
+        $order->status_pesanan = 'Proses';
         // $order->status = 'Unpaid';
 
         $order->tracking_no = 'ariecakestore-' . mt_rand(00000, 99999);

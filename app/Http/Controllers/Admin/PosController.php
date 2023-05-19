@@ -82,6 +82,7 @@ class PosController extends Controller
 
         $totalPrice = 0;
         $order->total_price = $request->input('total_price');
+        $order->fname = 'POS';
         $order->status_pembayaran = 'Paid';
         
         $order->tracking_no = 'store-' . mt_rand(00000, 99999);

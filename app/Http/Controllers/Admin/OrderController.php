@@ -31,9 +31,11 @@ class OrderController extends Controller
     public function updateorder(Request $request, $id)
     {
         $orders = Order::find($id);
-        $orders->status = $request->input('order_status');
+        $orders->status_pesanan = $request->input('status_pesanan');
         $orders->update();
-        return redirect('orders')->with('status', "Pesanan Telah di Update");
+        return redirect('admin/view-order/'.$id)->with('status', "Pesanan Telah di Update");
+        // return redirect('orders')->with('status', "Pesanan Telah di Update");
+        // return redirect()->route('view-order/')
     }
 
     public function orderhistory()

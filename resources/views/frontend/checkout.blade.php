@@ -50,6 +50,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <hr>
+                                    <h6>Kosongkan data dibawah ini jika ambil kue di toko</h6>
                                     <label for="">Kecamatan</label>
                                     <select name="districts_id" class="form-control">
                                         <option value="{{ $userd->districts_id }}">Pilih Kecamatan</option>

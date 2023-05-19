@@ -23,6 +23,7 @@
                                     <thead>
                                     <tr>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Tanggal Pesan</th>
                                             <th>Nomor Pesanan</th>
                                             <th>Total Harga</th>
@@ -34,6 +35,7 @@
                                     <tbody>
                                         @foreach ($orders as $item)
                                             <tr>
+                                                <td>{{ $item->fname }}</td>
                                                 <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                                 <td>{{ $item->tracking_no }}</td>
                                                 <td>Rp {{ number_format($item->total_price) }}</td>

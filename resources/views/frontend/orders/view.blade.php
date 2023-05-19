@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 order-details">
+                            <div class="col-md-5 order-details">
                                 <h4>Detail Pesanan</h4>
                                 <hr>
                                 <label for="">Nama Lengkap</label>
@@ -35,7 +35,7 @@
                                     {{ $orders->districts_id }}<br>
                                 </div> --}}
                             </div>
-                            <div class="col-md-6 table-responsive">
+                            <div class="col-md-7 table-responsive">
                                 <h4>Detail Harga</h4>
                                 <hr>
                                 <table class="table table-bordered">
@@ -61,8 +61,8 @@
                                     </tbody>
                                 </table>
                                 <h4 class="px-2">Total Harga: <span class="float-end">Rp {{ number_format($orders->total_price) }}</span></h4>
-                                <h4 class="px-2">Status Pembayaran: <span class="float-end">{{ $orders->status_pembayaran }}</span></h4>
-                                <h4 class="px-2">Status Pesanan: <span class="float-end">{{ $orders->status_order }}</span></h4>
+                                <h6 class="px-2">Status Pembayaran: <span class="float-end">{{ $orders->status_pembayaran }}</span></h6>
+                                <h6 class="px-2">Status Pesanan: <span class="float-end">{{ $orders->status_pesanan }}</span></h6>
 
                             </div>
                         </div>

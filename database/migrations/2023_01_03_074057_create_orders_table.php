@@ -22,6 +22,7 @@ return new class extends Migration
             $table->bigInteger('total_price');
             $table->string('message')->nullable();
             $table->enum('status_pembayaran', ['Unpaid', 'Paid']);
+            $table->string('status_pesanan')->nullable();
             $table->string('tracking_no');
             $table->string('status_pickup')->nullable();
 
