@@ -14,10 +14,13 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
+        $total = Order::sum('total_price');
 
         // $orders = Order::where('status','0')->get();
         return view('admin.orders.index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'total' => $total
+
         ]);
     }
 
@@ -35,8 +38,6 @@ class OrderController extends Controller
         $orders->status_pesanan = $request->input('status_pesanan');
         $orders->update();
         return redirect('admin/view-order/'.$id)->with('status', "Pesanan Telah di Update");
-        // return redirect('orders')->with('status', "Pesanan Telah di Update");
-        // return redirect()->route('view-order/')
     }
 
     public function orderhistory()
@@ -49,8 +50,10 @@ class OrderController extends Controller
 
     public function exportPdf(){
         $orders = Order::all();
-        $pdf = Pdf::loadView('admin.orders.index', [
-            'orders' => $orders
+        $total = Order::sum('total_price');
+        $pdf = Pdf::loadView('admin.orders.export', [
+            'orders' => $orders,
+            'total' => $total
         ]);
         return $pdf->download('invoice.pdf');
     }
