@@ -15,6 +15,9 @@ data-aos="fade-up"
         <p class="dashboard-subtitle">
             Daftar Akun
         </p>
+        <a href="{{ url('print-user') }}" class="btn btn-primary mb-3">
+            Cetak Transaksi
+        </a>
     </div>
     <div class="dashboard-content">
         <div class="row">

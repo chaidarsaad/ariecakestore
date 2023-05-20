@@ -101,11 +101,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('admin/view-order/{id}', [OrderController::class, 'view']);
     Route::put('update-order/{id}', [OrderController::class, 'updateorder']);
     Route::get('order-history', [OrderController::class, 'orderhistory']);
+    Route::get('export-pdf', [OrderController::class, 'exportPdf']);
 
     Route::get('users', [DashboardController::class, 'users']);
     Route::get('edit-user/{id}', [DashboardController::class, 'edit']);
     Route::put('update-user/{id}', [DashboardController::class, 'update']);
     Route::get('delete-user/{id}', [DashboardController::class, 'destroy']);
+
 
     Route::get('spendings', [SpendingController::class, 'index']);
     Route::get('add-spendings', [SpendingController::class, 'add']);

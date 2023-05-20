@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -44,5 +45,13 @@ class OrderController extends Controller
         return view('admin.orders.history', [
             'orders' => $orders
         ]);
+    }
+
+    public function exportPdf(){
+        $orders = Order::all();
+        $pdf = Pdf::loadView('admin.orders.index', [
+            'orders' => $orders
+        ]);
+        return $pdf->download('invoice.pdf');
     }
 }

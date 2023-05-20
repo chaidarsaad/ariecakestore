@@ -41,13 +41,6 @@ class PosController extends Controller
         return view('admin.pos.index', [
             'positems' => $positems
         ]);
-
-        // $products = Product::all();
-        // $positems = Pos::all();
-        // return view('admin.pos.index', [
-        //     'products' => $products,
-        //     'positems' => $positems
-        // ]);
     }
 
     //tambah product ke pos

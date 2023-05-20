@@ -12,6 +12,7 @@
             <p class="dashboard-subtitle">
                 List Transaksi
             </p>
+            <a href="{{ url('export-pdf') }}" class="btn btn-primary mb-4">Cetak Laporan Penjualan</a>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -39,14 +40,12 @@
                                                 <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                                 <td>{{ $item->tracking_no }}</td>
                                                 <td>Rp {{ number_format($item->total_price) }}</td>
-                                                {{-- <td>{{ $item->status == '0' ? 'PROSES' : 'PESANAN SIAP, SILAHKAN AMBIL DI TOKO', 'DIANTARKAN KE ALAMAT TUJUAN'}}</td> --}}
                                                 <td>{{ $item->status_pembayaran }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/view-order/'.$item->id) }}" class="btn btn-primary">Lihat</a>
                                                 </td>
                                             </tr>
                                         @endforeach
-        
                                     </tbody>
                                 </table>
                             </div>
@@ -62,6 +61,11 @@
 
 @push('addon-script')
     <script>
-        let table = new DataTable('#myTable');
+        let table = new DataTable('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pdf'
+            ]
+        });
     </script>
 @endpush

@@ -10,6 +10,7 @@ use App\Models\Spending;
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
 
 use Yajra\DataTables\Facades\DataTables;
 
