@@ -102,6 +102,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-order/{id}', [OrderController::class, 'updateorder']);
     Route::get('order-history', [OrderController::class, 'orderhistory']);
     Route::get('export-pdf', [OrderController::class, 'exportPdf']);
+    Route::get('truncate-orders', [OrderController::class, 'deleteorders']);
 
     Route::get('users', [DashboardController::class, 'users']);
     Route::get('edit-user/{id}', [DashboardController::class, 'edit']);
@@ -115,6 +116,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-spending/{id}', [SpendingController::class, 'edit']);
     Route::put('update-spending/{id}', [SpendingController::class, 'update']);
     Route::get('delete-spending/{id}', [SpendingController::class, 'destroy']);
+    Route::get('truncate-spendings', [SpendingController::class, 'deletespendings']);
 
     Route::get('pointofsales', [PosController::class, 'index']);
     Route::post('insert-pointofsale/{id}', [PosController::class, 'insert']);

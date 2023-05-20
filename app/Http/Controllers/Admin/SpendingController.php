@@ -52,4 +52,11 @@ class SpendingController extends Controller
         $spendings->delete();
         return redirect('spendings')->with('status',"Pengeluaran Berhasil Dihapus");
     }
+
+    public function deletespendings(){
+
+        Spending::truncate();
+        return redirect('spendings')->with('status',"Semua Data Berhasil Dihapus");
+
+    }
 }

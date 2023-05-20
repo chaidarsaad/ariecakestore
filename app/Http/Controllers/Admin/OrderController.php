@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -56,5 +57,11 @@ class OrderController extends Controller
             'total' => $total
         ]);
         return $pdf->download('invoice.pdf');
+    }
+
+    public function deleteorders(){
+        Order::truncate();
+        OrderItem::truncate();
+        return redirect('orders')->with('status',"Semua Data Berhasil Dihapus");
     }
 }

@@ -49,6 +49,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <a href="{{ url('truncate-orders') }}" class="btn btn-danger">Hapus Semua</a>
                         </div>
                     </div>
                 </div>

@@ -49,6 +49,7 @@ data-aos="fade-up"
                                     @endforeach
                                 </tbody>
                             </table>
+                            <a href="{{ url('truncate-spendings') }}" class="btn btn-danger">Hapus Semua</a>
                         </div>
                         <hr>
                     </div>
