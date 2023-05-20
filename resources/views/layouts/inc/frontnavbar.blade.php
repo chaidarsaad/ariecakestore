@@ -50,34 +50,32 @@
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                    <a class="dropdown-item" href="{{ url('my-orders') }}">
-                        Pesanan Saya
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ url('my-profile') }}">
-                        Profil saya
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ url('cek-ongkir') }}">
-                        Cek Ongkos Kirim
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-
+                    <li>
+                        <a class="dropdown-item" href="{{ url('my-orders') }}">
+                            Pesanan Saya
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url('my-profile') }}">
+                            Profil saya
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url('cek-ongkir') }}">
+                            Cek Ongkos Kirim
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
                 </ul>
             </li>
-
         @endguest
         </ul>
       </div>

@@ -84,9 +84,34 @@ class PosController extends Controller
         $order->total_price = $request->input('total_price');
         $order->fname = 'POS';
         $order->status_pembayaran = 'Paid';
-        
         $order->tracking_no = 'store-' . mt_rand(00000, 99999);
+
         $order->save();
+        
+        $positems = Pos::all();
+        foreach ($positems as $item){
+            OrderItem::create([
+                'order_id' => $order->id,
+                'prod_id' => $item->prod_id,
+                'qty' => $item->prod_qty,
+                'price' => $item->product->price
+            ]);
+
+            $prod = Product::where('id', $item->prod_id)->first();
+            $prod->qty = $prod->qty - $item->prod_qty;
+            $prod->update();
+
+            $reseps = $prod->resep;
+            foreach ($reseps as $resep) {
+                $stokBahan = $resep->stokbahan;
+                $stokBahan->netto -= $resep->netto * $item->prod_qty;
+                $stokBahan->save();
+            }
+        }
+
+        $positems = Pos::all();
+        Pos::destroy($positems);
+        
         return redirect('pointofsales');
     }
 }
