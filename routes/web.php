@@ -102,6 +102,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-order/{id}', [OrderController::class, 'updateorder']);
     Route::get('order-history', [OrderController::class, 'orderhistory']);
     Route::get('export-pdf', [OrderController::class, 'exportPdf']);
+    Route::get('print-invoice/{id}', [OrderController::class, 'invoice']);
+    Route::get('export-pdfinvoice/{id}', [OrderController::class, 'printinvoice']);
     Route::get('truncate-orders', [OrderController::class, 'deleteorders']);
 
     Route::get('users', [DashboardController::class, 'users']);

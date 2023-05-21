@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Pos;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -75,7 +76,7 @@ class PosController extends Controller
 
         $totalPrice = 0;
         $order->total_price = $request->input('total_price');
-        $order->fname = 'POS';
+        $order->fname = $request->input('fname');
         $order->status_pembayaran = 'Paid';
         $order->tracking_no = 'store-' . mt_rand(00000, 99999);
 

@@ -15,12 +15,10 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        $total = Order::sum('total_price');
 
         // $orders = Order::where('status','0')->get();
         return view('admin.orders.index', [
-            'orders' => $orders,
-            'total' => $total
+            'orders' => $orders
 
         ]);
     }
@@ -56,7 +54,23 @@ class OrderController extends Controller
             'orders' => $orders,
             'total' => $total
         ]);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('orders.pdf');
+    }
+
+    public function invoice($id){
+        $orders = Order::where('id', $id)->first();
+        return view ('admin.orders.invoice', [
+            'orders' => $orders
+        ]);
+    }
+
+    public function printinvoice($id){
+        $orders = Order::where('id', $id)->first();
+
+        $pdf = Pdf::loadView('admin.orders.printinvoice', [
+            'orders' => $orders
+        ]);
+        return $pdf->download('inv.pdf');
     }
 
     public function deleteorders(){

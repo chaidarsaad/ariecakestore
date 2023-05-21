@@ -42,7 +42,25 @@
                                                 <td>Rp {{ number_format($item->total_price) }}</td>
                                                 <td>{{ $item->status_pembayaran }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/view-order/'.$item->id) }}" class="btn btn-primary">Lihat</a>
+                                                    <div class="btn-group">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                                                type="button" id="action' .  $item->id . '"
+                                                                    data-toggle="dropdown" 
+                                                                    aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    Aksi
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
+                                                                <a class="dropdown-item" href="{{ url('admin/view-order/'.$item->id) }}">
+                                                                    Lihat Detail
+                                                                </a>
+                                                                <a class="dropdown-item" href="{{ url('print-invoice/'.$item->id) }}">
+                                                                    Print Invoice
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
