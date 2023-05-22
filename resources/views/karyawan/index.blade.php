@@ -46,38 +46,44 @@
                 
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Total Transaction
+                        <a href="{{ url('orderskar') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Total Transaction
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $total_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $total_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Transaction Success
+                        <a href="{{ url('orderskar') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Transaction Success
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $completed_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $completed_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Transaction Pending
+                        <a href="{{ url('orderskar') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Transaction Pending
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $pending_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $pending_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

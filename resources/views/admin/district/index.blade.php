@@ -38,29 +38,6 @@ data-aos="fade-up"
                                 </tbody>
                             </table>
                         </div>
-                        {{-- <hr>
-                        <p class="dashboard-subtitle">
-                            Hitung Ongkir Disini
-                        </p>
-                        <form action="{{ url('insertcalc') }}" method="POST" enctype="multipart/form-data">
-                    
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Jarak Dari Kecamatan Paiton ke Kecamatan Tujuan</label>
-                                        <input type="number" class="form-control" id="" name="jarak" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Harga</label>
-                                        <input type="text" class="form-control" id="" name="" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-3">Hitung</button>
-                        </form> --}}
                     </div>
                 </div>
             </div>

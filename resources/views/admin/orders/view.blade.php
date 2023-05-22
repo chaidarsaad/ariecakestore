@@ -82,23 +82,6 @@
                                     </select>
                                     <button type="submit" class="btn btn-success float-end mt-3">Update</button>
                                 </form>
-                                {{-- @if($orders->payment_id)
-                                    <label for="">Payment Id : {{ $orders->payment_id }}</label>
-                                @endif
-                                <div class="mt-5">
-                                    <label for="">Status Pesanan</label>
-                                    <form action="{{ url('update-order/'.$orders->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <select class="form-select" name="order_status">
-                                            <option {{ $orders->status == '0'? 'selected':'' }} value="0">PROSES</option>
-                                            <option {{ $orders->status == '1'? 'selected':'' }} value="1">PESANAN SIAP, SILAHKAN AMBIL DI TOKO</option>
-                                            <option {{ $orders->status == '2'? 'selected':'' }} value="2">DIANTARKAN KE ALAMAT TUJUAN</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-primary float-end mt-3">Update</button>
-                                    </form>
-                                </div> --}}
-
                             </div>
                         </div>
                     </div>

@@ -4,10 +4,7 @@
 
 @section('content')
 <!-- Section Content -->  
-  <div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-  >
+<div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
       <div class="dashboard-heading">
         <h2 class="dashboard-title">Admin Dashboard</h2>
@@ -17,14 +14,16 @@
         <div class="row">
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Total Customer
+                        <a href="{{ url('users') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Total Customer
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $users }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $users }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 
@@ -70,14 +69,16 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Pengeluaran
+                        <a href="{{ url('spendings') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Pengeluaran
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    Rp {{ number_format($spending) }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                Rp {{ number_format($spending) }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 
@@ -95,97 +96,49 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Total Transaction
+                        <a href="{{ url('orders') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Total Transaction
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $total_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $total_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Transaction Success
+                        <a href="{{ url('orders') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Transaction Success
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $completed_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $completed_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">
-                                Transaction Pending
+                        <a href="{{ url('orders') }}" style="text-decoration: none">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">
+                                    Transaction Pending
+                                </div>
+                                <div class="dashboard-card-subtitle">
+                                    {{ $pending_orders }}
+                                </div>
                             </div>
-                            <div class="dashboard-card-subtitle">
-                                {{ $pending_orders }}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
       </div>
     </div>
-  </div>
-
-    <div style="display: none" class="card py-5">
-        <div class="card-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-primary">
-                                <h4 class="font-weight-bold text-white font-weight-bold">Total Categories : {{ $category }} </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-secondary">
-                                <h4 class="font-weight-bold text-white">Total Products : {{ $product }} </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-warning">
-                                <h4 class="font-weight-bold ">Total users : {{ $users }} </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-info">
-                                <h4 class="font-weight-bold text-white">Total Orders : {{ $total_orders }} </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-success">
-                                {{-- <h4 class="font-weight-bold text-white">Completed Orders : {{ $completed_orders }} </h4> --}}
-                                <h4 class="font-weight-bold text-white">Completed Orders : </h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body bg-danger">
-                                {{-- <h4 class="font-weight-bold text-white">Pending Orders : {{ $pending_orders }} </h4> --}}
-                                <h4 class="font-weight-bold text-white">Pending Orders : </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 @endsection
 
