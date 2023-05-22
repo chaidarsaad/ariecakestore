@@ -25,6 +25,8 @@ data-aos="fade-up"
                         <a href="{{  url('add-spendings') }}" class="btn btn-primary mb-3">
                             + Pengeluaran
                         </a>
+                        <a href="{{ url('export-pdfs') }}" class="btn btn-primary mb-3">Cetak Laporan Pengeluaran</a>
+
                         <div class="table-responsive">
                             <table class="table table-hover scroll-horizontal-vertical w-100" id="myTable">
                                 <thead>

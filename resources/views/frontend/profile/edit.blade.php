@@ -28,6 +28,8 @@
                                     <input type="text" value="{{ $user->name }}" class="form-control" name="name">
                                     <label for="">Email</label>
                                     <input type="text" value="{{ $user->email }}" class="form-control" name="email">
+                                    <label for="">Password</label>
+                                    <input type="text" value="" placeholder="kosongkan password jika tidak ingin diganti" class="form-control" name="password">
                                     <label for="">No WhatsApp</label>
                                     <input type="text" value="{{ $user->phone }}" class="form-control" name="phone">
                                     <label for="">Kecamatan</label>

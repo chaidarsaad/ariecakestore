@@ -1,24 +1,35 @@
 <?php
 
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ProductController;
+
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\UserController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DistrictController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\RatingController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CekongkirController;
+
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SpendingController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\StokbahanController;
 use App\Http\Controllers\Admin\ResepController;
+
+use App\Http\Controllers\Karyawan\OrderkController;
+use App\Http\Controllers\Karyawan\ProductkController;
+use App\Http\Controllers\Karyawan\CategorykController;
+use App\Http\Controllers\Karyawan\DistrictkController;
+use App\Http\Controllers\Karyawan\DashboardkController;
+use App\Http\Controllers\Karyawan\SpendingkController;
+use App\Http\Controllers\Karyawan\PoskController;
+use App\Http\Controllers\Karyawan\StokbahankController;
+use App\Http\Controllers\Karyawan\ResepkController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -72,12 +83,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('midtranspayment', [CheckoutController::class, 'midtrans']);
 });
 
+//admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('categories','Admin\CategoryController@index');
-    Route::get('add-category','Admin\CategoryController@add');
-    Route::post('insert-category','Admin\CategoryController@insert');
+    Route::get('categories', [CategoryController::class ,'index']);
+    Route::get('add-category', [CategoryController::class ,'add']);
+    Route::post('insert-category', [CategoryController::class ,'insert']);
     Route::get('edit-category/{id}', [CategoryController::class ,'edit']);
     Route::put('update-category/{id}', [CategoryController::class, 'update']);
     Route::get('delete-category/{id}', [CategoryController::class, 'destroy']);
@@ -102,8 +114,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-order/{id}', [OrderController::class, 'updateorder']);
     Route::get('order-history', [OrderController::class, 'orderhistory']);
     Route::get('export-pdf', [OrderController::class, 'exportPdf']);
+    Route::get('view-invoice/{id}', [OrderController::class, 'viewinvoice']);
     Route::get('print-invoice/{id}', [OrderController::class, 'invoice']);
-    Route::get('export-pdfinvoice/{id}', [OrderController::class, 'printinvoice']);
     Route::get('truncate-orders', [OrderController::class, 'deleteorders']);
 
     Route::get('users', [DashboardController::class, 'users']);
@@ -119,6 +131,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-spending/{id}', [SpendingController::class, 'update']);
     Route::get('delete-spending/{id}', [SpendingController::class, 'destroy']);
     Route::get('truncate-spendings', [SpendingController::class, 'deletespendings']);
+    Route::get('export-pdfs', [SpendingController::class, 'exportPdf']);
+
 
     Route::get('pointofsales', [PosController::class, 'index']);
     Route::post('insert-pointofsale/{id}', [PosController::class, 'insert']);
@@ -139,4 +153,57 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-stokbahan/{id}', [StokbahanController::class, 'edit']);
     Route::put('update-stokbahan/{id}', [StokbahanController::class, 'update']);
     Route::get('delete-stokbahan/{id}', [StokbahanController::class, 'destroy']);
+});
+
+// karyawan
+Route::middleware(['auth', 'isKaryawan'])->group(function () {
+    Route::get('/dashboardkar', [DashboardkController::class, 'index']);
+
+    Route::get('categorieskar', [CategorykController::class ,'index']);
+    Route::get('add-categorykar', [CategorykController::class ,'add']);
+    Route::post('insert-categorykar', [CategorykController::class ,'insert']);
+    Route::get('edit-categorykar/{id}', [CategorykController::class ,'edit']);
+    Route::put('update-categorykar/{id}', [CategorykController::class, 'update']);
+    Route::get('delete-categorykar/{id}', [CategorykController::class, 'destroy']);
+
+    Route::get('productskar', [ProductkController::class, 'index']);
+    Route::get('add-productskar', [ProductkController::class, 'add']);
+    Route::post('insert-productkar', [ProductkController::class, 'insert']);
+    Route::get('edit-productkar/{id}', [ProductkController::class, 'edit']);
+    Route::put('update-productkar/{id}', [ProductkController::class, 'update']);
+    Route::get('delete-productkar/{id}', [ProductkController::class, 'destroy']);
+
+    Route::get('districtskar', [DistrictkController::class, 'index']);
+    Route::get('add-districtskar', [DistrictkController::class, 'add']);
+    Route::post('insert-districtkar', [DistrictkController::class, 'insert']);
+    Route::get('edit-districtkar/{id}', [DistrictkController::class, 'edit']);
+    Route::put('update-districtkar/{id}', [DistrictkController::class, 'update']);
+    Route::get('delete-districtkar/{id}', [DistrictkController::class, 'destroy']);
+
+
+    Route::get('orderskar', [OrderkController::class, 'index']);
+    Route::get('karyawan/view-orderkar/{id}', [OrderkController::class, 'view']);
+    Route::put('update-orderkar/{id}', [OrderkController::class, 'updateorder']);
+    Route::get('view-invoicekar/{id}', [OrderkController::class, 'viewinvoice']);
+    Route::get('print-invoicekar/{id}', [OrderkController::class, 'invoice']);
+
+    Route::get('pointofsaleskar', [PoskController::class, 'index']);
+    Route::post('insert-pointofsalekar/{id}', [PoskController::class, 'insert']);
+    Route::put('update-pointofsalekar/{id}', [PoskController::class, 'update']);
+    Route::get('delete-pointofsalekar/{id}', [PoskController::class, 'deletepos']);
+    Route::post('checkout-poskar', [PoskController::class, 'checkoutpos']);
+
+    Route::get('resepkar', [ResepkController::class, 'index']);
+    Route::get('add-resepkar', [ResepkController::class, 'add']);
+    Route::post('insert-resepkar', [ResepkController::class, 'insert']);
+    Route::get('edit-resepkar/{id}', [ResepkController::class, 'edit']);
+    Route::put('update-resepkar/{id}', [ResepkController::class, 'update']);
+    Route::get('delete-resepkar/{id}', [ResepkController::class, 'destroy']);
+
+    Route::get('stokbahankar', [StokbahankController::class, 'index']);
+    Route::get('add-stokbahankar', [StokbahankController::class, 'add']);
+    Route::post('insert-stokbahankar', [StokbahankController::class, 'insert']);
+    Route::get('edit-stokbahankar/{id}', [StokbahankController::class, 'edit']);
+    Route::put('update-stokbahankar/{id}', [StokbahankController::class, 'update']);
+    Route::get('delete-stokbahankar/{id}', [StokbahankController::class, 'destroy']);
 });

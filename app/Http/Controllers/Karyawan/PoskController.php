@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Karyawan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class PosController extends Controller
+class PoskController extends Controller
 {
     // buat nampilin product
     public function index(){
@@ -27,7 +27,7 @@ class PosController extends Controller
                     return '
                     <div class="btn-group">
                         <div class="" aria-labelledby="action' .  $item->id . '">
-                            <form action="' . url('insert-pointofsale', $item->id) . '" method="post">
+                            <form action="' . url('insert-pointofsalekar', $item->id) . '" method="post">
                                 ' . method_field('post') . csrf_field() . '
                                 <button type="submit" class="btn btn-primary">
                                     Tambah
@@ -39,7 +39,7 @@ class PosController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('admin.pos.index', [
+        return view('karyawan.pos.index', [
             'positems' => $positems
         ]);
     }
@@ -54,7 +54,7 @@ class PosController extends Controller
 
         Pos::create($data);
 
-        return redirect('pointofsales');
+        return redirect('pointofsaleskar');
     }
 
     //update prod_qty
@@ -62,13 +62,13 @@ class PosController extends Controller
         $pos = Pos::find($id);
         $pos->prod_qty = $request->input('prod_qty');
         $pos->update();
-        return redirect('pointofsales');
+        return redirect('pointofsaleskar');
     }
 
     public function deletepos($id){
       $pos = Pos::find($id);
       $pos->delete();
-      return redirect('pointofsales');
+      return redirect('pointofsaleskar');
     }
 
     public function checkoutpos(Request $request){
@@ -106,6 +106,6 @@ class PosController extends Controller
         $positems = Pos::all();
         Pos::destroy($positems);
         
-        return redirect('pointofsales');
+        return redirect('pointofsaleskar');
     }
 }

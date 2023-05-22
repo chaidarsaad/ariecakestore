@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Karyawan;
 
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -10,14 +10,14 @@ use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class OrderController extends Controller
+class OrderkController extends Controller
 {
     public function index()
     {
         $orders = Order::all();
 
         // $orders = Order::where('status','0')->get();
-        return view('admin.orders.index', [
+        return view('karyawan.orders.index', [
             'orders' => $orders
 
         ]);
@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function view($id)
     {
         $orders = Order::where('id', $id)->first();
-        return view('admin.orders.view', [
+        return view('karyawan.orders.view', [
             'orders' => $orders
         ]);
     }
@@ -36,31 +36,13 @@ class OrderController extends Controller
         $orders = Order::find($id);
         $orders->status_pesanan = $request->input('status_pesanan');
         $orders->update();
-        return redirect('admin/view-order/'.$id)->with('status', "Pesanan Telah di Update");
-    }
-
-    public function orderhistory()
-    {
-        $orders = Order::where('status', '1')->get();
-        return view('admin.orders.history', [
-            'orders' => $orders
-        ]);
-    }
-
-    public function exportPdf(){
-        $orders = Order::all();
-        $total = Order::sum('total_price');
-        $pdf = Pdf::loadView('admin.orders.export', [
-            'orders' => $orders,
-            'total' => $total
-        ]);
-        return $pdf->download('orders.pdf');
+        return redirect('karyawan/view-orderkar/'.$id)->with('status', "Pesanan Telah di Update");
     }
 
     public function viewinvoice($id)
     {
         $orders = Order::where('id', $id)->first();
-        return view('admin.orders.invoice', [
+        return view('karyawan.orders.invoice', [
             'orders' => $orders
         ]);
     }
@@ -68,15 +50,10 @@ class OrderController extends Controller
     public function invoice($id){
         $orders = Order::where('id', $id)->first();
         $namafile = $orders->tracking_no.'.pdf';
-        $pdf = Pdf::loadView('admin.orders.invoice', [
+        $pdf = Pdf::loadView('karyawan.orders.invoice', [
             'orders' => $orders
         ]);
         return $pdf->download($namafile);
     }
 
-    public function deleteorders(){
-        Order::truncate();
-        OrderItem::truncate();
-        return redirect('orders')->with('status',"Semua Data Berhasil Dihapus");
-    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.karyawan')
 
 @section('title')
     Pesanan
@@ -12,7 +12,6 @@
             <p class="dashboard-subtitle">
                 List Transaksi
             </p>
-            <a href="{{ url('export-pdf') }}" class="btn btn-primary mb-4">Cetak Laporan Penjualan</a>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -52,13 +51,13 @@
                                                                     Aksi
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                                                <a class="dropdown-item" href="{{ url('admin/view-order/'.$item->id) }}">
+                                                                <a class="dropdown-item" href="{{ url('karyawan/view-orderkar/'.$item->id) }}">
                                                                     Lihat Detail
                                                                 </a>
-                                                                <a class="dropdown-item" href="{{ url('view-invoice/'.$item->id) }}">
+                                                                <a class="dropdown-item" href="{{ url('view-invoicekar/'.$item->id) }}">
                                                                     Lihat Invoice
                                                                 </a>
-                                                                <a class="dropdown-item" href="{{ url('print-invoice/'.$item->id) }}">
+                                                                <a class="dropdown-item" href="{{ url('print-invoicekar/'.$item->id) }}">
                                                                     Export Pdf
                                                                 </a>
                                                             </div>
@@ -70,7 +69,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="{{ url('truncate-orders') }}" class="btn btn-danger">Hapus Semua</a>
                         </div>
                     </div>
                 </div>

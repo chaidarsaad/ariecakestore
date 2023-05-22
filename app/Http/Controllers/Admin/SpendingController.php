@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Spending;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -54,9 +55,17 @@ class SpendingController extends Controller
     }
 
     public function deletespendings(){
-
         Spending::truncate();
         return redirect('spendings')->with('status',"Semua Data Berhasil Dihapus");
+    }
 
+    public function exportPdf(){
+        $spendings = Spending::all();
+        $total = Spending::sum('total_spending');
+        $pdf = Pdf::loadView('admin.spending.export', [
+            'spendings' => $spendings,
+            'total' => $total
+        ]);
+        return $pdf->download('pengeluaran.pdf');
     }
 }

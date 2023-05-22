@@ -66,7 +66,7 @@ class CheckoutController extends Controller
 
         $order->total_price = $total;
 
-        $request->request->add(['status_pembayaran' => 'Unpaid']);
+        $request->request->add(['status_pembayaran' => 'Belum Dibayar']);
         $order->status_pesanan = 'Proses';
         // $order->status = 'Unpaid';
 
@@ -150,7 +150,7 @@ class CheckoutController extends Controller
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture') {
                 $order = Order::find($request->order_id);
-                $order->update(['status_pembayaran' => 'Paid']);
+                $order->update(['status_pembayaran' => 'Sudah Dibayar']);
             }
         }
     }

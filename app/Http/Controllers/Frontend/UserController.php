@@ -59,6 +59,11 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->address1 = $request->input('address1');
         $user->districts_id = $request->input('districts_id');
+        if($request->password){
+            $user['password'] = bcrypt($request->password);
+        } else {
+            unset($user['password']);
+        }
         $user->update();
         return redirect('my-profile')->with('status',"Profile Berhasil Diupdate");
     }

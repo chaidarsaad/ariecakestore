@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Karyawan;
 
 use App\Models\User;
 use App\Models\Order;
@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class DashboardController extends Controller
+class DashboardkController extends Controller
 {
     public function index()
     {
@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $completed_orders = Order::where('status_pembayaran', 'Sudah Dibayar')->count();
         $pending_orders = Order::where('status_pembayaran', 'Belum Dibayar')->count();
         $revenue = Order::sum('total_price');
-        return view('admin.index', [
+        return view('karyawan.index', [
             'category' => $category,
             'product' => $product,
             'users' => $users,
@@ -76,14 +76,14 @@ class DashboardController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('admin.users.index');
+        return view('karyawan.users.index');
     }
 
     public function edit($id)
     {
         $district = District::all();
         $users = User::with(['district'])->findOrFail($id);
-        return view('admin.users.edit', [
+        return view('karyawan.users.edit', [
             'district' => $district,
             'users' => $users
         ]);

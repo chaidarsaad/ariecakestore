@@ -15,28 +15,24 @@
                             <tr>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Pesan</th>
-                                    <th>Nomor Pesanan</th>
-                                    <th>Status Pembayaran</th>
-                                    <th>Total Harga</th>
+                                    <th>Desikripsi</th>
+                                    <th>Tanggal</th>
+                                    <th>Pengeluaran</th>
                                 </tr>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $item)
+                                @foreach ($spendings as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->fname }}</td>
+                                        <td>{{ $item->description }}</td>
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                        <td>{{ $item->tracking_no }}</td>
-                                        <td>{{ $item->status_pembayaran }}</td>
-                                        <td>Rp {{ number_format($item->total_price) }}</td>
+                                        <td>Rp {{ number_format($item->total_spending) }}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="5">Total Pemasukan</td>
-                                    <td>Rp {{ number_format($total) }}</td>
+                                    <td colspan="3">Total Pengeluaran</td>
+                                    <td class="">Rp {{ number_format($total) }}</td>
                                 </tr>
                             </tbody>
                         </table>
