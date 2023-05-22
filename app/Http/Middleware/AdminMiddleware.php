@@ -24,17 +24,5 @@ class AdminMiddleware
         } else {
             return redirect('/')->with('status','Silahkan Login Dahulu');
         }
-
-        // if(Auth::check()){
-        //     if(Auth::user()->role_as == '1'){
-        //         return $next($request);
-        //     } else if (Auth::user()->role_as == '2'){
-        //         return $next($request);
-        //     } else {
-        //         return redirect('/')->with('status' , 'Akses Ditolak! Anda Bukan Admin atau Karyawan');
-        //     }
-        // } else {
-        //     return redirect('/')->with('status', 'Silahkan Login Dahulu');
-        // }
     }
 }

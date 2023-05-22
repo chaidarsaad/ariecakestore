@@ -34,21 +34,6 @@ class LoginController extends Controller
         // } elseif (Auth::user()->role_as == '0'){ // Normal or Default User Login
         //     return redirect('/')->with('status','Login berhasil');
         // }
-        // if(Auth::user()->role_as == '1'){ //1 = Admin Login
-        //     return redirect('dashboard')->with('status','Selamat datang di dashboard');
-        // } elseif (Auth::user()->role_as == '2'){
-        //     return redirect('dashboardkar')->with('status','Selamat datang di dashboard');
-        // } else (Auth::user()->role_as == '0'){ // Normal or Default User Login
-        //     return redirect('/')->with('status','Login berhasil');
-        // }
-
-        // if (Auth::user()->role_as == '1'){
-        //     return redirect('dashboard')->with('status','Selamat datang di dashboard');
-        // } elseif (Auth::user()->role_as == '2'){
-        //     return redirect('dashboard')->with('status','Selamat datang di dashboard');
-        // } elseif (Auth::user()->role_as == '0'){
-        //     return true redirect('/')->with('status','Login berhasil');
-        // }
 
         // Check for the admin role
         if (Auth::user()->role_as == '1') {
