@@ -92,11 +92,12 @@ class DistrictController extends Controller
 
     public function calc(Request $request){
         $bil1 = $request->input('first');
-        $harga = 2000;
+        $harga = 1500;
+        $kec = $request->input('namakec');
         $res = 0;
 
         $res = $bil1 * $harga;
 
-        return redirect('districts')->with('status', "Harga Ongkir nya adalah : $res");
+        return redirect('districts')->with('status', "Harga Ongkir ke kecamatan $kec adalah $res");
     }
 }
