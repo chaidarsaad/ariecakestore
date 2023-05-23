@@ -38,6 +38,15 @@ data-aos="fade-up"
                                 </tbody>
                             </table>
                         </div>
+                        <br>
+                        <h4>Hitung Ongkos Kirim Disini</h4>
+                        <form method="POST" action="{{ url('calculator') }}">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="number" name="first" class="form-control" placeholder="Jarak Ke Kecamatan Tujuan Satuan Kilometer" >
+                                <button class="btn btn-success" type="submit">Button</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

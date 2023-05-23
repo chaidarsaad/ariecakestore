@@ -107,6 +107,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-district/{id}', [DistrictController::class, 'edit']);
     Route::put('update-district/{id}', [DistrictController::class, 'update']);
     Route::get('delete-district/{id}', [DistrictController::class, 'destroy']);
+    Route::post('calculator', [DistrictController::class, 'calc']);
 
 
     Route::get('orders', [OrderController::class, 'index']);

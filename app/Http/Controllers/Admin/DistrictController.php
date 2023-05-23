@@ -89,4 +89,14 @@ class DistrictController extends Controller
         $districts->delete();
         return redirect('districts')->with('status',"Kecamatan Berhasil Dihapus");
     }
+
+    public function calc(Request $request){
+        $bil1 = $request->input('first');
+        $harga = 2000;
+        $res = 0;
+
+        $res = $bil1 * $harga;
+
+        return redirect('districts')->with('status', "Harga Ongkir nya adalah : $res");
+    }
 }

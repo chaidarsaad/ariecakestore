@@ -89,4 +89,5 @@ class DistrictkController extends Controller
         $districts->delete();
         return redirect('districtskar')->with('status',"Kecamatan Berhasil Dihapus");
     }
+
 }
