@@ -85,6 +85,9 @@
                                     <div class="form-group">
                                         <input required placeholder="nama costumer" type="text" name="fname" class="form-control">
                                     </div>
+                                    <div class="form-group">
+                                        <input required placeholder="Uang Bayar" type="number" name="bayar" class="form-control">
+                                    </div>
                                     <label>Total Harga : Rp {{ number_format($totalPrice ?? 0) }}</label>
                                     <button type="submit" class="btn btn-success">
                                         Bayar

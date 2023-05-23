@@ -74,7 +74,7 @@ class PosController extends Controller
     public function checkoutpos(Request $request){
         $order = new Order();
 
-        $totalPrice = 0;
+        // $totalPrice = 0;
         $order->total_price = $request->input('total_price');
         $order->fname = $request->input('fname');
         $order->status_pembayaran = 'Sudah Dibayar';
@@ -103,9 +103,15 @@ class PosController extends Controller
             }
         }
 
+        $bayar = $request->input('bayar');
+        $res = 0;
+
+        $res = $bayar - $order->total_price = $request->input('total_price');
+
+
         $positems = Pos::all();
         Pos::destroy($positems);
         
-        return redirect('pointofsales');
+        return redirect('pointofsales')->with('status', "Kembalian $res");
     }
 }
