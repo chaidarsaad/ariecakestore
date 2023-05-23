@@ -116,7 +116,7 @@
 								<td>
 									Dipesan Tanggal : {{ date('d-m-Y', strtotime($orders->created_at)) }}<br />
 									Nomor Pesanan : {{ $orders->tracking_no }}<br />
-									Nama Costumer : {{ $orders->fname }}<br />
+									Nama Customer : {{ $orders->fname }}<br />
 								</td>
 							</tr>
 						</table>

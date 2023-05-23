@@ -112,6 +112,6 @@ class PosController extends Controller
         $positems = Pos::all();
         Pos::destroy($positems);
         
-        return redirect('pointofsales')->with('status', "Kembalian $res");
+        return redirect('pointofsales')->with('status', "Kembalian Rp $res");
     }
 }

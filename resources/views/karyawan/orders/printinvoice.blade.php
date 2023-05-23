@@ -144,7 +144,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="invoice-top-left">
-										<h2 class="client-company-name">Nama Costumer</h2>
+										<h2 class="client-company-name">Nama Customer</h2>
 										<h6 class="client-address">{{ $object->fname }}</h6>
 										<h4>Tanggal Pesanan</h4>
 										<h5>{{ date('d-m-Y', strtotime($object->created_at)) }}</h5>
