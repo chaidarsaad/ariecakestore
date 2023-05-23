@@ -53,7 +53,7 @@
     </div>
 
     <div class="whatsapp-chat">
-        <a href="https://wa.me/+6285156406238?text=Halo%20saya%20tertarik%20dengan%20produk%20anda" target="_blank">
+        <a href="https://wa.me/+6285156406238" target="_blank">
             <img src="{{ asset('assets/images/whatsapp-icon.png') }}" alt="whatsapp-logo" height="40px" width="40px">
         </a>
     </div>
