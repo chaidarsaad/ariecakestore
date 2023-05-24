@@ -181,7 +181,6 @@ Route::middleware(['auth', 'isKaryawan'])->group(function () {
     Route::put('update-districtkar/{id}', [DistrictkController::class, 'update']);
     Route::get('delete-districtkar/{id}', [DistrictkController::class, 'destroy']);
 
-
     Route::get('orderskar', [OrderkController::class, 'index']);
     Route::get('karyawan/view-orderkar/{id}', [OrderkController::class, 'view']);
     Route::put('update-orderkar/{id}', [OrderkController::class, 'updateorder']);
@@ -193,13 +192,6 @@ Route::middleware(['auth', 'isKaryawan'])->group(function () {
     Route::put('update-pointofsalekar/{id}', [PoskController::class, 'update']);
     Route::get('delete-pointofsalekar/{id}', [PoskController::class, 'deletepos']);
     Route::post('checkout-poskar', [PoskController::class, 'checkoutpos']);
-
-    Route::get('resepkar', [ResepkController::class, 'index']);
-    Route::get('add-resepkar', [ResepkController::class, 'add']);
-    Route::post('insert-resepkar', [ResepkController::class, 'insert']);
-    Route::get('edit-resepkar/{id}', [ResepkController::class, 'edit']);
-    Route::put('update-resepkar/{id}', [ResepkController::class, 'update']);
-    Route::get('delete-resepkar/{id}', [ResepkController::class, 'destroy']);
 
     Route::get('stokbahankar', [StokbahankController::class, 'index']);
     Route::get('add-stokbahankar', [StokbahankController::class, 'add']);

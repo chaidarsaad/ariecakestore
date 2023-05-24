@@ -68,13 +68,6 @@
             </a>
 
             <a
-              href="{{ url('resepkar') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('resepkar')) ? 'active' : '' }}"
-            >
-              Resep
-            </a>
-
-            <a
               href="{{ url('stokbahankar') }}"
               class="list-group-item list-group-item-action {{ (request()->is('stokbahankar')) ? 'active' : '' }}"
             >
