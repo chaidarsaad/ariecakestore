@@ -90,4 +90,15 @@ class DistrictkController extends Controller
         return redirect('districtskar')->with('status',"Kecamatan Berhasil Dihapus");
     }
 
+    public function calc(Request $request){
+        $bil1 = $request->input('first');
+        $harga = 1500;
+        $kec = $request->input('namakec');
+        $res = 0;
+
+        $res = $bil1 * $harga;
+
+        return redirect('districtskar')->with('status', "Harga Ongkir ke kecamatan $kec adalah $res");
+    }
+
 }

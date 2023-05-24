@@ -180,6 +180,8 @@ Route::middleware(['auth', 'isKaryawan'])->group(function () {
     Route::get('edit-districtkar/{id}', [DistrictkController::class, 'edit']);
     Route::put('update-districtkar/{id}', [DistrictkController::class, 'update']);
     Route::get('delete-districtkar/{id}', [DistrictkController::class, 'destroy']);
+    Route::post('calculatorkar', [DistrictkController::class, 'calc']);
+
 
     Route::get('orderskar', [OrderkController::class, 'index']);
     Route::get('karyawan/view-orderkar/{id}', [OrderkController::class, 'view']);
