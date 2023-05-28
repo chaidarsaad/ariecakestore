@@ -17,10 +17,8 @@ use Exception;
 use Midtrans\Snap;
 use Midtrans\Config;
 
-class CheckoutController extends Controller
-{
-    public function index()
-    {
+class CheckoutController extends Controller{
+    public function index(){
         $old_cartitems = Cart::where('user_id', Auth::id())->get();
         foreach ($old_cartitems as $item) {
             if (
@@ -46,9 +44,7 @@ class CheckoutController extends Controller
             'order' => $order,
         ]);
     }
-
-    public function midtrans(Request $request)
-    {
+    public function midtrans(Request $request){
         $order = new Order();
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
@@ -68,7 +64,6 @@ class CheckoutController extends Controller
 
         $request->request->add(['status_pembayaran' => 'Belum Dibayar']);
         $order->status_pesanan = 'Proses';
-        // $order->status = 'Unpaid';
 
         $order->tracking_no = 'ariecakestore-' . mt_rand(00000, 99999);
         $order->save();
@@ -142,8 +137,7 @@ class CheckoutController extends Controller
         return redirect('my-orders')->with('status', 'Pesnanan Berhasil Dibuat');
     }
 
-    public function callback(Request $request)
-    {
+    public function callback(Request $request){
         $serverKey = config('services.midtrans.serverKey');
         $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
 

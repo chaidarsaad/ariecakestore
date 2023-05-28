@@ -10,10 +10,8 @@ use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class DistrictController extends Controller
-{
-    public function index()
-    {
+class DistrictController extends Controller{
+    public function index(){
         // $districts = District::all();
 
         if (request()->ajax()) {
@@ -50,14 +48,10 @@ class DistrictController extends Controller
         }
         return view('admin.district.index');
     }
-
-    public function add()
-    {
+    public function add(){
         return view('admin.district.add');
     }
-
-    public function insert(Request $request)
-    {
+    public function insert(Request $request){
         $districts = new District();
        
         $districts->name = $request->input('name');
@@ -65,31 +59,24 @@ class DistrictController extends Controller
         $districts->save();
         return redirect('districts')->with('status',"Kecamatan Berhasil Ditambah");
     }
-
-    public function edit($id)
-    {
+    public function edit($id){
         $districts = District::find($id);
         return view('admin.district.edit', [
             'districts' => $districts
         ]);
     }
-
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $districts = District::find($id);
         $districts->name = $request->input('name');
         $districts->price = $request->input('price');
         $districts->update();
         return redirect('districts')->with('status',"Kecamatan Berhasil Diupdate");
     }
-
-    public function destroy($id)
-    {
+    public function destroy($id){
         $districts = District::find($id);
         $districts->delete();
         return redirect('districts')->with('status',"Kecamatan Berhasil Dihapus");
     }
-
     public function calc(Request $request){
         $bil1 = $request->input('first');
         $harga = 1500;

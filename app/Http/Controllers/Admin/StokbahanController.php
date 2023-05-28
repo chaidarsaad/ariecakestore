@@ -8,8 +8,7 @@ use App\Models\Stokbahan;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class StokbahanController extends Controller
-{
+class StokbahanController extends Controller{
     public function index(){
         if (request()->ajax()) {
             $query = Stokbahan::query();
@@ -45,11 +44,9 @@ class StokbahanController extends Controller
         }
         return view('admin.stokbahan.index');
     }
-
     public function add(){
         return view('admin.stokbahan.add');
     }
-
     public function insert(Request $request){
         $stok = new Stokbahan();
         $stok->name = $request->input('name');
@@ -57,14 +54,12 @@ class StokbahanController extends Controller
         $stok->save();
         return redirect('stokbahan')->with('status',"Stok bahan Berhasil Ditambah");
     }
-
     public function edit($id){
         $stok = Stokbahan::find($id);
         return view('admin.stokbahan.edit', [
             'stok' => $stok,
         ]);
     }
-
     public function update(Request $request, $id){
         $stok = Stokbahan::find($id);
         $stok->name = $request->input('name');
@@ -72,7 +67,6 @@ class StokbahanController extends Controller
         $stok->update();
         return redirect('stokbahan')->with('status',"Stok bahan Berhasil Diupdate");
     }
-
     public function destroy($id){
         $stok = Stokbahan::find($id);
         $stok->delete();

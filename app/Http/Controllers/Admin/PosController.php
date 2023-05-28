@@ -56,7 +56,6 @@ class PosController extends Controller
 
         return redirect('pointofsales');
     }
-
     //update prod_qty
     public function update(Request $request, $id){
         $pos = Pos::find($id);
@@ -64,17 +63,14 @@ class PosController extends Controller
         $pos->update();
         return redirect('pointofsales');
     }
-
     public function deletepos($id){
       $pos = Pos::find($id);
       $pos->delete();
       return redirect('pointofsales');
     }
-
     public function checkoutpos(Request $request){
         $order = new Order();
 
-        // $totalPrice = 0;
         $order->total_price = $request->input('total_price');
         $order->fname = $request->input('fname');
         $order->status_pembayaran = 'Sudah Dibayar';
