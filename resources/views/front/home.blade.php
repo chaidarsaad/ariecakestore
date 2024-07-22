@@ -108,10 +108,10 @@
                     <h2 class="fw-semibold">{{ $banner1->title }}</h2>
                     <h4>{{ $banner1->subtitle }}</h4>
                 </div> --}}
-                <a href="#" class="more-btn">
+                {{-- <a href="#" class="more-btn">
                     <h4>View More</h4>
                     <i class="iconsax right-arrow" data-icon="arrow-right"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </section>
