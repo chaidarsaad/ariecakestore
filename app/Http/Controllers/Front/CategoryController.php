@@ -25,7 +25,6 @@ class CategoryController extends Controller
     {
         session()->put('category_id', $category->id);
         // $products = Product::where('category_id', $category->id)->where('is_active', 1)->get();
-
         return view('front.category', compact('category'));
     }
 }
