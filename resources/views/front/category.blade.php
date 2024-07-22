@@ -16,9 +16,9 @@
                     <i class="iconsax back-btn" data-icon="arrow-left"></i>
                 </a>
                 <h3>{{ $category->name }}</h3>
-                <a href="notification.html" class="notification">
+                {{-- <a href="notification.html" class="notification">
                     <i class="iconsax notification-icon" data-icon="bell-2"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </header>

@@ -13,8 +13,8 @@
         <div class="custom-container">
             <div class="header-panel">
                 <h3>Categories</h3>
-                <a href="notification.html" class="notification"> <i class="iconsax notification-icon" data-icon="bell-2"></i>
-                </a>
+                {{-- <a href="notification.html" class="notification"> <i class="iconsax notification-icon" data-icon="bell-2"></i>
+                </a> --}}
             </div>
         </div>
     </header>
