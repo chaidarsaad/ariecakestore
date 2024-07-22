@@ -156,7 +156,7 @@ htmlDom.setAttribute(
 );
 rtlLink.href = localStorage.getItem("rtlcss")
     ? localStorage.getItem("rtlcss")
-    : "assets/css/vendors/bootstrap.min.css";
+    : "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
 
 /*====================
   Dark js
