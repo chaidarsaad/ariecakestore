@@ -24,7 +24,11 @@ class CategoryController extends Controller
     public function category(Category $category)
     {
         session()->put('category_id', $category->id);
-        // $products = Product::where('category_id', $category->id)->where('is_active', 1)->get();
-        return view('front.category', compact('category'));
+        $products = Product::where('category_id', $category->id)->where('is_active', 1)->get();
+        return view('front.category', [
+            'category' => $category,
+            'products' => $products,
+            // 'relatedProducts' => Product::where('category_id', $category->id)->where('id', '!=', $category->id)->inRandomOrder()->take(4)->get(),
+        ]);
     }
 }

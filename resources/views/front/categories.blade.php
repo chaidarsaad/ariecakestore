@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('title')
-    Arie Cake Store | Categories
+    Arie Cake Store | Category
 @endsection
 
 @push('addon-style')
@@ -41,7 +41,7 @@
             <ul class="categories-list">
                 @foreach ($categories as $category)
                     <li>
-                        <a href="shop.html" class="d-flex align-items-center">
+                        <a href="{{ route('front.category', $category->slug) }}" class="d-flex align-items-center">
                             <div class="ps-3">
                                 <h2>{{ $category->name }}</h2>
                                 <h4 class="mt-1">Total {{ $category->products_count }} products available</h4>
