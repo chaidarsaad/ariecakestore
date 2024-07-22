@@ -43,7 +43,7 @@
     <section class="section-b-space">
         <div class="custom-container">
             <div class="row g-3">
-                @foreach ($products as $product)
+                @forelse ($products as $product)
                     <div class="col-6">
                         <div class="product-box">
                             <div class="product-box-img">
@@ -67,7 +67,9 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <h2 style="color: #1A73E8" class=" text-center text-custom">No products found.</h3>
+                @endforelse
 
             </div>
         </div>
