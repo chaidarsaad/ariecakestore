@@ -26,10 +26,10 @@
     @stack('addon-style')
 </head>
 
-<body>
+<body class="{{ Route::currentRouteName() == 'front.product' ? 'details-page details-page2' : '' }}">
     @yield('content')
 
-    @if (Route::currentRouteName() !== 'front.cart')
+    @if (!in_array(Route::currentRouteName(), ['front.cart', 'front.product']))
         <!-- bottom navbar start -->
         @include('components.bottomnavbar')
         <!-- bottom navbar end -->

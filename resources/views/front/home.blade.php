@@ -156,7 +156,7 @@
                     <div class="col-6">
                         <div class="product-box">
                             <div class="product-box-img">
-                                <a href="shop.html">
+                                <a href="{{ route('front.product', $nwa->id) }}">
                                     <img class="img" src="{{ Storage::url($nwa->thumbnail) }}" alt="p2" />
                                 </a>
 
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center">No categories found.</p>
+                    <p class="text-center">No product found.</p>
                 @endforelse
 
                 {{-- <div class="col-6">
@@ -244,15 +244,18 @@
                     @foreach ($trendingProducts as $trp)
                         <div class="col-12">
                             <div class="horizontal-product-box">
-                                <a href="product-details.html" class="horizontal-product-img">
+                                <a href="{{ route('front.product', $trp->id) }}" class="horizontal-product-img">
                                     <img class="img-fluid img" src="{{ Storage::url($trp->thumbnail) }}"
                                         alt="p3" />
                                 </a>
                                 <div class="horizontal-product-details">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h4>{{ $trp->name }}</h4>
-                                    </div>
-                                    <h5>{{ $trp->category->name }}</h5>
+                                    <a href="{{ route('front.product', $trp->id) }}">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h4>{{ $trp->name }}</h4>
+                                        </div>
+                                        <h5>{{ $trp->category->name }}</h5>
+                                    </a>
+
 
                                     <div class="d-flex align-items-center justify-content-between mt-1">
                                         <div class="d-flex align-items-center gap-2">
@@ -480,8 +483,8 @@
                     <div class="col-6">
                         <div class="product-box">
                             <div class="product-box-img">
-                                <a href="shop.html"> <img class="img" src="{{ Storage::url($rndmp->thumbnail) }}"
-                                        alt="p11" /></a>
+                                <a href="{{ route('front.product', $rndmp->id) }}"> <img class="img"
+                                        src="{{ Storage::url($rndmp->thumbnail) }}" alt="p11" /></a>
 
                                 <div class="cart-box">
                                     <a href="cart.html" class="cart-bag">
@@ -500,13 +503,16 @@
                                     <span class="effect"></span>
                                 </div>
                             </div>
-                            <div class="product-box-detail">
-                                <h4>{{ $rndmp->name }}</h4>
-                                <div class="d-flex justify-content-between gap-3">
-                                    <h5>{{ $rndmp->category->name }}</h5>
+                            <a href="{{ route('front.product', $rndmp->id) }}">
+                                <div class="product-box-detail">
+                                    <h4>{{ $rndmp->name }}</h4>
+                                    <div class="d-flex justify-content-between gap-3">
+                                        <h5>{{ $rndmp->category->name }}</h5>
+                                    </div>
+                                    <h3 class="fw-semibold">Rp {{ number_format($rndmp->price) }}</h3>
                                 </div>
-                                <h3 class="fw-semibold">Rp {{ number_format($rndmp->price) }}</h3>
-                            </div>
+                            </a>
+
                         </div>
                     </div>
                 @endforeach
