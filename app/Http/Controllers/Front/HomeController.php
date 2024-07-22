@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class HomeController extends Controller
             ->get();
         $trendingProducts = Product::where('is_trending', 1)->take(4)->get();
         $randomProducts = Product::inRandomOrder()->take(6)->get();
+        $banner1 = Banner::first();
+        $banner2 = Banner::latest()->first();
 
 
         return view('front.home', [
@@ -25,6 +28,9 @@ class HomeController extends Controller
             'newArrivals' => $newArrivals,
             'trendingProducts' => $trendingProducts,
             'randomProducts' => $randomProducts,
+            'banner1' => $banner1,
+            'banner2' => $banner2,
+            // Uncomment the following lines to enable the featured products section
             // Uncomment the following lines to enable the search functionality
             // Uncomment the following lines to enable the related products functionality
             // 'featuredProducts' => Product::where('is_featured', 1)->get(),

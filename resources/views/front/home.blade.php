@@ -7,7 +7,7 @@
 @push('addon-style')
     {{-- addon style --}}
     <!-- swiper css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/swiper-bundle.min.css') }}" />
 @endpush
 
 @section('content')
@@ -64,17 +64,17 @@
                     <button class="sidebar-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft">
                         <i class="iconsax menu-icon" data-icon="menu-hamburger"></i>
                     </button>
-                    <div class="header-info">
+                    {{-- <div class="header-info">
                         <img class="img-fluid profile-pic" src="assets/images/icons/profile.png" alt="profile" />
                         <div>
                             <h4 class="light-text">Hello</h4>
                             <h2 class="theme-color">Agasya!</h2>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-                <a href="notification.html" class="notification">
+                {{-- <a href="notification.html" class="notification">
                     <i class="iconsax notification-icon" data-icon="bell-2"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </header>
@@ -90,9 +90,9 @@
                         <i class="iconsax search-icon" data-icon="search-normal-2"></i>
                     </div>
 
-                    <a href="#search-filter" class="btn filter-btn mt-0" data-bs-toggle="modal">
+                    {{-- <a href="#search-filter" class="btn filter-btn mt-0" data-bs-toggle="modal">
                         <i class="iconsax filter-icon" data-icon="media-sliders-3"></i>
-                    </a>
+                    </a> --}}
                 </div>
             </form>
         </div>
@@ -103,12 +103,12 @@
     <section class="banner-wapper">
         <div class="custom-container">
             <div class="banner-bg">
-                <img class="img-fluid img-bg w-100" src="assets/images/banner/banner-1.jpg" alt="banner-1" />
-                <div class="banner-content">
-                    <h2 class="fw-semibold">Best Selling</h2>
-                    <h4>Comforts & Modern life Stylish Sofa</h4>
-                </div>
-                <a href="shop.html" class="more-btn">
+                <img class="img-fluid img-bg w-100" src="{{ Storage::url($banner1->image) }}" alt="banner-1" />
+                {{-- <div class="banner-content">
+                    <h2 class="fw-semibold">{{ $banner1->title }}</h2>
+                    <h4>{{ $banner1->subtitle }}</h4>
+                </div> --}}
+                <a href="#" class="more-btn">
                     <h4>View More</h4>
                     <i class="iconsax right-arrow" data-icon="arrow-right"></i>
                 </a>
@@ -276,15 +276,15 @@
     <section class="banner-wapper">
         <div class="custom-container">
             <div class="banner-bg">
-                <img class="img-fluid img-bg" src="assets/images/banner/banner-2.jpg" alt="banner-2" />
-                <div class="banner-content">
-                    <h2 class="fw-semibold">Best Selling</h2>
-                    <h4>Comforts & Modern life Stylish Sofa</h4>
-                </div>
-                <a href="shop.html" class="more-btn">
+                <img class="img-fluid img-bg" src="{{ Storage::url($banner2->image) }}" alt="banner-2" />
+                {{-- <div class="banner-content">
+                    <h2 class="fw-semibold">{{ $banner1->title }}</h2>
+                    <h4>{{ $banner1->subtitle }}</h4>
+                </div> --}}
+                {{-- <a href="#" class="more-btn">
                     <h4>View More</h4>
                     <i class="iconsax right-arrow" data-icon="arrow-right"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </section>
@@ -516,7 +516,7 @@
     <!-- other furniture section end -->
 
     <!-- banner section start -->
-    <section class="banner-wapper grid-banner">
+    {{-- <section class="banner-wapper grid-banner">
         <div class="custom-container">
             <div class="row">
                 <div class="col-6">
@@ -547,7 +547,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- banner section end -->
 
     <!-- filter offcanvas start -->
