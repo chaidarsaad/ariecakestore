@@ -29,9 +29,12 @@
 <body>
     @yield('content')
 
-    <!-- bottom navbar start -->
-    @include('components.bottomnavbar')
-    <!-- bottom navbar end -->
+    @if (Route::currentRouteName() !== 'front.cart')
+        <!-- bottom navbar start -->
+        @include('components.bottomnavbar')
+        <!-- bottom navbar end -->
+    @endif
+
 
     {{-- script --}}
     @stack('prepend-script')

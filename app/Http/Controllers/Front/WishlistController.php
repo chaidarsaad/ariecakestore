@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class WishlistController extends Controller
 {
     public function index()
     {
-        return view('front.cart-empty');
+        return view('front.wishlist-empty');
     }
 }

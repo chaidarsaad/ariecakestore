@@ -16,24 +16,24 @@
                 </div>
             </a>
         </li>
-        <li class="">
-            <a href="cart.html">
+        <li class="{{ request()->routeIs('front.cart') ? 'active' : '' }}">
+            <a href="{{ route('front.cart') }}">
                 <div class="icon">
                     <img class="unactive" src="{{ asset('assets') }}/images/svg/bag.svg" alt="bag" />
                     <img class="active" src="{{ asset('assets') }}/images/svg/bag-fill.svg" alt="bag" />
                 </div>
             </a>
         </li>
-        <li class="">
-            <a href="wishlist.html">
+        <li class="{{ request()->routeIs('front.wishlist') ? 'active' : '' }}">
+            <a href="{{ route('front.wishlist') }}">
                 <div class="icon">
                     <img class="unactive" src="{{ asset('assets') }}/images/svg/heart.svg" alt="heart" />
                     <img class="active" src="{{ asset('assets') }}/images/svg/heart-fill.svg" alt="heart" />
                 </div>
             </a>
         </li>
-        <li class="">
-            <a href="profile.html">
+        <li class="{{ request()->routeIs('front.about') ? 'active' : '' }}">
+            <a href="{{ route('front.about') }}">
                 <div class="icon">
                     <img class="unactive" src="{{ asset('assets') }}/images/svg/profile.svg" alt="profile" />
                     <img class="active" src="{{ asset('assets') }}/images/svg/profile-fill.svg" alt="profile" />
