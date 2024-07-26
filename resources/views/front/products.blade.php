@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('title')
-    Arie Cake Store | Kategori {{ $category->name }}
+    Arie Cake Store | Semua Produk
 @endsection
 
 @push('addon-style')
@@ -15,8 +15,7 @@
                 <a href="javascript:void(0);" onclick="window.history.back()">
                     <i class="iconsax back-btn" data-icon="arrow-left"></i>
                 </a>
-                <h3>{{ $category->name }}</h3>
-
+                <h3>Semua Produk</h3>
             </div>
         </div>
     </header>
@@ -25,7 +24,7 @@
     <!-- search section starts -->
     <section>
         <div class="custom-container">
-            <form class="theme-form search-head" target="_blank">
+            <form class="theme-form search-head">
                 <div class="form-group">
                     <div class="form-input">
                         <input type="text" class="form-control search" id="search"
@@ -47,8 +46,8 @@
                         <div class="product-box">
                             <div class="product-box-img">
                                 <a href="{{ route('front.product', $product->slug) }}"> <img class="img"
-                                        src="{{ Storage::url($product->thumbnail) }}" alt="p1" />
-                                </a>
+                                        src="{{ Storage::url($product->thumbnail) }}" alt="p1" /></a>
+
                                 <div class="cart-box">
                                     <button class="cart-bag" data-slug="{{ $product->slug }}" data-quantity="1">
                                         <i class="iconsax bag" data-icon="basket-2"></i>
@@ -84,6 +83,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // Prevent form submission on enter
             $('#search-form').on('submit', function(e) {
                 e.preventDefault();
             });
@@ -108,6 +108,7 @@
 
     <!-- Toastify JS -->
     <script src="{{ asset('assets/js/notify.js') }}"></script>
+
     <!-- Your other scripts -->
 
 
@@ -147,12 +148,11 @@
                                     style: 'bootstrap'
                                 });
                             } else {
-                                $.notify(
-                                    "Produk gagal ditambahkan. Coba lagi.", {
-                                        className: 'error',
-                                        globalPosition: 'top left',
-                                        style: 'bootstrap'
-                                    });
+                                $.notify("Produk gagal ditambahkan. Coba lagi.", {
+                                    className: 'error',
+                                    globalPosition: 'top left',
+                                    style: 'bootstrap'
+                                });
                             }
                         })
                         .catch(error => {

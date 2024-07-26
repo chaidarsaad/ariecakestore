@@ -17,7 +17,7 @@ class HomeController extends Controller
             ->latest()
             ->take(4)
             ->get();
-        $trendingProducts = Product::where('is_trending', 1)->take(4)->get();
+        $trendingProducts = Product::where('is_trending', 1)->take(6)->get();
         $randomProducts = Product::inRandomOrder()->take(6)->get();
         $banner1 = Banner::first();
         $banner2 = Banner::latest()->first();
@@ -30,14 +30,22 @@ class HomeController extends Controller
             'randomProducts' => $randomProducts,
             'banner1' => $banner1,
             'banner2' => $banner2,
-            // Uncomment the following lines to enable the featured products section
-            // Uncomment the following lines to enable the search functionality
-            // Uncomment the following lines to enable the related products functionality
-            // 'featuredProducts' => Product::where('is_featured', 1)->get(),
-            // 'bestsellers' => Product::where('is_bestseller', 1)->get(),
-            // 'onSales' => Product::where('is_onsale', 1)->get(),
-            // 'specials' => Product::where('is_special', 1)->get(),
-            // 'products' => Product::latest()->paginate(12)
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $products = Product::where('name', 'LIKE', "%{$query}%")->get();
+
+        $result = [];
+        foreach ($products as $product) {
+            $result[] = [
+                'slug' => $product->slug,
+                'name' => $product->name,
+            ];
+        }
+
+        return response()->json($result);
     }
 }

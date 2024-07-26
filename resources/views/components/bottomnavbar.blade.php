@@ -19,16 +19,9 @@
         <li class="{{ request()->routeIs('front.cart') ? 'active' : '' }}">
             <a href="{{ route('front.cart') }}">
                 <div class="icon">
+                    {{-- <span style="position: fixed; margin-top: 7px"></span> --}}
                     <img class="unactive" src="{{ asset('assets') }}/images/svg/bag.svg" alt="bag" />
                     <img class="active" src="{{ asset('assets') }}/images/svg/bag-fill.svg" alt="bag" />
-                </div>
-            </a>
-        </li>
-        <li class="{{ request()->routeIs('front.wishlist') ? 'active' : '' }}">
-            <a href="{{ route('front.wishlist') }}">
-                <div class="icon">
-                    <img class="unactive" src="{{ asset('assets') }}/images/svg/heart.svg" alt="heart" />
-                    <img class="active" src="{{ asset('assets') }}/images/svg/heart-fill.svg" alt="heart" />
                 </div>
             </a>
         </li>

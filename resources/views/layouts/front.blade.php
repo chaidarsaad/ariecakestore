@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/x-icon" />
     {{-- <title>fuzzy app</title> --}}
@@ -26,10 +27,10 @@
     @stack('addon-style')
 </head>
 
-<body class="{{ Route::currentRouteName() == 'front.product' ? 'details-page details-page2' : '' }}">
+<body class="{{ Route::currentRouteName() == 'front.product' ? 'details-page' : '' }}">
     @yield('content')
 
-    @if (!in_array(Route::currentRouteName(), ['front.cart', 'front.product']))
+    @if (!in_array(Route::currentRouteName(), ['front.cart', 'front.product', 'front.category', 'front.all-products']))
         <!-- bottom navbar start -->
         @include('components.bottomnavbar')
         <!-- bottom navbar end -->

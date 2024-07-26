@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('title')
-    Arie Cake Store | About
+    Arie Cake Store | Tentang Kami
 @endsection
 
 @push('addon-style')
@@ -9,184 +9,111 @@
 
 @section('content')
     <!-- header start -->
-    <header class="profile-header section-t-space">
+    <header class="section-t-space">
         <div class="custom-container">
             <div class="header-panel">
-                <h3>Profile</h3>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-                <div class="profile-pic mt-5">
-                    <img class="img-fluid img" src="assets/images/icons/profile1.png" alt="profile" />
-                </div>
-                <div class="profile-name d-flex align-items-center justify-content-between mt-3 w-100">
-                    <h4 class="theme-color">Marlin Watkin</h4>
-                    <a href="profile-setting.html">
-                        <i class="iconsax edit-icon" data-icon="edit-1"></i>
-                    </a>
-                </div>
+                <h3 class="mt-2">{{ $data->store_name ?? 'no store name' }}</h3>
             </div>
         </div>
     </header>
     <!-- header end -->
 
-    <!-- profile section start -->
-    <section class="section-b-space pt-0">
+    <!-- help section start -->
+    <section class="section-b-space">
         <div class="custom-container">
-            <ul class="profile-list">
-                <li>
-                    <a href="order-history.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="box"></i>
+            <div class="help-center">
+                <img style="width: 150px" class="img-fluid help-pic mx-auto d-block mt-4"
+                    src="{{ isset($data) && $data->logo ? Storage::url($data->logo) : asset('assets/images/logo/logo ariecakestore circle.png') }}"
+                    alt="help" />
+                <h2>Tentang Kami</h2>
+                <p style="text-align: justify">Please get in touch and we will be happy to help you. Get quick customer
+                    support by selecting your item
+                </p>
+
+                <h2>Mengapa memilih kami?</h2>
+                <p style="text-align: justify">Kami adalah orang yang berkomitmen dalam menciptakan pengalaman manis melalui
+                    kue, tart, kue kering, dll.
+                </p>
+                <p style="text-align: justify"">Setiap karya seni kami dipersembahkan dengan bahan berkualitas tinggi dan
+                    dekorasi
+                    teliti oleh ahli kami.
+                    Percayakan kepada kami untuk membuat momen spesial Anda lebih manis.
+                </p>
+
+                <h2>Jam Buka</h2>
+                <p style="text-align: justify">
+                    Senin - Jumat: 08.00 - 16.00 WIB<br>
+                    Sabtu: 10.00 - 16.00 WIB<br>
+                    Minggu: Via <a target="_blank" href="https://wa.me/+6285257436005">WhatsApp 085257436005</a><br>
+                </p>
+
+                <h2>Lokasi Toko</h2>
+                <div class="row mt-2">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6398746833493!2d113.52127417404856!3d-7.721732276510256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd703136504d563%3A0x82c39c8c196f31f0!2sArie%20Cake%20Tart%20Decoration%20%26%20Cookies!5e0!3m2!1sen!2sid!4v1721871468713!5m2!1sen!2sid"
+                        allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade" height="350">
+                    </iframe>
+                </div>
+
+                </br>
+                <h3>Pertanyaan yang sering ditanyakan</h3>
+                <div class="accordion accordion-flush help-accordion" id="accordionFlushExample">
+                    @php
+                        $ques = 0;
+                        $ans = 0;
+                    @endphp
+                    @foreach ($questions as $question)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapse{{ $ques++ }}"
+                                    aria-expanded="false">{{ $question->question }}</button>
+                            </h2>
+                            <div id="flush-collapse{{ $ans++ }}" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">{{ $question->answer }}</div>
+                            </div>
                         </div>
-                        <div class="profile-details">
-                            <h4>Orders</h4>
-                            <h5>Ongoing orders, Recent orders..</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="wishlist.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="heart"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Wishlist</h4>
-                            <h5>Your save product</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-payment.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="wallet-open"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Payment</h4>
-                            <h5>Saved card, Wallets</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-address.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="location"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Saved Address</h4>
-                            <h5>Home, Office</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="language.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="translate"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Language</h4>
-                            <h5>Select your language here</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="notification.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="bell-1"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Notification</h4>
-                            <h5>Offers, Order tracking messages</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="setting.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="setting-1"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Settings</h4>
-                            <h5>app settings, Dark mode</h5>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="terms-conditions.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="info-circle"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Terms & Conditions</h4>
-                            <h5>T&C for use of platform</h5>
-                        </div>
-                    </a>
-                </li>
-                <li class="border-bottom-0">
-                    <a href="help.html" class="profile-box">
-                        <div class="profile-img">
-                            <i class="iconsax icon" data-icon="phone"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h4>Help</h4>
-                            <h5>Customer Support, FAQs</h5>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    @endforeach
+
+                </div>
+            </div>
         </div>
     </section>
-    <!-- profile section start -->
+    <!-- help section end -->
+
+    <!-- footer start -->
+    <footer class="section-t-space">
+        <div class="custom-container">
+            <div class="header-panel">
+                <h3 class="mt-2">Sosial Media Kami</h3>
+            </div>
+        </div>
+    </footer>
+    <footer class="section-t-space">
+        <div class="custom-container">
+            <div class="header-panel">
+                <div class="row justify-content-center mx-auto mt-2">
+                    <div class="d-flex">
+                        <a href="https://wa.me/+6285257436005" class="mx-2" target="_blank">
+                            <img style="width: 40px" class=""
+                                src="{{ asset('assets/images/svg/whatsapp-svgrepo-com.svg') }}" alt="help" />
+                        </a>
+                        <a href="https://www.facebook.com/share/xciHUHqD8RWXSjBd/?mibextid=LQQJ4d" class="mx-2"
+                            target="_blank">
+                            <img style="width: 40px" class="" src="{{ asset('assets/images/svg/facebook.svg') }}"
+                                alt="help" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
 
     <!-- panel-space start -->
     <section class="panel-space"></section>
     <!-- panel-space end -->
-
-    <!-- bottom navbar start -->
-    <div class="navbar-menu">
-        <ul>
-            <li>
-                <a href="landing.html">
-                    <div class="icon">
-                        <img class="unactive" src="assets/images/svg/home.svg" alt="home" />
-                        <img class="active" src="assets/images/svg/home-fill.svg" alt="home" />
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="categories.html">
-                    <div class="icon">
-                        <img class="unactive" src="assets/images/svg/categories.svg" alt="categories" />
-                        <img class="active" src="assets/images/svg/categories-fill.svg" alt="categories" />
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="cart.html">
-                    <div class="icon">
-                        <img class="unactive" src="assets/images/svg/bag.svg" alt="bag" />
-                        <img class="active" src="assets/images/svg/bag-fill.svg" alt="bag" />
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="wishlist.html">
-                    <div class="icon">
-                        <img class="unactive" src="assets/images/svg/heart.svg" alt="heart" />
-                        <img class="active" src="assets/images/svg/heart-fill.svg" alt="heart" />
-                    </div>
-                </a>
-            </li>
-            <li class="active">
-                <a href="profile.html">
-                    <div class="icon">
-                        <img class="unactive" src="assets/images/svg/profile.svg" alt="profile" />
-                        <img class="active" src="assets/images/svg/profile-fill.svg" alt="profile" />
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- bottom navbar end -->
 @endsection
 
 @push('addon-script')
