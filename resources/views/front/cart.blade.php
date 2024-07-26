@@ -64,7 +64,9 @@
                                                 <i class="iconsax" data-icon="minus"></i>
                                             </button>
                                             <input type="number" value="{{ $details['quantity'] }}" min="1"
-                                                class="quantity-input" data-slug="{{ $details['slug'] }}" />
+                                                class="quantity-input" data-slug="{{ $details['slug'] }}"
+                                                data-price="{{ $details['price'] }}" data-name="{{ $details['name'] }}" />
+
                                             <button class="add plus-minus-button" data-action="add"
                                                 data-slug="{{ $details['slug'] }}">
                                                 <i class="iconsax" data-icon="add"></i>
@@ -227,7 +229,30 @@
             checkoutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                const cart = @json(session('cart'));
+                // Ambil nilai dari input quantity
+                const cart = {};
+                document.querySelectorAll('.plus-minus').forEach(element => {
+                    const slug = element.querySelector('.quantity-input').getAttribute('data-slug');
+                    const quantity = parseInt(element.querySelector('.quantity-input').value);
+                    const price = parseFloat(element.querySelector('.quantity-input').getAttribute(
+                        'data-price'));
+                    const name = element.querySelector('.quantity-input').getAttribute('data-name');
+
+                    if (slug && !isNaN(quantity) && !isNaN(price)) {
+                        cart[slug] = {
+                            slug,
+                            quantity,
+                            price,
+                            name
+                        };
+                    }
+                });
+
+                // Validasi dan debugging
+                if (Object.keys(cart).length === 0) {
+                    alert('Keranjang kosong atau data tidak valid.');
+                    return;
+                }
 
                 let message =
                     'Halo Arie Cake, Saya ingin melakukan pemesanan dengan detail sebagai berikut:\n\n';
@@ -242,7 +267,6 @@
                 message += `\n*Total Harga: Rp ${totalPrice.toLocaleString()}*`;
 
                 const encodedMessage = encodeURIComponent(message);
-
                 const whatsappUrl = `https://wa.me/+6285257436005?text=${encodedMessage}`;
 
                 fetch("{{ route('cart.clear') }}", {
