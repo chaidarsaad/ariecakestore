@@ -90,7 +90,7 @@
     <section class="similer-product section-b-space">
         <div class="custom-container">
             <div class="title">
-                <h2>Similar Products</h2>
+                <h2>Produk Sejenis</h2>
                 <a href="{{ route('front.home') }}">Lihat semua</a>
             </div>
 
