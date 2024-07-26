@@ -243,7 +243,7 @@
 
                 const encodedMessage = encodeURIComponent(message);
 
-                const whatsappUrl = `https://wa.me/+6285156406238?text=${encodedMessage}`;
+                const whatsappUrl = `https://wa.me/+6285257436005?text=${encodedMessage}`;
 
                 fetch("{{ route('cart.clear') }}", {
                         method: 'POST',
