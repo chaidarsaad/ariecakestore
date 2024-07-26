@@ -36,9 +36,11 @@
 
                 <h2>Mengapa memilih kami?</h2>
                 <p style="text-align: justify">Seiring berjalan nya waktu Arie Cake Tart Decoration & Cookies. Terhitung
-                    tanggal 11 desember 2021 , alhamdulillah sudah memiliki perizinan berusaha berbasis risiko dengan Nomor
-                    Induk Usaha : 1112210007923. Dan telah lolos uji Sertifikat Halal terhitung tanggal 30 april 2024 dengan
-                    nomor : ID35110017058840424
+                    tanggal 11 desember 2021 , alhamdulillah sudah memiliki perizinan berusaha berbasis risiko dengan
+                    <b>Nomor
+                        Induk Usaha : 1112210007923</b>. Dan telah lolos uji Sertifikat Halal terhitung tanggal 30 april
+                    2024 dengan
+                    nomor : <b>ID35110017058840424</b>
                 </p>
                 <p style="text-align: justify">Tidak perlu diragukan lagi untuk berbelanja di Arie Cake Tart Decoration &
                     Cookies

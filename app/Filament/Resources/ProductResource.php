@@ -39,7 +39,7 @@ class ProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
-                    ->cols(20),
+                    ->rows(5),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
