@@ -135,7 +135,7 @@
             <a href="#" class="cart-box-sec" data-product-slug="{{ $product->slug }}">
                 <div class="d-flex align-items-center gap-2">
                     <i class="iconsax bag" data-icon="basket-2"></i>
-                    <h2>Add to cart</h2>
+                    <h2>Tambah ke keranjang</h2>
                 </div>
                 <h2 id="total-price">Rp {{ number_format($product->price) }}</h2>
             </a>
