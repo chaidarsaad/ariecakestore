@@ -12,7 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserResource extends Resource
 {
@@ -45,12 +47,39 @@ class UserResource extends Resource
                     ->dehydrated(fn(?string $state): bool => filled($state))
                     ->required(fn(string $operation): bool => $operation === 'create')
                     ->minLength(8),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->options(function () {
+                        $user = Auth::user();
+                        $isOwner = $user->hasRole('Owner');
+                        $isKasir = $user->hasRole('Kasir');
+
+                        if ($isOwner || $isKasir) {
+                            return Role::whereIn('name', ['Owner', 'Kasir'])->pluck('name', 'id');
+                        }
+
+                        return Role::pluck('name', 'id');
+                    }),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                $user = Auth::user();
+                $isOwner = $user->hasRole('Owner');
+                $isKasir = $user->hasRole('Kasir');
+
+                if ($isOwner || $isKasir) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->whereIn('name', ['Owner', 'Kasir']);
+                    });
+                }
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
@@ -99,6 +128,35 @@ class UserResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        $isOwner = Auth::user()->hasRole('Owner');
+        $isKasir = Auth::user()->hasRole('Kasir');
+
+        if ($isOwner) {
+            $ownerCount = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Owner');
+            })->count();
+
+            $cashierCount = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Kasir');
+            })->count();
+
+            $count = $ownerCount + $cashierCount;
+
+            return $count;
+        } else if ($isKasir) {
+            $ownerCount = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Owner');
+            })->count();
+
+            $cashierCount = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Kasir');
+            })->count();
+
+            $count = $ownerCount + $cashierCount;
+
+            return $count;
+        } else {
+            return static::getModel()::count();
+        }
     }
 }
