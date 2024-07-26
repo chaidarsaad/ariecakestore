@@ -189,17 +189,15 @@
     <!-- Trending product section end -->
 
     <!-- banner section start -->
-    @if ($banner1->count() > 1)
-        <section class="banner-wapper">
-            <div class="custom-container">
-                <div class="banner-bg">
-                    @if ($banner2 != null)
-                        <img class="img-fluid img-bg w-100" src="{{ Storage::url($banner2->image) }}" alt="banner-2" />
-                    @endif
-                </div>
+    <section class="banner-wapper">
+        <div class="custom-container">
+            <div class="banner-bg">
+                @if ($banner2 != null)
+                    <img class="img-fluid img-bg w-100" src="{{ Storage::url($banner2->image) }}" alt="banner-2" />
+                @endif
             </div>
-        </section>
-    @endif
+        </div>
+    </section>
     <!-- banner section end -->
 
     <!-- other product section start -->
