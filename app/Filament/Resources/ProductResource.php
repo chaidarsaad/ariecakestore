@@ -49,13 +49,11 @@ class ProductResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('thumbnail')
                     ->image()
-                    ->required()
-                    ->acceptedFileTypes(['image/svg+xml', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp']),
+                    ->required(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->multiple()
-                    ->required()
-                    ->acceptedFileTypes(['image/svg+xml', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp']),
+                    ->required(),
             ]);
     }
 
