@@ -26,18 +26,25 @@
                     src="{{ isset($data) && $data->logo ? Storage::url($data->logo) : asset('assets/images/logo/logo ariecakestore circle.png') }}"
                     alt="help" />
                 <h2>Tentang Kami</h2>
-                <p style="text-align: justify">Please get in touch and we will be happy to help you. Get quick customer
-                    support by selecting your item
+                <p style="text-align: justify">Arie Cake Tart Decoration & Cookies yang berlokasi di Sumberanyar Paiton,
+                    berdiri sejak tahun 2015 melayani pemesanan online maupun offline. <br><br>Arie Cake Tart Decoration &
+                    Cookies
+                    menyediakan kue tart, kue basah, kue kering, kue tradisional, puding, snackbox, ricebox, dan lain-lain
+                    sesuai pesanan costumer. Dengan alat dan bahan yang digunakan mengutamakan kualitas, kebersihan,
+                    kesehatan sesuai dengan standart kesehatan.
                 </p>
 
                 <h2>Mengapa memilih kami?</h2>
-                <p style="text-align: justify">Kami adalah orang yang berkomitmen dalam menciptakan pengalaman manis melalui
-                    kue, tart, kue kering, dll.
+                <p style="text-align: justify">Seiring berjalan nya waktu Arie Cake Tart Decoration & Cookies. Terhitung
+                    tanggal 11 desember 2021 , alhamdulillah sudah memiliki perizinan berusaha berbasis risiko dengan Nomor
+                    Induk Usaha : 1112210007923. Dan telah lolos uji Sertifikat Halal terhitung tanggal 30 april 2024 dengan
+                    nomor : ID35110017058840424
                 </p>
-                <p style="text-align: justify"">Setiap karya seni kami dipersembahkan dengan bahan berkualitas tinggi dan
-                    dekorasi
-                    teliti oleh ahli kami.
-                    Percayakan kepada kami untuk membuat momen spesial Anda lebih manis.
+                <p style="text-align: justify">Tidak perlu diragukan lagi untuk berbelanja di Arie Cake Tart Decoration &
+                    Cookies
+                    "Because Taste Never Lies"
+                    (Sebab rasa tidak pernah bohong)
+
                 </p>
 
                 <h2>Jam Buka</h2>
