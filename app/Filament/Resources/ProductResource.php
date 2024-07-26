@@ -38,7 +38,8 @@ class ProductResource extends Resource
                     ->unique(ignoreRecord: true)
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description'),
+                Forms\Components\Textarea::make('description')
+                    ->cols(20),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
