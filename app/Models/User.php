@@ -22,6 +22,8 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'email_verified_at'
+
     ];
 
     /**
@@ -46,8 +48,8 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
         ];
     }
-public function canAccessPanel(Panel $panel): bool
+    public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return str_ends_with($this->email, '@genzproject.my.id') && $this->hasVerifiedEmail();
     }
 }

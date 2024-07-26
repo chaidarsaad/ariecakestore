@@ -15,10 +15,13 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BannerResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Lainnya';
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'ri-advertisement-line';
+    protected static ?string $activeNavigationIcon = 'ri-advertisement-fill';
     public static function form(Form $form): Form
     {
         return $form
@@ -88,5 +91,10 @@ class BannerResource extends Resource
     public static function canCreate(): bool
     {
         return Banner::count() < 2;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

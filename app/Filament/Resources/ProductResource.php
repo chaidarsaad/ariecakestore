@@ -15,9 +15,14 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Toko';
+
+    protected static ?int $navigationSort = 6;
+
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'polaris-product-icon';
+    protected static ?string $activeNavigationIcon = 'polaris-product-filled-icon';
 
     public static function form(Form $form): Form
     {
@@ -106,5 +111,10 @@ class ProductResource extends Resource
             // 'create' => Pages\CreateProduct::route('/create'),
             // 'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

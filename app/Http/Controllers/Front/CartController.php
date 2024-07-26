@@ -21,16 +21,12 @@ class CartController extends Controller
 
     public function add(Request $request, Product $product)
     {
-        // Ambil produk berdasarkan slug
         $product = Product::where('slug', $product->slug)->firstOrFail();
 
-        // Ambil cart dari sesi
         $cart = session()->get('cart', []);
 
-        // Ambil kuantitas dari permintaan, default 1
         $quantity = $request->input('quantity', 1);
 
-        // Tambahkan produk ke cart atau perbarui kuantitas
         if (isset($cart[$product->slug])) {
             $cart[$product->slug]['quantity'] += $quantity;
         } else {
@@ -43,15 +39,12 @@ class CartController extends Controller
             ];
         }
 
-        // Simpan cart ke sesi
         session()->put('cart', $cart);
 
-        // Hitung total harga
         $totalPrice = array_reduce($cart, function ($carry, $item) {
             return $carry + ($item['price'] * $item['quantity']);
         }, 0);
 
-        // Kembalikan respons JSON
         return response()->json([
             'success' => true,
             'totalPrice' => $totalPrice,
@@ -62,10 +55,8 @@ class CartController extends Controller
 
     public function removeFromCart($productSlug)
     {
-        // Ambil keranjang dari session
         $cart = session()->get('cart', []);
 
-        // Temukan produk berdasarkan slug
         $productKey = null;
         foreach ($cart as $key => $item) {
             if ($item['slug'] === $productSlug) {
@@ -74,22 +65,17 @@ class CartController extends Controller
             }
         }
 
-        // Jika produk ditemukan dalam keranjang
         if ($productKey !== null) {
-            // Hapus produk dari keranjang
             unset($cart[$productKey]);
 
-            // Reindex array dan simpan kembali ke session
             $cart = array_values($cart);
             session()->put('cart', $cart);
         }
 
-        // Hitung total harga baru
         $totalPrice = array_reduce($cart, function ($total, $item) {
             return $total + ($item['price'] * $item['quantity']);
         }, 0);
 
-        // Redirect atau return response sesuai kebutuhan
         return response()->json(['success' => true, 'totalPrice' => $totalPrice]);
     }
 
@@ -97,10 +83,8 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity');
 
-        // Ambil keranjang dari session
         $cart = session()->get('cart', []);
 
-        // Temukan produk berdasarkan slug
         foreach ($cart as $key => $item) {
             if ($item['slug'] === $productSlug) {
                 // Update kuantitas produk
@@ -109,10 +93,8 @@ class CartController extends Controller
             }
         }
 
-        // Simpan keranjang yang diperbarui ke session
         session()->put('cart', $cart);
 
-        // Hitung total harga baru
         $totalPrice = array_reduce($cart, function ($total, $item) {
             return $total + ($item['price'] * $item['quantity']);
         }, 0);
@@ -124,12 +106,10 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity');
 
-        // Validasi kuantitas jika perlu
         if ($quantity < 1) {
             return response()->json(['success' => false, 'message' => 'Invalid quantity'], 400);
         }
 
-        // Logika untuk memperbarui kuantitas dalam cart
         $cart = session()->get('cart', []);
         if (isset($cart[$slug])) {
             $cart[$slug]['quantity'] = $quantity;

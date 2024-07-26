@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\QuestionResource\Pages;
-use App\Filament\Resources\QuestionResource\RelationManagers;
-use App\Models\Question;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,27 +12,39 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
-class QuestionResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
     protected static ?string $navigationGroup = 'Lainnya';
 
-    protected static ?string $model = Question::class;
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-user';
 
-    protected static ?string $navigationIcon = 'ri-question-line';
-    protected static ?string $activeNavigationIcon = 'ri-question-fill';
+    protected static ?string $model = User::class;
+
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('question')
-                    ->unique(ignoreRecord: true)
+                Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('answer')
+                Forms\Components\TextInput::make('email')
+                    ->email()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->revealable()
+                    ->required()
+                    ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
+                    ->dehydrated(fn(?string $state): bool => filled($state))
+                    ->required(fn(string $operation): bool => $operation === 'create')
+                    ->minLength(8),
             ]);
     }
 
@@ -40,10 +52,13 @@ class QuestionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('question')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('answer')
+                Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('email_verified_at')
+                    ->dateTime()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -76,9 +91,9 @@ class QuestionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListQuestions::route('/'),
-            // 'create' => Pages\CreateQuestion::route('/create'),
-            // 'edit' => Pages\EditQuestion::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            // 'create' => Pages\CreateUser::route('/create'),
+            // 'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 

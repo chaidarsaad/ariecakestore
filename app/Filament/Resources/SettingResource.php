@@ -15,9 +15,13 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SettingResource extends Resource
 {
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Lainnya';
+
     protected static ?string $model = Setting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'fluentui-settings-16-o';
+    protected static ?string $activeNavigationIcon = 'fluentui-settings-16';
 
     public static function form(Form $form): Form
     {
@@ -97,5 +101,10 @@ class SettingResource extends Resource
     public static function canCreate(): bool
     {
         return Setting::count() < 1;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }
