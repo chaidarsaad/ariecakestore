@@ -42,7 +42,7 @@
     @include('includes.script')
     @stack('addon-script')
 
-<!-- Histats.com  (div with counter) -->
+    <!-- Histats.com  (div with counter) -->
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">
     var _Hasync= _Hasync|| [];
