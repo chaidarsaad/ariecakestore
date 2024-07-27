@@ -42,10 +42,7 @@
     @include('includes.script')
     @stack('addon-script')
     <!-- Histats.com  (div with counter) -->
-     <div style="bottom: 0; left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 100%;" id="histats_counter"></div>
+     <div class="navbar-menu" id="histats_counter"></div>
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">var _Hasync= _Hasync|| [];
     _Hasync.push(['Histats.start', '1,4884118,4,138,112,33,00011111']);
