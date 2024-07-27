@@ -41,21 +41,18 @@
     @stack('prepend-script')
     @include('includes.script')
     @stack('addon-script')
-     <!-- Histats.com  (div with counter) -->
-     <div style="z-index: 1000;" id="histats_counter"></div>
+    
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.startgif', '1,4884118,4,10008,"div#histatsC {position: absolute;top:0px;right:0px;}body>div#histatsC {position: fixed;}"']);
+    _Hasync.push(['Histats.start', '1,4884118,4,0,0,0,00010000']);
     _Hasync.push(['Histats.fasi', '1']);
     _Hasync.push(['Histats.track_hits', '']);
     (function() {
     var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-    hs.src = ('//s10.histats.com/js15_giftop_as.js');
+    hs.src = ('//s10.histats.com/js15_as.js');
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
     })();</script>
-    <noscript><style type="text/css">div#histatsC {position: absolute;top:0px;right:0px;}body>div#histatsC {position: fixed;}</style>
-    <a href="/" alt="" target="_blank" ><div id="histatsC"><img border="0" src="//s4is.histats.com/stats/i/4884118.gif?4884118&103"></div></a>
-    </noscript>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4884118&101" alt="" border="0"></a></noscript>
     <!-- Histats.com  END  -->
 </body>
 
