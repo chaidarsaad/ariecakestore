@@ -42,9 +42,10 @@
     @include('includes.script')
     @stack('addon-script')
     
+   <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
     <!-- Histats.com  START  (aync)-->
-    <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,4884118,4,0,0,0,00010000']);
+    <script style="display: none;" type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,4884118,4,138,112,33,00011111']);
     _Hasync.push(['Histats.fasi', '1']);
     _Hasync.push(['Histats.track_hits', '']);
     (function() {
