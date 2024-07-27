@@ -42,7 +42,7 @@
     @include('includes.script')
     @stack('addon-script')
      <!-- Histats.com  (div with counter) -->
-     <div style="position: fixed; z-index: 99;" id="histats_counter"></div>
+     <div style="z-index: 1000;" id="histats_counter"></div>
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">var _Hasync= _Hasync|| [];
     _Hasync.push(['Histats.startgif', '1,4884118,4,10008,"div#histatsC {position: absolute;top:0px;right:0px;}body>div#histatsC {position: fixed;}"']);
