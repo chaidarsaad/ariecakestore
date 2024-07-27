@@ -21,17 +21,6 @@
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-     <style>
-    #histats_counter {
-        position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 100%;
-    }
-    </style>
-
     {{-- Style --}}
     @stack('prepend-style')
     @include('includes.style')
@@ -54,7 +43,6 @@
     @stack('addon-script')
 
 <!-- Histats.com  (div with counter) -->
-    <div id="histats_counter"></div>
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">
     var _Hasync= _Hasync|| [];
