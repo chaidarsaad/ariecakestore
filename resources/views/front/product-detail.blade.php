@@ -21,7 +21,7 @@
     <!-- header start -->
     <header class="product-page-header">
         <div class="header-panel">
-            <a href="javascript:void(0);" onclick="window.history.back()" class="product-back">
+            <a href="javascript:void(0);" onclick="window.history.back();" class="product-back">
                 <i class="iconsax back-btn" data-icon="arrow-left"></i>
             </a>
             <h3 class="title">{{ $product->name }}</h3>
@@ -183,8 +183,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            document.getElementById('total-price-detail').textContent =
-                                `Rp ${data.totalPrice.toLocaleString('id-ID')}`;
+                            // Tambahkan elemen baru untuk menampilkan total harga jika diperlukan
                             $.notify("Produk ditambahkan ke keranjang", {
                                 className: 'success',
                                 globalPosition: 'top left',
@@ -199,8 +198,7 @@
                         }
                     })
                     .catch(error => {
-                        const errorMessage = error.message ||
-                            "Eror. Coba lagi.";
+                        const errorMessage = error.message || "Eror. Coba lagi.";
                         $.notify(errorMessage, {
                             className: 'error',
                             globalPosition: 'top left',
@@ -210,62 +208,4 @@
             });
         });
     </script>
-
-    {{-- script toastify --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.cart-bag').forEach(button => {
-                button.addEventListener('click', function() {
-                    const slug = this.dataset.slug;
-                    const quantity = this.dataset.quantity;
-
-                    fetch(`{{ route('front.cart-add', '') }}/${slug}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest',
-                                'X-CSRF-TOKEN': document.querySelector(
-                                    'meta[name="csrf-token"]').getAttribute('content')
-                            },
-                            body: JSON.stringify({
-                                quantity: quantity
-                            })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                return response.json().then(data => {
-                                    throw data;
-                                });
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                $.notify("Produk ditambahkan ke keranjang", {
-                                    className: 'success',
-                                    globalPosition: 'top left',
-                                    style: 'bootstrap'
-                                });
-                            } else {
-                                $.notify("Produk gagal ditambahkan. Coba lagi.", {
-                                    className: 'error',
-                                    globalPosition: 'top left',
-                                    style: 'bootstrap'
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            const errorMessage = error.message ||
-                                "Eror. Coba lagi.";
-                            $.notify(errorMessage, {
-                                className: 'error',
-                                globalPosition: 'top left',
-                                style: 'bootstrap'
-                            });
-                        });
-                });
-            });
-        });
-    </script>
-    {{-- end script toastify --}}
 @endpush
