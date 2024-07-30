@@ -183,7 +183,6 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Tambahkan elemen baru untuk menampilkan total harga jika diperlukan
                             $.notify("Produk ditambahkan ke keranjang", {
                                 className: 'success',
                                 globalPosition: 'top left',
