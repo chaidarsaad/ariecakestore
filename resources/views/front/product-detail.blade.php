@@ -137,7 +137,7 @@
                     <i class="iconsax bag" data-icon="basket-2"></i>
                     <h2>Tambah ke keranjang</h2>
                 </div>
-                <h2 id="total-price">Rp {{ number_format($product->price) }}</h2>
+                <h2 id="total-price-detail">Rp {{ number_format($product->price) }}</h2>
             </a>
         </div>
     </section>
@@ -183,7 +183,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            document.getElementById('total-price').textContent =
+                            document.getElementById('total-price-detail').textContent =
                                 `Rp ${data.totalPrice.toLocaleString('id-ID')}`;
                             $.notify("Produk ditambahkan ke keranjang", {
                                 className: 'success',

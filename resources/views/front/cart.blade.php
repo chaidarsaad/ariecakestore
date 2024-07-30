@@ -49,14 +49,7 @@
                                             <i class="iconsax trash" data-icon="trash"></i>
                                         </a>
                                     </div>
-                                    {{-- <div class="d-flex align-items-center justify-content-between">
-                                        <a href="{{ route('front.product', $details['slug']) }}">
-                                            <h4>{{ $details['name'] }}</h4>
-                                        </a>
-                                        <a href="#" class="remove-from-cart" data-slug="{{ $details['slug'] }}">
-                                            <i class="iconsax trash" data-icon="trash"></i>
-                                        </a>
-                                    </div> --}}
+
                                     <ul class="product-info">
                                         <li>Jumlah: <span class="quantity">{{ $details['quantity'] }}</span></li>
                                     </ul>
