@@ -146,8 +146,6 @@
                 if (isUpdating) return;
                 isUpdating = true;
 
-                console.log(`Updating cart: ${slug} with quantity ${quantity}`);
-
                 fetch(`/cart/update/${slug}`, {
                         method: 'PATCH',
                         headers: {
@@ -161,7 +159,6 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Update response:', data);
                         isUpdating = false;
                         if (data.success) {
                             const productBox = document.querySelector(`.cart-product-box[data-slug="${slug}"]`);
@@ -197,9 +194,6 @@
                         `input.quantity-input[data-slug="${slug}"]`);
                     let currentQuantity = parseInt(quantityInput.value);
 
-                    console.log(
-                        `Button clicked: action=${action}, currentQuantity=${currentQuantity}`);
-
                     if (action === 'add') {
                         quantityInput.value = currentQuantity + 0;
                     } else if (action === 'subtract' && currentQuantity > 1) {
@@ -215,7 +209,6 @@
                     const slug = this.dataset.slug;
                     let quantity = parseInt(this.value);
 
-                    console.log(`Quantity input changed: slug=${slug}, quantity=${quantity}`);
                     updateCart(slug, quantity);
                 });
             });
