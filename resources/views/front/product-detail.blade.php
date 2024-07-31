@@ -91,7 +91,7 @@
         <div class="custom-container">
             <div class="title">
                 <h2>Produk Sejenis</h2>
-                <a href="{{ route('front.home') }}">Lihat semua</a>
+                <a href="{{ route('front.category', $product->category->slug) }}">Lihat semua</a>
             </div>
 
             <div class="swiper similer-product">
