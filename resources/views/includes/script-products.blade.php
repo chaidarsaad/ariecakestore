@@ -28,7 +28,6 @@
 
  <!-- Toastify JS -->
  <script src="{{ asset('assets/js/notify.js') }}"></script>
-
  <!-- Your other scripts -->
 
 
